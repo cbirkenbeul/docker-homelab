@@ -1,0 +1,39 @@
+---
+version: '3.3'
+
+services: 
+  nextcloud-db:
+    image: mariadb
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: always
+    volumes:
+      - /var/docker/nextcloud/database:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_PASSWORD=
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+    
+  nextcloud-app:
+    image: nextcloud
+    restart: always
+    volumes: 
+      - /var/docker/nextcloud/app:/var/www/html
+    links:
+      - nextcloud-db
+    labels:
+      - "traefik.backend=nextcloud"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:nextcloud.example.com" # URL entsprechend anpassen!
+      - "traefik.port=80"
+      - "traefik.docker.network=traefik_proxy"
+    networks:
+      - traefik_proxy
+      - default
+    
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge
