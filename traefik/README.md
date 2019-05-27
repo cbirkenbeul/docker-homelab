@@ -11,4 +11,5 @@ docker network create traefik_proxy
 ## ACME Verzeichnis
 Traefik speichert alle notwendigen Informationen zu den Zertifikaten als JSON im ACME Verzeichnis. Dieses Verzeichnis benötigt besondere Rechte.
 
+mkdir ACME
 chmod 600 ACME
