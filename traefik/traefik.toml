@@ -1,0 +1,33 @@
+logLevel = "ERROR"
+defaultEntryPoints = ["http", "https"]
+insecureSkipVerify = true
+
+[web]
+address = ":8080"
+  [web.auth.basic]
+  users = ["admin:verschlüsseltespasswort"]
+
+[docker]
+domain = "example.com" # Hier deine Domäne eintragen
+watch = true
+exposedbydefault = false
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+
+# Let's encrypt configuration
+[acme]
+  email="deine@email.de"
+  storage="./ACME/acme.json"
+  entryPoint="https"
+  acmeLogging=true
+  OnHostRule=true
+  caServer = "https://acme-v02.api.letsencrypt.org/directory"
+    [acme.httpChallenge]
+    entryPoint = "http"
