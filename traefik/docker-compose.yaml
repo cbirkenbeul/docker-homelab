@@ -7,7 +7,7 @@ services:
     container_name: traefik
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /var/docker/traefik:/etc/traefik
+      - $PWD/config:/etc/traefik
     networks:
       - traefik_proxy
       - default

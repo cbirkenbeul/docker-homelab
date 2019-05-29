@@ -24,7 +24,7 @@ exposedbydefault = false
 # Let's encrypt configuration
 [acme]
   email="deine@email.de"
-  storage="./ACME/acme.json"
+  storage="/etc/traefik/ACME/acme.json"
   entryPoint="https"
   acmeLogging=true
   OnHostRule=true

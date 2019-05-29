@@ -4,6 +4,7 @@ version: '3.3'
 services: 
   nextcloud-db:
     image: mariadb
+    container_name: nextcloud-db
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: always
     volumes:
@@ -16,6 +17,7 @@ services:
     
   nextcloud-app:
     image: nextcloud
+    container_name: nextcloud-app
     restart: always
     volumes: 
       - /var/docker/nextcloud/app:/var/www/html
