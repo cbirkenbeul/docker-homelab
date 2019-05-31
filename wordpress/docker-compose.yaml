@@ -1,0 +1,42 @@
+---
+version: '3.3'
+
+services:
+  wordpress-db:
+    image: mariadb:10.3
+    container_name: teqqyde-db
+    restart: always
+    volumes:
+      - /var/docker/wordpress/database:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD= # Starkes Passwort setzen
+      - MYSQL_DATABASS=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD= # Starkes Passwort setzen
+
+  wordpress-app:
+    image: wordpress:latest
+    container_name: wordpress-app
+    restart: always
+    volumes:
+      - /var/docker/wordpress/data:/var/www/html/wp-content
+    environment:
+      - WORDPRESS_DB_HOST=wordpress-db:3306
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD= # MYSQL_PASSWORD hier einfügen
+    labels:
+      - "traefik.backend=wordpress"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:wordpress.example.com" # URL anpassen!
+      - "traefik.port=80"
+      - "traefik.docker.network=traefik_proxy"
+    networks:
+      - default
+      - traefik_proxy
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge

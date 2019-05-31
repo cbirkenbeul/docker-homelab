@@ -26,6 +26,9 @@ Alphabetisch sortiert
 ## T
 * Traefik (https://traefik.io)
 
+## W
+* Wordpress (https://de.wordpress.org)
+
 # Unterstützung
 Findest du das Projekt gut, würde ich mich freuen wenn du mich Untersützen würdest
 
