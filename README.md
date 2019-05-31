@@ -24,3 +24,8 @@ Im Laufe der Zeit können sich Produkte ändern oder nicht mehr durch die Entwic
 
 ## T
 * Traefik
+
+# Unterstützung
+Findest du das Projekt gut, würde ich mich freuen wenn du mich Untersützen würdest
+[![Steady](https://steady.imgix.net/gfx/logos/steady_logo_lettering_orange.png)](https://steadyhq.com/de/teqqyde)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NNWSYA5KFESGG&source=url)
