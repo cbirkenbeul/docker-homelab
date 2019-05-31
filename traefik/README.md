@@ -6,10 +6,14 @@ Traefik ist ein revere proxy mit der Möglichkeit via Let's encrypt Zertifikate 
 Um Traefik mit meinen Dateien nutzen zu können muss folgendes durchgeführt werden
 
 ## Netzwerk anlegen
+```bash
 docker network create traefik_proxy
+```
 
 ## ACME Verzeichnis
 Traefik speichert alle notwendigen Informationen zu den Zertifikaten als JSON im ACME Verzeichnis. Dieses Verzeichnis benötigt besondere Rechte.
 
+```bash
 cd config/ACME
 chmod acme.json
+```
