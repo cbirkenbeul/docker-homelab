@@ -12,6 +12,16 @@ Es werden keine Docker Volumes verwendet sondern bind mounts! Als Standardverzei
 # Wichtiges
 Im Laufe der Zeit können sich Produkte ändern oder nicht mehr durch die Entwickler gewartet werden. Bitte habt verständnis dafür, dass dieses Repository nicht vollständig und zu jeder Zeit korrekt sein kann. Außerdem sind vor Benutzung immer die Dummy-Passwörter durch komplexe eigene Passwörter zu ersetzen!
 
-# Liste
-* Traefik
-* Portainer
+# Software
+
+| A | B | C | D | E | F | G | H | I | J |
+|---|---|---|---|---|---|–--|---|---|---|
+| | Bookstack | | | | | | | | |
+|---|---|---|---|---|---|–--|---|---|---|
+| K | L | M | N | O | P | Q | R | S | T |
+|---|---|---|---|---|---|–--|---|---|---|
+| | Bookstack | | | | | | | | |
+|---|---|---|---|---|---|–--|---|---|---|
+| U | V | W | X | Y | Z |   |   |  |  |
+|---|---|---|---|---|---|–--|---|---|---|
+| | Bookstack | | | | | | | | |
