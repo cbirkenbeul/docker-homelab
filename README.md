@@ -21,6 +21,7 @@ Alphabetisch sortiert
 * Nextcloud (https://nextcloud.com)
 
 ## P
+* PLEX Medien Server (https://www.plex.tv)
 * Portainer (https://www.portainer.io)
 
 ## T

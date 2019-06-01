@@ -1,0 +1,17 @@
+---
+version: '3.3'
+
+services:
+  plex:
+    image: plex # Wenn du Plex Pass Kunde bist fügst du noch :plexpass hinzu
+    container_name: plex
+    restart: always
+    network: host
+    volumes:
+      - /var/docker/plex/config:/config
+      - /var/docker/plex/transcode:/transcode # Den Pfad kannst du natürlich auch anpassen
+      - <path>:/data # Den Pfad bitte so setzen, dass Plex an eure Medien ran kommt
+    environment:
+      - TZ=EUROPE/BERLIN
+      - PLEX_CLAIM=<token> # Den Token hier einfügen (siehe README)
+      
