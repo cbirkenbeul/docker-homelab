@@ -15,5 +15,5 @@ Traefik speichert alle notwendigen Informationen zu den Zertifikaten als JSON im
 
 ```bash
 cd config/ACME
-chmod acme.json
+chmod 600 acme.json
 ```
