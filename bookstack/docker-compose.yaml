@@ -14,6 +14,23 @@ services:
       - MYSQL_USER=bookstack
       - MYSQL_PASSWORD= # Ein anderes Passwort
 
+  # bookstack-db-backup:
+  #   image: databack/mysql-backup
+  #   container_name: bookstack-db-backup
+  #   depends_on:
+  #     - bookstack-db
+  #   restart: always
+  #   volumes:
+  #     - /var/docker/bookstack/backup:/db
+  #   environment:
+  #     - DB_DUMP_FREQ=60 # Backup jede Stunde - Angabe in Minuten
+  #     - DB_DUMP_BEGIN=2300 # Backup startet immer um 23 Uhr
+  #     - DB_DUMP_TARGET=/db
+  #     - DB_SERVER=bookstack-db
+  #     - DB_USER=bookstack
+  #     - DB_PASS= # Starkes Passwort von MYSQL_PASSWORD
+  #   user: "0" # Führt Backup als root User durch - ggf. anpassen
+
   bookstack-app:
     image: solidnerd/bookstack
     container_name: bookstack-app
