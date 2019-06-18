@@ -1,0 +1,60 @@
+version: '3.3'
+
+services:
+  nextcloud-db:
+    image: linuxserver/mariadb
+    container_name: nextcloud-db
+    restart: always
+    volumes:
+      - /var/docker/nextcloud/database:/var/lib/mysql
+    environment:
+      - TZ=Europe/Berlin
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD= # Setze hier ein starkes Passwort
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=# Ein anderes Passwort
+
+  # nextcloud-db-backup:
+  #   image: databack/mysql-backup
+  #   container_name: nextcloud-db-backup
+  #   depends_on:
+  #     - nextcloud-db
+  #   restart: always
+  #   volumes:
+  #     - /var/docker/nextcloud/backup:/db
+  #   environment:
+  #     - DB_DUMP_FREQ=60 # Backup jede Stunde - Angabe in Minuten
+  #     - DB_DUMP_BEGIN=2300 # Backup startet immer um 23 Uhr
+  #     - DB_DUMP_TARGET=/db
+  #     - DB_SERVER=nextcloud-db
+  #     - DB_USER=nextcloud
+  #     - DB_PASS= # Starkes Passwort von MYSQL_PASSWORD
+  #   user: "0" # Führt Backup als root User durch - ggf. anpassen
+
+
+  nextcloud-app:
+    image: nextcloud
+    container_name: nextcloud-app
+    restart: always
+    volumes: 
+      - /var/docker/nextcloud/app:/var/www/html
+    links:
+      - nextcloud-db
+    labels:
+      - "traefik.backend=nextcloud"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:nextcloud.example.com" # URL entsprechend anpassen!
+      - "traefik.port=80"
+      - "traefik.docker.network=traefik_proxy"
+    networks:
+      - traefik_proxy
+      - default
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge
