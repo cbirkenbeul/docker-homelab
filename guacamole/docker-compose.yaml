@@ -1,0 +1,54 @@
+---
+version: '3'
+  
+services:
+    guacamole_guacd:
+    image: guacamole/guacd:latest
+    container_name: guacamole_guacd
+    restart: unless-stopped
+  
+  guacamole_mysql:
+    image: mysql:latest
+    container_name: guacamole_mysql
+    restart: unless-stopped
+    volumes:
+      - /var/docker/data/guacamole/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD= # Setze hier ein starkes Passwort
+      - MYSQL_DATABASE=guacamole_db
+      - MYSQL_USER=guacamole_sql
+      - MYSQL_PASSWORD= # Ein anderes Passwort
+
+  guacamole_guacamole:
+    image: guacamole/guacamole:latest
+    container_name: guacamole_guacamole
+    restart: unless-stopped
+    environment:
+      - MYSQL_HOSTNAME=guacamole_mysql
+      - MYSQL_DATABASE=guacamole_db
+      - MYSQL_USER=guacamole_sql
+      - MYSQL_PASSWORD=
+      - GUACD_HOSTNAME=guacamole_guacd
+      - GUACD_PORT=4822
+    links:
+      - guacamole_guacd:guacd
+      - guacamole_mysql:mysql
+    depends_on:
+      - guacamole_guacd
+      - guacamole_mysql
+    links:
+      - guacamole_guacd:guacd
+      - guacamole_mysql:mysql
+    labels:
+      - "traefik.backend=guacamole"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:guacamoleexample.com Path:/guacamole" # URL entsprechend anpassen!
+      - "traefik.port=8080"
+      - "traefik.docker.network=traefik_proxy"
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge

@@ -17,6 +17,9 @@ Alphabetisch sortiert
 ## B
 * Bookstack (https://www.bookstackapp.com)
 
+## G
+* Guacamole (http://guacamole.apache.org)
+
 ## N
 * Nextcloud (https://nextcloud.com)
 
