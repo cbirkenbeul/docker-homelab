@@ -13,4 +13,4 @@ Anschließend fügt ihr eine neue "data source" hinzu. Name könnt ihr frei verg
 ## Grafana Beispiel Dashboard
 Solltest du dir nicht ein eigenes Dashboard erstellen wollen, kannst du mein vordefiniertes importieren.  
 Hierzu gehst du links auf Dashboard -> Manage -> Import  
-In das große Feld kopierst du den vollständigen Inhalt der [dashboard.json](monitoring/grafana/dashboard.json) Datei hinein.
+In das große Feld kopierst du den vollständigen Inhalt der [dashboard.json](grafana/dashboard.json) Datei hinein.
