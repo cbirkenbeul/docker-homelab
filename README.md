@@ -30,6 +30,9 @@ Alphabetisch sortiert
 ## N
 * Nextcloud (https://nextcloud.com)
 
+##
+* Ouroboros (https://github.com/pyouroboros/ouroboros)
+
 ## P
 * PLEX Medien Server (https://www.plex.tv)
 * Portainer (https://www.portainer.io)
