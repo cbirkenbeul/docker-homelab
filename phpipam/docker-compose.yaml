@@ -1,0 +1,41 @@
+---
+version: '3'
+
+services:
+  phpipam-mysql:
+    image: mysql:5.7
+    container_name: phpipam-mysql
+    restart: unless-stopped
+    volumes:
+      - /var/docker/data/phpipam/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD= # Starkes Passwort setzen!
+
+  phpipam-phpipam:
+    image: pierrecdn/phpipam:latest
+    container_name: phpipam-phpipam
+    restart: unless-stopped
+    environment:
+      - MYSQL_ENV_MYSQL_USER=root
+      - MYSQL_ENV_MYSQL_ROOT_PASSWORD= # Starkes Passwort setzen!
+      - MYSQL_ENV_MYSQL_HOST=phpipam-mysql
+    ports:
+      - 8087:80
+    depends_on:
+      - phpipam-mysql
+    labels:
+      - "traefik.backend=phpipam"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:phpipam.example.com" # URL entsprechend anpassen!
+      - "traefik.port=80"
+      - "traefik.docker.network=traefik_proxy"
+    networks:
+      - traefik_proxy
+      - default
+    
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge

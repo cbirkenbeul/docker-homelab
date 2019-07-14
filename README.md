@@ -34,6 +34,7 @@ Alphabetisch sortiert
 * Ouroboros (https://github.com/pyouroboros/ouroboros)
 
 ## P
+* phpIPAM (https://phpipam.net)
 * PLEX Medien Server (https://www.plex.tv)
 * Portainer (https://www.portainer.io)
 
