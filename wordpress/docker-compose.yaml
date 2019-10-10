@@ -10,7 +10,7 @@ services:
       - /var/docker/wordpress/database:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD= # Starkes Passwort setzen
-      - MYSQL_DATABASS=wordpress
+      - MYSQL_DATABASE=wordpress
       - MYSQL_USER=wordpress
       - MYSQL_PASSWORD= # Starkes Passwort setzen
 
@@ -24,6 +24,7 @@ services:
       - WORDPRESS_DB_HOST=wordpress-db:3306
       - WORDPRESS_DB_USER=wordpress
       - WORDPRESS_DB_PASSWORD= # MYSQL_PASSWORD hier einfügen
+      - WORDPRESS_DB_NAME=wordpress
     labels:
       - "traefik.backend=wordpress"
       - "traefik.enable=true"
