@@ -32,3 +32,20 @@ services:
       - DB_PASSWORD= # Hier das Passwort von MYSQL_PASSWORD aus dem Datenbankcontainer setzen
     ports:
       -  192.168.0.10:8080:80 # Ip von der die Webgui abrufbar ist
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.bookstack-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.bookstack-http.entrypoints=web"
+      - "traefik.http.routers.bookstack-http.rule=Host(`bookstack.example.com`)" #Domain anpassen
+      - "traefik.http.routers.bookstack-http.middlewares=bookstack-https@docker"
+      - "traefik.http.routers.bookstack.entrypoints=web-secure"
+      - "traefik.http.routers.bookstack.rule=Host(`bookstack.example.com`)" #Domain anpassen
+      - "traefik.http.routers.bookstack.tls=true"
+      - "traefik.http.routers.bookstack.tls.certresolver=default"
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge

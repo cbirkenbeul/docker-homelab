@@ -49,11 +49,16 @@ services:
     depends_on:
       - mon_prometheus
     labels:
-      - "traefik.backend=grafana"
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:grafana.example.com"
-      - "traefik.port=8080"
-      - "traefik.docker.network=traefik_proxy"
+      - "traefik.http.middlewares.grafana-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.grafana-http.entrypoints=web"
+      - "traefik.http.routers.grafana-http.rule=Host(`grafana.example.com`)" #Domain anpassen
+      - "traefik.http.routers.grafana-http.middlewares=grafana-https@docker"
+      - "traefik.http.routers.grafana.entrypoints=web-secure"
+      - "traefik.http.routers.grafana.rule=Host(`grafana.example.com`)" #Domain anpassen
+      - "traefik.http.routers.grafana.tls=true"
+      - "traefik.http.routers.grafana.tls.certresolver=default"
+      - "traefik.http.services.grafana.loadbalancer.server.port=3000"
 
 networks:
   traefik_proxy:
