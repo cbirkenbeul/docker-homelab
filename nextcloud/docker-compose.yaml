@@ -24,11 +24,15 @@ services:
     links:
       - nextcloud-db
     labels:
-      - "traefik.backend=nextcloud"
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:nextcloud.example.com" # URL entsprechend anpassen!
-      - "traefik.port=80"
-      - "traefik.docker.network=traefik_proxy"
+      - "traefik.http.middlewares.nextcloud-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.nextcloud-http.entrypoints=web"
+      - "traefik.http.routers.nextcloud-http.rule=Host(`nextcloud.example.com`)" #Domain anpassen
+      - "traefik.http.routers.nextcloud-http.middlewares=nextcloud-https@docker"
+      - "traefik.http.routers.nextcloud.entrypoints=web-secure"
+      - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.example.com`)" #Domain anpassen
+      - "traefik.http.routers.nextcloud.tls=true"
+      - "traefik.http.routers.nextcloud.tls.certresolver=default"
     networks:
       - traefik_proxy
       - default

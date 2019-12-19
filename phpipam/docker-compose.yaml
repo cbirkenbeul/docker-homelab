@@ -24,11 +24,15 @@ services:
     depends_on:
       - phpipam-mysql
     labels:
-      - "traefik.backend=phpipam"
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:phpipam.example.com" # URL entsprechend anpassen!
-      - "traefik.port=80"
-      - "traefik.docker.network=traefik_proxy"
+      - "traefik.http.middlewares.phpipam-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.phpipam-http.entrypoints=web"
+      - "traefik.http.routers.phpipam-http.rule=Host(`phpipam.example.com`)" #Domain anpassen
+      - "traefik.http.routers.phpipam-http.middlewares=phpipam-https@docker"
+      - "traefik.http.routers.phpipam.entrypoints=web-secure"
+      - "traefik.http.routers.phpipam.rule=Host(`phpipam.example.com`)" #Domain anpassen
+      - "traefik.http.routers.phpipam.tls=true"
+      - "traefik.http.routers.phpipam.tls.certresolver=default"
     networks:
       - traefik_proxy
       - default

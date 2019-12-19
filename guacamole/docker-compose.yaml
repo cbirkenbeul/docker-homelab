@@ -40,11 +40,16 @@ services:
       - guacamole_guacd:guacd
       - guacamole_mysql:mysql
     labels:
-      - "traefik.backend=guacamole"
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:guacamoleexample.com Path:/guacamole" # URL entsprechend anpassen!
-      - "traefik.port=8080"
-      - "traefik.docker.network=traefik_proxy"
+      - "traefik.http.middlewares.guacamole-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.guacamole-http.entrypoints=web"
+      - "traefik.http.routers.guacamole-http.rule=Host(`guacamole.example.com`)" #Domain anpassen
+      - "traefik.http.routers.guacamole-http.middlewares=guacamole-https@docker"
+      - "traefik.http.routers.guacamole.entrypoints=web-secure"
+      - "traefik.http.routers.guacamole.rule=Host(`guacamole.example.com`)" #Domain anpassen
+      - "traefik.http.routers.guacamole.tls=true"
+      - "traefik.http.routers.guacamole.tls.certresolver=default"
+      - "traefik.http.services.guacamole.loadbalancer.server.port=8080"
 
 networks:
   traefik_proxy:

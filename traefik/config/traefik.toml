@@ -1,33 +1,25 @@
-logLevel = "ERROR"
-defaultEntryPoints = ["http", "https"]
-insecureSkipVerify = true
+[log]
+  level = "ERROR"
 
-[web]
-address = ":8080"
-  [web.auth.basic]
-  users = ["admin:verschlüsseltespasswort"]
+[providers.docker]
+  exposedByDefault = false
+  endpoint = "unix:///var/run/docker.sock"
+  network = "traefik_proxy"
 
-[docker]
-domain = "example.com" # Hier deine Domäne eintragen
-watch = true
-exposedbydefault = false
+[api]
+  dashboard = true
+  debug = true
 
 [entryPoints]
-  [entryPoints.http]
-  address = ":80"
-    [entryPoints.http.redirect]
-    entryPoint = "https"
-  [entryPoints.https]
-  address = ":443"
-    [entryPoints.https.tls]
+  [entryPoints.web]
+    address = ":80"
+  [entryPoints.web-secure]
+    address = ":443"
+  [entryPoints.dashboard]
+    address = ":8080"
 
-# Let's encrypt configuration
-[acme]
-  email="deine@email.de"
-  storage="/etc/traefik/ACME/acme.json"
-  entryPoint="https"
-  acmeLogging=true
-  OnHostRule=true
-  caServer = "https://acme-v02.api.letsencrypt.org/directory"
-    [acme.httpChallenge]
-    entryPoint = "http"
+[certificatesResolvers]
+  [certificatesResolvers.default.acme]
+    email = "mail@example.com" #Email Adresse hier anpassen
+    storage = "acme.json"
+    [certificatesResolvers.default.acme.tlsChallenge]
