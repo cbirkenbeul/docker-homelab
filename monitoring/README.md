@@ -6,6 +6,13 @@ Die Monitoring Container überwachen den Docker Host sowie alle Docker Container
 
 # Installation
 
+## Grafana Speicherort
+Der Speicherort für Grafana muss vorher angelegt werden, damit der Start des Containers funktioniert. Ich gehe hier davon aus, dass ihr den Standarduser des Linux nehmt (User ID 1000):
+````bash
+mkdir /var/docker/data/monitoring/grafana
+chown 1000:1000 /var/docker/data/monitoring/grafana
+````
+
 ## Grafana Datenquelle einrichten
 Nach dem Start aller Container öffnet ihr das Grafana Webinterface und meldet euch mit ````admin/admin```` an.  
 Anschließend fügt ihr eine neue "data source" hinzu. Name könnt ihr frei vergeben. Als URL verwendet ihr ````http://mon_prometheus:9090````. Nun unten auf "Save & Test" klicken. Ihr solltet ein grünes Feld mit der Bestätigung des erfolgreichen Verbindens bekommen.
