@@ -8,7 +8,6 @@
 
 [api]
   dashboard = true
-  debug = true
 
 [entryPoints]
   [entryPoints.web]

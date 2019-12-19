@@ -17,3 +17,17 @@ Traefik speichert alle notwendigen Informationen zu den Zertifikaten als JSON im
 cd config/ACME
 chmod 600 acme.json
 ```
+
+# Dashboard
+Um das Dashboard nutzen zu können muss die Sektion "label" in der Docker-Compose Datei auskommentiert werden. Anschließend muss man noch Benutzer
+und Passwort für das Dashboard erstellen. Hierzu ist ````apache2-utils```` erforderlich.
+````bash
+sudo apt install apache2-utils -y
+````
+
+Nun erstellen wir mit folgendem Befehl die Benutzer/Passwort Kombination:
+
+````bash
+echo $(htpasswd -nbB <USER> "<PASS>") | sed -e s/\\$/\\$\\$/g
+````
+Ihr müsst natürlich jeweils die Einträge an eure Bedürfnisse anpassen.
