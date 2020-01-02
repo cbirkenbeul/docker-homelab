@@ -18,6 +18,9 @@ Im Laufe der Zeit können sich Produkte ändern oder nicht mehr durch die Entwic
 
 # Software
 Alphabetisch sortiert
+## A
+* apt-cacher-ng (https://wiki.debian.org/AptCacherNg)
+
 ## B
 * Bookstack (https://www.bookstackapp.com)
 
