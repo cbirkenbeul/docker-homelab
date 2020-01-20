@@ -5,7 +5,7 @@ services:
   nextcloud-db:
     image: mariadb
     container_name: nextcloud-db
-    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    command: --transaction-isolation=READ-COMMITTED --log-bin=ROW
     restart: always
     volumes:
       - /var/docker/nextcloud/database:/var/lib/mysql
@@ -14,6 +14,7 @@ services:
       - MYSQL_PASSWORD=
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
+      - MYSQL_INITDB_SKIP_TZINFO=1 # Behebt die bekannten Startprobleme der Datenbank
     
   nextcloud-app:
     image: nextcloud
