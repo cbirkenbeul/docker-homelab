@@ -13,6 +13,7 @@ services:
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=wordpress
       - MYSQL_PASSWORD= # Starkes Passwort setzen
+      - MYSQL_INITDB_SKIP_TZINFO=1 # Behebt die bekannten Startprobleme 
 
   wordpress-app:
     image: wordpress:latest
