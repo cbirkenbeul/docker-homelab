@@ -2,6 +2,12 @@
 
 Traefik ist ein revere proxy mit der Möglichkeit via Let's encrypt Zertifikate zu erstellen und automatisch zu verlängern. Traefik hat den Vorteil, dass es komplett via Docker steuerbar ist und somit keine weiteren Einstellungen notwendig sind.
 
+# WICHTIG!
+Die Konfiguration für Traefik zieht die Sicherheitsanforderungen ziemlich an. Hiermit eine ein Rating von A+ beim [SSLLabs Test](https://www.ssllabs.com/ssltest) erreicht.
+
+Es werden nur aktuelle Browser unterstützt! Sollte das nicht gewollt sein, muss die 
+providers.yml Datei angepasst werden. 
+
 # Vorbereitung
 Um Traefik mit meinen Dateien nutzen zu können muss folgendes durchgeführt werden
 

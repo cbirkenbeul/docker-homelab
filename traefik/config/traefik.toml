@@ -1,11 +1,14 @@
 [log]
   level = "ERROR"
 
-[providers.docker]
-  exposedByDefault = false
-  endpoint = "unix:///var/run/docker.sock"
-  network = "traefik_proxy"
-
+[providers]
+  [providers.docker]
+    exposedByDefault = false
+    endpoint = "unix:///var/run/docker.sock"
+    network = "traefik_proxy"
+  [providers.file]
+    filename = "/etc/traefik/dynamic.yml"
+    
 [api]
   dashboard = true
 
