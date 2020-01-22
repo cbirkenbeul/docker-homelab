@@ -53,6 +53,8 @@ services:
       - "traefik.http.routers.bookstack.rule=Host(`bookstack.example.com`)" #Domain anpassen
       - "traefik.http.routers.bookstack.tls=true"
       - "traefik.http.routers.bookstack.tls.certresolver=default"
+    networks:
+      traefik_proxy:
 
 networks:
   traefik_proxy:
