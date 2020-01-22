@@ -17,7 +17,7 @@ services:
       - ILIAS_DB_USER=ilias
       - ILIAS_DB_PASSWORD= # Starkes Passwort setzen!
       - ILIAS_ROOT_PASSWORD= # Starkes Passwort setzen!
-      - ILIAS_SETUP_PASSWORD=root
+      - ILIAS_SETUP_PASSWORD= # Starkes Passwort setzen!
       - ILIAS_CLIENT_NAME=default
     labels:
       - "traefik.enable=true"
@@ -59,7 +59,7 @@ services:
     environment:
       - MYSQL_DATABASE=ilias
       - MYSQL_USER=ilias
-      - MYSQL_PASSWORD=ilias
+      - MYSQL_PASSWORD= # Starkes Passwort setzen!
       - MYSQL_ROOT_PASSWORD= # Starkes Passwort setzen!
 
 networks:
