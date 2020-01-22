@@ -29,6 +29,7 @@ services:
       - "traefik.http.routers.ilias.rule=Host(`ilias.example.com`)" #Domain anpassen
       - "traefik.http.routers.ilias.tls=true"
       - "traefik.http.routers.ilias.tls.certresolver=default"
+      - "traefik.http.routers.ilias.middlewares=secHeaders@file"
       - "traefik.http.services.ilias.loadbalancer.server.port=80"
     networks:
       - default

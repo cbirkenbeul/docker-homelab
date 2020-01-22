@@ -58,6 +58,7 @@ services:
       - "traefik.http.routers.grafana.rule=Host(`grafana.example.com`)" #Domain anpassen
       - "traefik.http.routers.grafana.tls=true"
       - "traefik.http.routers.grafana.tls.certresolver=default"
+      - "traefik.http.routers.grafana.middlewares=secHeaders@file"
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"
 
 networks:

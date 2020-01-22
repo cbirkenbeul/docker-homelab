@@ -19,8 +19,6 @@ services:
       - MYSQL_ENV_MYSQL_USER=root
       - MYSQL_ENV_MYSQL_ROOT_PASSWORD= # Starkes Passwort setzen!
       - MYSQL_ENV_MYSQL_HOST=phpipam-mysql
-    ports:
-      - 8087:80
     depends_on:
       - phpipam-mysql
     labels:
@@ -33,6 +31,8 @@ services:
       - "traefik.http.routers.phpipam.rule=Host(`phpipam.example.com`)" #Domain anpassen
       - "traefik.http.routers.phpipam.tls=true"
       - "traefik.http.routers.phpipam.tls.certresolver=default"
+      - "traefik.http.routers.phpipam.middlewares=secHeaders@file"
+      - "traefik.http.services.phpipam.loadbalancer.server.port=80"
     networks:
       - traefik_proxy
       - default
