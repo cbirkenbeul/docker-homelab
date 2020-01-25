@@ -1,0 +1,37 @@
+---
+version: '3'
+
+services:
+  tautulli:
+    image: linuxserver/tautulli
+    container_name: tautulli
+    restart: unless-stopped
+    volumes:
+      - $PWD/data:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.tautulli-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.tautulli-http.entrypoints=web"
+      - "traefik.http.routers.tautulli-http.rule=Host(`tautulli.example.com`)" #Domain anpassen
+      - "traefik.http.routers.tautulli-http.middlewares=tautulli-https@docker"
+      - "traefik.http.routers.tautulli.entrypoints=web-secure"
+      - "traefik.http.routers.tautulli.rule=Host(`tautulli.example.com`)" #Domain anpassen
+      - "traefik.http.routers.tautulli.tls=true"
+      - "traefik.http.routers.tautulli.tls.certresolver=default"
+      - "traefik.http.routers.tautulli.middlewares=secHeaders@file"
+      - "traefik.http.services.tautulli.loadbalancer.server.port=9000"
+
+    networks:
+      - traefik_proxy
+      - default
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge

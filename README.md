@@ -47,6 +47,7 @@ Alphabetisch sortiert
 * Portainer (https://www.portainer.io)
 
 ## T
+* Tautulli (https://tautulli.com)
 * Traefik (https://traefik.io)
 
 ## W
