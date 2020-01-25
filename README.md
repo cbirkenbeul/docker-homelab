@@ -22,6 +22,7 @@ Alphabetisch sortiert
 * apt-cacher-ng (https://wiki.debian.org/AptCacherNg)
 
 ## B
+* Bitwarden_rs (https://github.com/dani-garcia/bitwarden_rs)
 * Bookstack (https://www.bookstackapp.com)
 
 ## G

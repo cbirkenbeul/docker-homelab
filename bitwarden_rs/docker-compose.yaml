@@ -1,0 +1,29 @@
+---
+version: '3'
+
+services:
+  bitwarden:
+    image: bitwardenrs/server:latest
+    container_name: bitwarden
+    restart: unless-stopped
+    volumes:
+       - /var/docker/bitwarden:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.bookstack-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.bookstack-http.entrypoints=web"
+      - "traefik.http.routers.bookstack-http.rule=Host(`bitwarden.example.com`)" #Domain anpassen
+      - "traefik.http.routers.bookstack-http.middlewares=bitwarden-https@docker"
+      - "traefik.http.routers.bookstack.entrypoints=web-secure"
+      - "traefik.http.routers.bookstack.rule=Host(`bitwarden.example.com`)" #Domain anpassen
+      - "traefik.http.routers.bookstack.tls=true"
+      - "traefik.http.routers.bookstack.tls.certresolver=default"
+      - "traefik.http.routers.bookstack.middlewares=secHeaders@file"
+      - "traefik.http.services.bookstack.loadbalancer.server.port=80"
+    networks:
+      - traefik_proxy
+      
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
