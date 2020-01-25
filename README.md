@@ -25,6 +25,7 @@ Alphabetisch sortiert
 * Bookstack (https://www.bookstackapp.com)
 
 ## G
+* Gitea (https://gitea.io)
 * Guacamole (http://guacamole.apache.org)
 
 ## I

@@ -1,0 +1,56 @@
+---
+version: '3.3'
+
+services:
+  gitea-db:
+    image: mariadb:10.4
+    container_name: gitea-db
+    restart: unless-stopped
+    volumes:
+      - /var/docker/gitea/db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD= # Starkes Passwort setzen
+      - MYSQL_USER=gitea
+      - MYSQL_PASSWORD= # Starkes Passwort setzen
+      - MYSQL_DATABASE=gitea
+
+  gitea-app:
+    image: gitea/gitea:latest
+    container_name: gitea-app
+    restart: unless_stopped
+    volumes:
+      - /var/docker/gitea/data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - DB_TYPE=mysql
+      - DB_HOST=gitea-db:3306
+      - DB_NAME=gitea
+      - DB_USER=gitea
+      - DB_PASSWD= # MYSQL_PASSWORD
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.nextcloud-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.nextcloud-http.entrypoints=web"
+      - "traefik.http.routers.nextcloud-http.rule=Host(`gitea.example.com`)" #Domain anpassen
+      - "traefik.http.routers.nextcloud-http.middlewares=nextcloud-https@docker"
+      - "traefik.http.routers.nextcloud.entrypoints=web-secure"
+      - "traefik.http.routers.nextcloud.rule=Host(`gitea.example.com`)" #Domain anpassen
+      - "traefik.http.routers.nextcloud.tls=true"
+      - "traefik.http.routers.nextcloud.tls.certresolver=default"
+      - "traefik.http.routers.nextcloud.middlewares=secHeaders@file"
+      - "traefik.http.services.nextcloud.loadbalancer.server.port=3000"
+    depends_on:
+      - gitea-db
+    networks:
+      - traefik_proxy
+      - default
+    
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge
