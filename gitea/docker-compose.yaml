@@ -35,7 +35,7 @@ services:
       - "traefik.http.middlewares.nextcloud-https.redirectscheme.scheme=https"
       - "traefik.http.routers.nextcloud-http.entrypoints=web"
       - "traefik.http.routers.nextcloud-http.rule=Host(`gitea.example.com`)" #Domain anpassen
-      - "traefik.http.routers.nextcloud-http.middlewares=nextcloud-https@docker"
+      - "traefik.http.routers.nextcloud-http.middlewares=gitea-https@docker"
       - "traefik.http.routers.nextcloud.entrypoints=web-secure"
       - "traefik.http.routers.nextcloud.rule=Host(`gitea.example.com`)" #Domain anpassen
       - "traefik.http.routers.nextcloud.tls=true"
