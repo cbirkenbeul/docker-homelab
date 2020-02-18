@@ -24,6 +24,7 @@ http:
         browserXssFilter: true
         contentTypeNosniff: true
         frameDeny: true
+        customFrameOptionsValue: SAMEORIGIN
         sslRedirect: true
         #HSTS Configuration
         stsIncludeSubdomains: true
