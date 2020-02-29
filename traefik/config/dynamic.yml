@@ -29,3 +29,14 @@ http:
         stsIncludeSubdomains: true
         stsPreload: true
         stsSeconds: 15768000
+    secHeadersNextcloud:
+      headers:
+        browserXssFilter: true
+        contentTypeNosniff: true
+        #frameDeny: true
+        customFrameOptionsValue: SAMEORIGIN
+        sslRedirect: true
+        #HSTS Configuration
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 15768000        
