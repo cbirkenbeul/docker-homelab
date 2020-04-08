@@ -32,6 +32,9 @@ Alphabetisch sortiert
 * Gitea (https://gitea.io)
 * Guacamole (http://guacamole.apache.org)
 
+## H
+* Heimdall (https://heimdall.site)
+
 ## I
 * ilias (https://www.ilias.de)
 
