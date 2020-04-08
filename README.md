@@ -43,6 +43,7 @@ Alphabetisch sortiert
 
 ## P
 * phpIPAM (https://phpipam.net)
+* Pi-hole (https://pi-hole.net)
 * PLEX Medien Server (https://www.plex.tv)
 * Portainer (https://www.portainer.io)
 
