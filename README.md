@@ -25,6 +25,9 @@ Alphabetisch sortiert
 * Bitwarden_rs (https://github.com/dani-garcia/bitwarden_rs)
 * Bookstack (https://www.bookstackapp.com)
 
+## F
+* FreshRSS (https://freshrss.org)
+
 ## G
 * Gitea (https://gitea.io)
 * Guacamole (http://guacamole.apache.org)
