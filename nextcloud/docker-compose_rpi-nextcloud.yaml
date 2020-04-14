@@ -53,6 +53,10 @@ services:
       - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.example.com`)" #Domain anpassen
       - "traefik.http.routers.nextcloud.tls=true"
       - "traefik.http.routers.nextcloud.tls.certresolver=default"
+      - "traefik.http.routers.nextcloud.middlewares=nextcloud-dav,secHeaders@file"
+      - "traefik.http.services.nextcloud.loadbalancer.server.port=80"
+      - "traefik.http.middlewares.nextcloud-dav.replacepathregex.regex=^/.well-known/ca(l|rd)dav"
+      - "traefik.http.middlewares.nextcloud-dav.replacepathregex.replacement=/remote.php/dav/"
     networks:
       - traefik_proxy
       - default
