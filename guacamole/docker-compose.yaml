@@ -2,7 +2,7 @@
 version: '3'
   
 services:
-    guacamole_guacd:
+  guacamole_guacd:
     image: guacamole/guacd:latest
     container_name: guacamole_guacd
     restart: unless-stopped
@@ -36,9 +36,6 @@ services:
     depends_on:
       - guacamole_guacd
       - guacamole_mysql
-    links:
-      - guacamole_guacd:guacd
-      - guacamole_mysql:mysql
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.guacamole-https.redirectscheme.scheme=https"
@@ -51,6 +48,9 @@ services:
       - "traefik.http.routers.guacamole.tls.certresolver=default"
       - "traefik.http.routers.guacamole.middlewares=secHeaders@file"
       - "traefik.http.services.guacamole.loadbalancer.server.port=8080"
+    network:
+      - traefik_proxy
+      - default
 
 networks:
   traefik_proxy:
