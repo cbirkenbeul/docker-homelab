@@ -34,10 +34,8 @@ services:
       - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.example.com`)" #Domain anpassen
       - "traefik.http.routers.nextcloud.tls=true"
       - "traefik.http.routers.nextcloud.tls.certresolver=default"
-      - "traefik.http.routers.nextcloud.middlewares=secHeadersNextcloud@file, nextcloud-dav@docker"
+      - "traefik.http.routers.nextcloud.middlewares=nextcloud-dav,secHeaders@file"
       - "traefik.http.services.nextcloud.loadbalancer.server.port=80"
-      # Middleware nextcloud-dav ersetzt .well-known Pfad in caldav und carddav mit den korrekten Nextcloud Pfad
-      # https://docs.nextcloud.com/server/18/admin_manual/issues/general_troubleshooting.html#service-discovery-label
       - "traefik.http.middlewares.nextcloud-dav.replacepathregex.regex=^/.well-known/ca(l|rd)dav"
       - "traefik.http.middlewares.nextcloud-dav.replacepathregex.replacement=/remote.php/dav/"
     networks:

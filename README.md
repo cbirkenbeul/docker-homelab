@@ -25,9 +25,15 @@ Alphabetisch sortiert
 * Bitwarden_rs (https://github.com/dani-garcia/bitwarden_rs)
 * Bookstack (https://www.bookstackapp.com)
 
+## F
+* FreshRSS (https://freshrss.org)
+
 ## G
 * Gitea (https://gitea.io)
 * Guacamole (http://guacamole.apache.org)
+
+## H
+* Heimdall (https://heimdall.site)
 
 ## I
 * ilias (https://www.ilias.de)
@@ -43,6 +49,7 @@ Alphabetisch sortiert
 
 ## P
 * phpIPAM (https://phpipam.net)
+* Pi-hole (https://pi-hole.net)
 * PLEX Medien Server (https://www.plex.tv)
 * Portainer (https://www.portainer.io)
 

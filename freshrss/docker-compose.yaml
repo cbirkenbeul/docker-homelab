@@ -1,0 +1,49 @@
+---
+version: "3"
+
+services:
+  freshrss-db:
+    image: postgres
+    container_name: fressrss-db
+    restart: unless-stopped
+    volumes:
+      - /var/docker/freshrss/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=freshrss
+      - POSTGRES_PASSWORD= # Geheimes Passwort setzen
+      - POSTGRES_DB=freshrss
+
+  freshrss-app:
+    image: freshrss/freshrss
+    container_name: freshrss-app
+    restart: unless-stopped
+    depends_on:
+      - freshrss-db
+    volumes:
+      - /var/docker/freshrss/data:/var/www/FreshRSS/data
+      - /var/docker/freshrss/extensions:/var/www/FreshRSS/extensions
+    environment:
+      - CRON_MIN=*/20
+      - TZ=Europe/Berlin
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.freshrss-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.freshrss-http.entrypoints=web"
+      - "traefik.http.routers.freshrss-http.rule=Host(`freshrss.example.com`)" #Domain anpassen
+      - "traefik.http.routers.freshrss-http.middlewares=freshrss-https@docker"
+      - "traefik.http.routers.freshrss.entrypoints=web-secure"
+      - "traefik.http.routers.freshrss.rule=Host(`freshrss.example.com`)" #Domain anpassen
+      - "traefik.http.routers.freshrss.tls=true"
+      - "traefik.http.routers.freshrss.tls.certresolver=default"
+      - "traefik.http.routers.freshrss.middlewares=secHeaders@file"
+      - "traefik.http.services.freshrss.loadbalancer.server.port=80"
+    networks:
+      - traefik_proxy
+      - default
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge
