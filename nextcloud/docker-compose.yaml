@@ -10,18 +10,35 @@ services:
     volumes:
       - /var/docker/nextcloud/database:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_PASSWORD=
+      - MYSQL_ROOT_PASSWORD= # Datenbank Passwort wählen
+      - MYSQL_PASSWORD= # Datenbank Passwort wählen, wird bei der Nextcloudinstallation abgefragt
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_INITDB_SKIP_TZINFO=1 # Behebt die bekannten Startprobleme der Datenbank
+      
+  nextcloud-redis:
+    image: redis:alpine
+    container_name: nextcloud-redis
+    hostname: nextcloud-redis
+    environment:
+        REDIS_PASSWORD: XXXXXXX # Redis Passwort wählen
+    networks:
+        - default
+    restart: always
     
   nextcloud-app:
     image: nextcloud
     container_name: nextcloud-app
     restart: always
+    depends_on:
+      - nextcloud-db
+      - nextcloud-redis
+    environment:
+        REDIS_HOST: nextcloud-redis
+        REDIS_HOST_PASSWORD: XXXXXXX # Redis Passwort wählen (gleiches, wie oben)
     volumes: 
       - /var/docker/nextcloud/app:/var/www/html
+      # - EXTERNES DATENVERZEICHNIS:/var/www/html/data 
     links:
       - nextcloud-db
     labels:
