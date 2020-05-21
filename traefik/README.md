@@ -1,39 +1,39 @@
 # Traefik
 
-Traefik ist ein revere proxy mit der Möglichkeit via Let's encrypt Zertifikate zu erstellen und automatisch zu verlängern. Traefik hat den Vorteil, dass es komplett via Docker steuerbar ist und somit keine weiteren Einstellungen notwendig sind.
+Traefik is a revere proxy with the possibility to create and automatically renew certificates via Let's encrypt. Traefik has the advantage that it is completely controllable via Docker and therefore no further settings are necessary.
 
-# WICHTIG!
-Die Konfiguration für Traefik zieht die Sicherheitsanforderungen ziemlich an. Hiermit eine ein Rating von A+ beim [SSLLabs Test](https://www.ssllabs.com/ssltest) erreicht.
+# IMPORTANT!
+The configuration for Traefik pretty much attracts the security requirements. Hereby achieved an A + rating in the [SSLLabs Test] (https://www.ssllabs.com/ssltest).
 
-Es werden nur aktuelle Browser unterstützt! Sollte das nicht gewollt sein, muss die 
-providers.yml Datei angepasst werden. 
+Only current browsers are supported! If this is not wanted, the
+providers.yml file can be adjusted.
 
-# Vorbereitung
-Um Traefik mit meinen Dateien nutzen zu können muss folgendes durchgeführt werden
+# Preparation
+In order to use Traefik with my files, the following must be carried out
 
-## Netzwerk anlegen
-```bash
+## Create network
+`` bash
 docker network create traefik_proxy
-```
+''
 
-## ACME Verzeichnis
-Traefik speichert alle notwendigen Informationen zu den Zertifikaten als JSON im ACME Verzeichnis. Dieses Verzeichnis benötigt besondere Rechte.
+## ACME directory
+Traefik stores all necessary information about the certificates as JSON in the ACME directory. This directory needs special rights.
 
-```bash
-cd config/ACME
+`` bash
+cd config / ACME
 chmod 600 acme.json
-```
+''
 
 # Dashboard
-Um das Dashboard nutzen zu können muss die Sektion "label" in der Docker-Compose Datei auskommentiert werden. Anschließend muss man noch Benutzer
-und Passwort für das Dashboard erstellen. Hierzu ist ````apache2-utils```` erforderlich.
-````bash
+In order to be able to use the dashboard, the section "label" in the Docker Compose file must be commented out. Then you have to add users
+and create a password for the dashboard. This requires `` `` apache2-utils````.
+`` '' bash
 sudo apt install apache2-utils -y
-````
+`` ''
 
-Nun erstellen wir mit folgendem Befehl die Benutzer/Passwort Kombination:
+Now we create the user / password combination with the following command:
 
-````bash
-echo $(htpasswd -nbB <USER> "<PASS>") | sed -e s/\\$/\\$\\$/g
-````
-Ihr müsst natürlich jeweils die Einträge an eure Bedürfnisse anpassen.
+`` '' bash
+echo $ (htpasswd -nbB <USER> "<PASS>") | sed -e s / \\ $ / \\ $ \\ $ / g
+`` ''
+Of course you have to adapt the entries to your needs.
