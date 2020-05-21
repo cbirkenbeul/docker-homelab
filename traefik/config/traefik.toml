@@ -6,22 +6,49 @@
     exposedByDefault = false
     endpoint = "unix:///var/run/docker.sock"
     network = "traefik_proxy"
-  [providers.file]
-    filename = "/etc/traefik/dynamic.yml"
+  #[providers.file]
+  # filename = "/etc/traefik/dynamic.yml"
     
 [api]
   dashboard = true
+  entrypoint = "dashboard"
 
 [entryPoints]
-  [entryPoints.web]
-    address = ":80"
-  [entryPoints.web-secure]
-    address = ":443"
-  [entryPoints.dashboard]
-    address = ":8080"
+  [entryPoints.http]
+  address = ":80"
 
-[certificatesResolvers]
-  [certificatesResolvers.default.acme]
-    email = "mail@example.com" #Email Adresse hier anpassen
-    storage = "/etc/traefik/ACME/acme.json"
-    [certificatesResolvers.default.acme.tlsChallenge]
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+
+  [entryPoints.dashboard]
+  address = ":8080"
+    [entryPoints.dashboard.auth.basic]
+    users = ["admin:$2y$08$64hQda74gXS80mS63hN3xOFGVB9KA2vUOXtW.NDaBjX9pEHq7qdUa"]
+
+[acme]
+acmeLogging = true
+email = "taha@gmail.com"
+storage = "/etc/traefik/ACME/acme.json"
+
+# CA server to use.
+ caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+
+onHostRule = true
+
+entryPoint = "https"
+
+[acme.httpChallenge]
+  entryPoint = "http"
+
+[[acme.domains]]
+  main = "*.taha.ly" # your main site here
+
+#[certificatesResolvers]
+ # [certificatesResolvers.default.acme]
+  #  email = "mail@example.com" #Email Adresse hier anpassen
+   # storage = "/etc/traefik/ACME/acme.json"
+    #[certificatesResolvers.default.acme.tlsChallenge]
