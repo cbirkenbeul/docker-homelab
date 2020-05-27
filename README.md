@@ -58,4 +58,5 @@ Alphabetisch sortiert
 * Traefik (https://traefik.io)
 
 ## W
+* WALLABAG (https://www.wallabag.it/de/)
 * Wordpress (https://de.wordpress.org)
