@@ -6,4 +6,4 @@ Wallabag ermöglicht dir als Alternative zu GetPocket per Mausklick das Archivie
 ![Wallabag Screenshot] https://github.com/jboykov/docker-homelab/blob/master/ressources/img/wallabag.jpg
 
 ## Username: wallabag
-##Password: wallabag
+## Password: wallabag
