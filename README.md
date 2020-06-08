@@ -53,6 +53,9 @@ Alphabetisch sortiert
 * PLEX Medien Server (https://www.plex.tv)
 * Portainer (https://www.portainer.io)
 
+## S
+* Statping (https://demo.statping.com)
+
 ## T
 * Tautulli (https://tautulli.com)
 * Traefik (https://traefik.io)
