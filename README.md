@@ -40,6 +40,7 @@ Alphabetisch sortiert
 
 ## M
 * Monitoring (Node Exporter, Prometheus, cAdvisor, Grafana)
+* Miniflux (Miniflux is a minimalist and opinionated feed reader. https://miniflux.app)
 
 ## N
 * Nextcloud (https://nextcloud.com)
