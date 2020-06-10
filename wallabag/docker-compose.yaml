@@ -36,7 +36,6 @@ services:
       - traefik_proxy
       - default
 
-
   wallabag-db:
     image: mariadb
     container_name: wallabag-db
@@ -48,8 +47,6 @@ services:
       - MYSQL_USER=wallabag-sql
       - MYSQL_PASSWORD=MeinWallabagPasswort # Starkes Passwort setzen!
       - MYSQL_ROOT_PASSWORD=MeinWallabagRootPasswort # Starkes Passwort setzen!
-
-
 
 networks:
   traefik_proxy:
