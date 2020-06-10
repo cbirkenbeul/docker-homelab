@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  miniflux:
+    image: miniflux/miniflux:latest
+    restart: unless-stopped
+    links:
+      - miniflux-db
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - RUN_MIGRATIONS=1
+      - CREATE_ADMIN=1
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.miniflux-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.miniflux-http.entrypoints=web"
+      - "traefik.http.routers.miniflux-http.rule=Host(`${EXTERNAL_URL}`)"
+      - "traefik.http.routers.miniflux-http.middlewares=miniflux-https@docker"
+      - "traefik.http.routers.miniflux.entrypoints=web-secure"
+      - "traefik.http.routers.miniflux.rule=Host(`${EXTERNAL_URL}`)"
+      - "traefik.http.routers.miniflux.tls=true"
+      - "traefik.http.routers.miniflux.tls.certresolver=default"
+      - "traefik.http.routers.miniflux.middlewares=secHeaders@file"
+      - "traefik.http.services.miniflux.loadbalancer.server.port=${PORT}"
+    networks:
+      - traefik_proxy
+      - default
+      
+  miniflux-db:
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - /var/docker/miniflux/db:/var/lib/postgresql/data
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
