@@ -66,5 +66,5 @@ Alphabetisch sortiert
 
 ## W
 * Wallabag (https://www.wallabag.it/de/)
-* Watchtowser (https://github.com/containrrr/watchtower)
+* Watchtower (https://github.com/containrrr/watchtower)
 * Wordpress (https://de.wordpress.org)
