@@ -25,6 +25,9 @@ Alphabetisch sortiert
 * Bitwarden_rs (https://github.com/dani-garcia/bitwarden_rs)
 * Bookstack (https://www.bookstackapp.com)
 
+## D
+* Drone.io (https://drone.io)
+
 ## F
 * FreshRSS (https://freshrss.org)
 
