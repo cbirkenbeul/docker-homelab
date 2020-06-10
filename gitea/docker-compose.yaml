@@ -17,7 +17,7 @@ services:
   gitea-app:
     image: gitea/gitea:latest
     container_name: gitea-app
-    restart: unless_stopped
+    restart: unless-stopped
     volumes:
       - /var/docker/gitea/data:/data
       - /etc/timezone:/etc/timezone:ro

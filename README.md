@@ -40,6 +40,7 @@ Alphabetisch sortiert
 
 ## M
 * Monitoring (Node Exporter, Prometheus, cAdvisor, Grafana)
+* Miniflux (Miniflux is a minimalist and opinionated feed reader. https://miniflux.app)
 
 ## N
 * Nextcloud (https://nextcloud.com)
@@ -53,10 +54,12 @@ Alphabetisch sortiert
 * PLEX Medien Server (https://www.plex.tv)
 * Portainer (https://www.portainer.io)
 
+## S
+* Statping (https://demo.statping.com)
+
 ## T
 * Tautulli (https://tautulli.com)
 * Traefik (https://traefik.io)
 
 ## W
-* WALLABAG (https://www.wallabag.it/de/)
 * Wordpress (https://de.wordpress.org)

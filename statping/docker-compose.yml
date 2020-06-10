@@ -1,0 +1,30 @@
+version: '2.3'
+
+services:
+  statping:
+    container_name: statping
+    image: statping/statping:latest
+    restart: always
+    volumes:
+      - /var/docker/statping/data:/app
+    environment:
+      DB_CONN: sqlite
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.statping-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.statping-http.entrypoints=web"
+      - "traefik.http.routers.statping-http.rule=Host(`${EXTERNAL_URL}`)" #Domain anpassen
+      - "traefik.http.routers.statping-http.middlewares=statping-https@docker"
+      - "traefik.http.routers.statping.entrypoints=web-secure"
+      - "traefik.http.routers.statping.rule=Host(`${EXTERNAL_URL}`)" #Domain anpassen
+      - "traefik.http.routers.statping.tls=true"
+      - "traefik.http.routers.statping.tls.certresolver=default"
+      - "traefik.http.routers.statping.middlewares=secHeaders@file"
+      - "traefik.http.services.statping.loadbalancer.server.port=${PORT}"
+    networks:
+      - traefik_proxy
+      
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
