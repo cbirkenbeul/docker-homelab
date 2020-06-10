@@ -1,0 +1,50 @@
+---
+version: "3"
+services:
+  calibre:
+    image: linuxserver/calibre
+    container_name: calibre
+    restart: unless-stopped
+    volumes:
+      - /var/docker/calibre/config:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+
+  calibre-web:
+    image: linuxserver/calibre-web
+    container_name: calibre-web
+    restart: unless-stopped
+    volumes:
+      - /var/docker/calibre-web/config:/config
+      - /var/docker/calibre/config/Calibre-Bibliothek:/books
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - DOCKER_MODS=linuxserver/calibre-web:calibre
+    depends_on:
+      - calibre
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.calibre-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.calibre-http.entrypoints=web"
+      - "traefik.http.routers.calibre-http.rule=Host(`calibre.example.com`)" #Domain anpassen
+      - "traefik.http.routers.calibre-http.middlewares=calibre-https@docker"
+      - "traefik.http.routers.calibre.entrypoints=web-secure"
+      - "traefik.http.routers.calibre.rule=Host(`calibre.example.com`)" #Domain anpassen
+      - "traefik.http.routers.calibre.tls=true"
+      - "traefik.http.routers.calibre.tls.certresolver=default"
+      - "traefik.http.routers.calibre.middlewares=secHeaders@file"
+      - "traefik.http.services.calibre.loadbalancer.server.port=80"
+    networks:
+      - traefik_proxy
+      - default
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge
