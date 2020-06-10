@@ -20,8 +20,6 @@ services:
     image: redis:alpine
     container_name: nextcloud-redis
     hostname: nextcloud-redis
-    environment:
-        REDIS_PASSWORD: XXXXXXX # Redis Passwort wählen
     networks:
         - default
     restart: always
@@ -35,7 +33,6 @@ services:
       - nextcloud-redis
     environment:
         REDIS_HOST: nextcloud-redis
-        REDIS_HOST_PASSWORD: XXXXXXX # Redis Passwort wählen (gleiches, wie oben)
     volumes: 
       - /var/docker/nextcloud/app:/var/www/html
       # - EXTERNES DATENVERZEICHNIS:/var/www/html/data 
