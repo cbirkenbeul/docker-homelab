@@ -45,9 +45,6 @@ Alphabetisch sortiert
 ## N
 * Nextcloud (https://nextcloud.com)
 
-## O
-* Ouroboros (https://github.com/pyouroboros/ouroboros)
-
 ## P
 * phpIPAM (https://phpipam.net)
 * Pi-hole (https://pi-hole.net)
@@ -63,4 +60,5 @@ Alphabetisch sortiert
 
 ## W
 * Wallabag (https://www.wallabag.it/de/)
+* Watchtowser (https://github.com/containrrr/watchtower)
 * Wordpress (https://de.wordpress.org)
