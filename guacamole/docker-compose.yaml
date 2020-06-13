@@ -12,6 +12,8 @@ services:
     container_name: guacamole_mysql
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/data/guacamole/mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD= # Setze hier ein starkes Passwort

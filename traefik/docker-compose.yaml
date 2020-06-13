@@ -6,9 +6,10 @@ services:
     image: traefik:latest
     container_name: traefik
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - $PWD/config:/etc/traefik
-      - /etc/localtime:/etc/localtime
     #labels:
     #  - "traefik.enable=true"
     #  - "traefik.http.routers.api.rule=Host(`traefik.example.com`) && PathPrefix(`/dashboard`)"    # Domainnamen anpassen!

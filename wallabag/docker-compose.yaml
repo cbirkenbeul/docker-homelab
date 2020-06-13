@@ -6,6 +6,8 @@ services:
     container_name: wallabag-app
     restart: always
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/wallabag/images:/var/www/wallabag/web/assets/images
       - /var/docker/wallabag/data:/var/www/wallabag/data
     depends_on:
@@ -41,6 +43,8 @@ services:
     container_name: wallabag-db
     restart: always
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/wallabag/data:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=wallabag

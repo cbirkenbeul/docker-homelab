@@ -7,6 +7,8 @@ services:
     container_name: gitea-db
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/gitea/db:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD= # Starkes Passwort setzen
@@ -19,6 +21,8 @@ services:
     container_name: gitea-app
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/gitea/data:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro

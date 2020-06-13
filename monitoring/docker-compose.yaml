@@ -7,6 +7,8 @@ services:
     container_name: mon_prometheus
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - $PWD/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     depends_on:
       - mon_node-exporter
@@ -17,6 +19,8 @@ services:
     container_name: mon_node-exporter
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
@@ -32,6 +36,8 @@ services:
     container_name: mon_cadvisor
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
@@ -42,6 +48,8 @@ services:
     container_name: mon_grafana
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/data/monitoring/grafana:/var/lib/grafana
     ports:
       - 3000:3000

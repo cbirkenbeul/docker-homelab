@@ -8,6 +8,8 @@ services:
     command: --transaction-isolation=READ-COMMITTED --log-bin=ROW
     restart: always
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/nextcloud/database:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD= # Datenbank Passwort wählen

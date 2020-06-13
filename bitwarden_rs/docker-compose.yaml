@@ -7,7 +7,9 @@ services:
     container_name: bitwarden
     restart: unless-stopped
     volumes:
-       - /var/docker/bitwarden:/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/bitwarden:/data
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.bitwarden-https.redirectscheme.scheme=https"

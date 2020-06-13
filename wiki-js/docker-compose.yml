@@ -11,6 +11,8 @@ services:
       driver: "none"
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - db-data:/var/lib/postgresql/data
 
   wiki:

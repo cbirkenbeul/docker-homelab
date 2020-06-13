@@ -6,6 +6,8 @@ services:
     image: portainer/portainer:latest
     container_name: portainer
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/docker/portainer:/data
     labels:
