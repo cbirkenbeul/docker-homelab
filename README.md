@@ -57,6 +57,9 @@ Alphabetisch sortiert
 * PLEX Medien Server (https://www.plex.tv)
 * Portainer (https://www.portainer.io)
 
+## R
+* Redmine (https://www.redmine.org)
+
 ## S
 * Statping (https://demo.statping.com)
 
