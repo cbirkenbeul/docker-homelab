@@ -7,6 +7,8 @@ services:
     container_name: phpipam-mysql
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/data/phpipam/mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD= # Starkes Passwort setzen!

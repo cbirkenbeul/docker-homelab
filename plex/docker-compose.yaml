@@ -8,6 +8,8 @@ services:
     restart: always
     network: host
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/plex/config:/config
       - /var/docker/plex/transcode:/transcode # Den Pfad kannst du natürlich auch anpassen
       - <path>:/data # Den Pfad bitte so setzen, dass Plex an eure Medien ran kommt

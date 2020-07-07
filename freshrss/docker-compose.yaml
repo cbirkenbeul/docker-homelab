@@ -7,6 +7,8 @@ services:
     container_name: fressrss-db
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/freshrss/db:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=freshrss
@@ -20,6 +22,8 @@ services:
     depends_on:
       - freshrss-db
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/freshrss/data:/var/www/FreshRSS/data
       - /var/docker/freshrss/extensions:/var/www/FreshRSS/extensions
     environment:

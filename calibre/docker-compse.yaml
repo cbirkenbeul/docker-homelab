@@ -6,6 +6,8 @@ services:
     container_name: calibre
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/calibre/config:/config
     environment:
       - PUID=1000
@@ -17,6 +19,8 @@ services:
     container_name: calibre-web
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/calibre-web/config:/config
       - /var/docker/calibre/config/Calibre-Bibliothek:/books
     environment:

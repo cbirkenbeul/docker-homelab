@@ -6,6 +6,8 @@ services:
     image: statping/statping:latest
     restart: always
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/statping/data:/app
     environment:
       DB_CONN: sqlite

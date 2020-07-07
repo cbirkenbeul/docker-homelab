@@ -8,6 +8,8 @@ services:
       - "192.168.0.2:53:53/tcp" #IP anpassen
       - "192.168.0.2:53:53/udp" #IP anpassen
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - '/var/docker/pi-hole/etc/pihole/:/etc/pihole/'
       - '/var/docker/pi-hole/etc/dnsmasq.d/:/etc/dnsmasq.d/'
     labels:

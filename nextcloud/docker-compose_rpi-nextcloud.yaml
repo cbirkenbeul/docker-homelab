@@ -6,6 +6,8 @@ services:
     container_name: nextcloud-db
     restart: always
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/nextcloud/database_var:/var/lib/mysql
       - /var/docker/nextcloud/database_config:/config
     environment:
@@ -24,6 +26,8 @@ services:
   #     - nextcloud-db
   #   restart: always
   #   volumes:
+  #     - /etc/localtime:/etc/localtime:ro
+  #     - /etc/timezone:/etc/timezone:ro
   #     - /var/docker/nextcloud/backup:/db
   #   environment:
   #     - DB_DUMP_FREQ=60 # Backup jede Stunde - Angabe in Minuten
