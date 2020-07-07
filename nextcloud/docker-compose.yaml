@@ -57,6 +57,17 @@ services:
     networks:
       - traefik_proxy
       - default
+      
+  nextcloud-cron:
+    image: nextcloud
+    restart: always
+    volumes:
+      - /var/docker/nextcloud/app:/var/www/html
+      # - EXTERNES DATENVERZEICHNIS:/var/www/html/data
+    entrypoint: /cron.sh
+    depends_on:
+      - nextcloud-db
+      - nextcloud-redis
     
 networks:
   traefik_proxy:
