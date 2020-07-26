@@ -25,6 +25,7 @@ services:
     networks:
         - default
     restart: always
+    command: redis-server --requirepass YOURPASSWORD # Redis Passwort wählen
     
   nextcloud-app:
     image: nextcloud
@@ -35,6 +36,7 @@ services:
       - nextcloud-redis
     environment:
         REDIS_HOST: nextcloud-redis
+        REDIS_HOST_PASSWORD: YOURPASSWORD # Redis Passwort von oben
     volumes: 
       - /var/docker/nextcloud/app:/var/www/html
       # - EXTERNES DATENVERZEICHNIS:/var/www/html/data 
