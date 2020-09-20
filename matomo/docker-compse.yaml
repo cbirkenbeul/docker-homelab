@@ -1,0 +1,78 @@
+version: "2"
+
+services:
+  matomo-db:
+    image: mariadb:10.3
+    container_name: matomo-db
+    restart: unless-stopped
+    volumes:
+      - /var/docker/matomo/sql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: matomo
+      MYSQL_ROOT_PASSWORD: # Geheimes Passwort setzen
+    networks:
+      - default
+
+  matomo-app:
+    image: matomo:fpm
+    container_name: matomo-app
+    restart: unless-stopped
+    volumes:
+      - /var/docker/matomo/app:/var/www/html/config
+    networks:
+      - default
+
+  matomo-web:
+    image: nginx:latest
+    container_name: matomo-web
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    volumes_from:
+      - matomo-app
+    environment:
+      - VIRTUAL_HOST
+    networks:
+      - default
+      - traefik_proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.matomo-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.matomo-http.entrypoints=web"
+      - "traefik.http.routers.matomo-http.rule=Host(`matomo.example.com`)" #Domain anpassen
+      - "traefik.http.routers.matomo-http.middlewares=matomo-https@docker"
+      - "traefik.http.routers.matomo.entrypoints=web-secure"
+      - "traefik.http.routers.matomo.rule=Host(`matomo.example.com`)" #Domain anpassen
+      - "traefik.http.routers.matomo.tls=true"
+      - "traefik.http.routers.matomo.tls.certresolver=default"
+      - "traefik.http.routers.matomo.middlewares=secHeaders@file"
+      - "traefik.http.services.matomo.loadbalancer.server.port=80"
+    depends_on:
+      - matomo-db
+      - matomo-app
+
+  matomo-cron:
+    image: matomo:fpm
+    container_name: matomo-cron
+    restart: unless-stopped
+    volumes_from:
+      - matomo-app
+    entrypoint: |
+      bash -c 'bash -s <<EOF
+      trap "break;exit" SIGHUP SIGINT SIGTERM
+      while /bin/true; do
+        su -s "/bin/bash" -c "/usr/local/bin/php /var/www/html/console core:archive" www-data
+        sleep 3600
+      done
+      EOF'
+    networks:
+      - default
+    depends_on:
+      - matomo-web
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge

@@ -45,8 +45,9 @@ Alphabetisch sortiert
 * ilias (https://www.ilias.de)
 
 ## M
-* Monitoring (Node Exporter, Prometheus, cAdvisor, Grafana)
+* Matomo (https://matomo.org)
 * Miniflux (Miniflux is a minimalist and opinionated feed reader. https://miniflux.app)
+* Monitoring (Node Exporter, Prometheus, cAdvisor, Grafana)
 
 ## N
 * Nextcloud (https://nextcloud.com)
