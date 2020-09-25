@@ -1,3 +1,5 @@
+Stopping traefik ...
+---
 tls:
 options:
   default:
@@ -9,11 +11,11 @@ options:
       - TLS_AES_128_GCM_SHA256
       - TLS_AES_256_GCM_SHA384
       - TLS_CHACHA20_POLY1305_SHA256
-curvePreferences:
-  - CurveP521
-  - CurveP384
+  curvePreferences:
+    - CurveP521
+    - CurveP384
   sniStrict: true
-  
+
 http:
   middlewares:
     secHeaders:
@@ -26,4 +28,6 @@ http:
         stsIncludeSubdomains: true
         stsPreload: true
         stsSeconds: 31536000
+        customRequestHeaders:
+          X-Frame-Options: "SAMEORIGIN"
         customFrameOptionsValue: "SAMEORIGIN"
