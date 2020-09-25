@@ -1,4 +1,3 @@
-[![Donate](https://img.shields.io/badge/Steady-Spenden-orange.svg)](https://steadyhq.com/de/teqqyde)
 [![Donate](https://img.shields.io/badge/PayPal-Spenden-green.svg?logo=PayPal&style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NNWSYA5KFESGG&source=url)
 [![BuyUsCoffee](https://img.shields.io/badge/BuyMeACoffee-Spenden-ff813f.svg?logo=CoffeeScript&style=flat-square)](https://buymeacoff.ee/teqqyde)
 
@@ -71,4 +70,5 @@ Alphabetisch sortiert
 ## W
 * Wallabag (https://www.wallabag.it/de/)
 * Watchtower (https://github.com/containrrr/watchtower)
+* Wiki.js (https://wiki.js.org)
 * Wordpress (https://de.wordpress.org)

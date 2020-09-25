@@ -1,43 +1,43 @@
 version: "3"
 services:
 
-  db:
+  wikijs-db:
     image: postgres:11-alpine
     environment:
       POSTGRES_DB: wiki
-      POSTGRES_PASSWORD: wikijsrocks #PASSWORT ANPASSEN (unten auch)
-      POSTGRES_USER: wikijs
+      POSTGRES_PASSWORD: ${POSTGRESS_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
     logging:
       driver: "none"
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - db-data:/var/lib/postgresql/data
+      - /var/docker/wikijs/db:/var/lib/postgresql/data
 
-  wiki:
+  wikijs-app:
     image: requarks/wiki:2
     depends_on:
-      - db
+      - wikijs-db
     environment:
-      DB_TYPE: postgres
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_USER: wikijs
-      DB_PASS: wikijsrocks #PASSWORT ANPASSEN (oben auch)
-      DB_NAME: wiki
+      - DB_TYPE=postgres
+      - DB_HOST=wikijs-db
+      - DB_PORT=5432
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASS=${POSTGRESS_PASSWORD}
+      - DB_NAME=wiki
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.wiki-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.wiki-http.entrypoints=web"
-      - "traefik.http.routers.wiki-http.rule=Host(`wiki.example.de`)" #Domain anpassen
-      - "traefik.http.routers.wiki-http.middlewares=wiki-https@docker"
-      - "traefik.http.routers.wiki.entrypoints=web-secure"
-      - "traefik.http.routers.wiki.rule=Host(`wiki.example.de`)" #Domain anpassen
-      - "traefik.http.routers.wiki.tls=true"
-      - "traefik.http.routers.wiki.tls.certresolver=default"
-      - "traefik.http.routers.wiki.middlewares=secHeaders@file"
-      - "traefik.http.services.wiki.loadbalancer.server.port=3000"
+      - "traefik.http.middlewares.wikijs-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.wikijs-http.entrypoints=web"
+      - "traefik.http.routers.wikijs-http.rule=Host(`${WIKIJS-URL}`)" #Domain anpassen
+      - "traefik.http.routers.wikijs-http.middlewares=wikijs-https@docker"
+      - "traefik.http.routers.wikijs.entrypoints=web-secure"
+      - "traefik.http.routers.wikijs.rule=Host(`${WIKIJS-URL}`)" #Domain anpassen
+      - "traefik.http.routers.wikijs.tls=true"
+      - "traefik.http.routers.wikijs.tls.certresolver=default"
+      - "traefik.http.routers.wikijs.middlewares=secHeaders@file"
+      - "traefik.http.services.wikijs.loadbalancer.server.port=3000"
     restart: unless-stopped
     networks:
       - traefik_proxy
