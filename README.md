@@ -1,6 +1,3 @@
-[![Donate](https://img.shields.io/badge/PayPal-Spenden-green.svg?logo=PayPal&style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NNWSYA5KFESGG&source=url)
-[![BuyUsCoffee](https://img.shields.io/badge/BuyMeACoffee-Spenden-ff813f.svg?logo=CoffeeScript&style=flat-square)](https://buymeacoff.ee/teqqyde)
-
 # Docker Container für dein Homelab
 
 Dieses Repository ist eine Sammlung von Docker-Compose Dateien für Homelabs. Als Betreiber eines [YouTube Kanals](https://youtube.com/teqqyde) das sich rund um das Thema Homelab beschäftigt, habe ich mir die Arbeit gemacht, um dir einen kleinen Start in Sachen Docker zu geben. 
