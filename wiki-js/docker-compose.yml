@@ -27,7 +27,7 @@ services:
       - DB_HOST=wikijs-db
       - DB_PORT=5432
       - DB_USER=${POSTGRES_USER}
-      - DB_PASS=${POSTGRESS_PASSWORD}
+      - DB_PASS=${POSTGRES_PASSWORD}
       - DB_NAME=wiki
     labels:
       - "traefik.enable=true"
