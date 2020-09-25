@@ -4,7 +4,7 @@ services:
   wallabag:
     image: wallabag/wallabag:latest
     container_name: wallabag-app
-    restart: always
+    restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -18,19 +18,19 @@ services:
       - SYMFONY__ENV__DATABASE_HOST=wallabag-db
       - SYMFONY__ENV__DATABASE_PORT=3306
       - SYMFONY__ENV__DATABASE_NAME=wallabag
-      - SYMFONY__ENV__DATABASE_USER=wallabag-sql
-      - SYMFONY__ENV__DATABASE_PASSWORD= #Hier das Passwort von MYSQL_PASSWORD aus dem Datenbankcontainer setzen
-      - SYMFONY__ENV__DOMAIN_NAME=https://wallabag.example.com #Domain anpassen
+      - SYMFONY__ENV__DATABASE_USER=${MARIADB_USER}
+      - SYMFONY__ENV__DATABASE_PASSWORD=${MARIADB_PASSWORD}
+      - SYMFONY__ENV__DOMAIN_NAME=${WALLABAG_URL}
       - SYMFONY__ENV__FOSUSER_REGISTRATION=false
       - SYMFONY__ENV__FOSUSER_CONFIRMATION=false
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.wallabag-https.redirectscheme.scheme=https"
       - "traefik.http.routers.wallabag-http.entrypoints=web"
-      - "traefik.http.routers.wallabag-http.rule=Host(`wallabag.example.com`)" #Domain anpassen
+      - "traefik.http.routers.wallabag-http.rule=Host(`${WALLABAG_URL}`)"
       - "traefik.http.routers.wallabag-http.middlewares=wallabag-https@docker"
       - "traefik.http.routers.wallabag.entrypoints=web-secure"
-      - "traefik.http.routers.wallabag.rule=Host(`wallabag. example.com `)" #Domain anpassen
+      - "traefik.http.routers.wallabag.rule=Host(`${WALLABAG_URL}`)"
       - "traefik.http.routers.wallabag.tls=true"
       - "traefik.http.routers.wallabag.tls.certresolver=default"
       - "traefik.http.services.wallabag.loadbalancer.server.port=80"
@@ -39,18 +39,18 @@ services:
       - default
 
   wallabag-db:
-    image: mariadb
+    image: mariadb:latest
     container_name: wallabag-db
-    restart: always
+    restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /var/docker/wallabag/data:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=wallabag
-      - MYSQL_USER=wallabag-sql
-      - MYSQL_PASSWORD=MeinWallabagPasswort # Starkes Passwort setzen!
-      - MYSQL_ROOT_PASSWORD=MeinWallabagRootPasswort # Starkes Passwort setzen!
+      - MYSQL_USER=${MARIADB_USER}
+      - MYSQL_PASSWORD=${MARIADB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
 
 networks:
   traefik_proxy:
