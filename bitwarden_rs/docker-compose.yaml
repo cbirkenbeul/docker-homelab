@@ -14,10 +14,10 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.bitwarden-https.redirectscheme.scheme=https"
       - "traefik.http.routers.bitwarden-http.entrypoints=web"
-      - "traefik.http.routers.bitwarden-http.rule=Host(`bitwarden.example.com`)" #Domain anpassen
+      - "traefik.http.routers.bitwarden-http.rule=Host(`${BITWARDEN_URL}`)" #Domain anpassen
       - "traefik.http.routers.bitwarden-http.middlewares=bitwarden-https@docker"
       - "traefik.http.routers.bitwarden.entrypoints=web-secure"
-      - "traefik.http.routers.bitwarden.rule=Host(`bitwarden.example.com`)" #Domain anpassen
+      - "traefik.http.routers.bitwarden.rule=Host(`${BITWARDEN_URL}`)" #Domain anpassen
       - "traefik.http.routers.bitwarden.tls=true"
       - "traefik.http.routers.bitwarden.tls.certresolver=default"
       - "traefik.http.routers.bitwarden.middlewares=secHeaders@file"
