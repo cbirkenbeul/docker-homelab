@@ -12,7 +12,7 @@ services:
       - /var/docker/freshrss/db:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=freshrss
-      - POSTGRES_PASSWORD= # Geheimes Passwort setzen
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=freshrss
 
   freshrss-app:
@@ -33,10 +33,10 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.freshrss-https.redirectscheme.scheme=https"
       - "traefik.http.routers.freshrss-http.entrypoints=web"
-      - "traefik.http.routers.freshrss-http.rule=Host(`freshrss.example.com`)" #Domain anpassen
+      - "traefik.http.routers.freshrss-http.rule=Host(`${FRESHRSS_URL`)" #Domain anpassen
       - "traefik.http.routers.freshrss-http.middlewares=freshrss-https@docker"
       - "traefik.http.routers.freshrss.entrypoints=web-secure"
-      - "traefik.http.routers.freshrss.rule=Host(`freshrss.example.com`)" #Domain anpassen
+      - "traefik.http.routers.freshrss.rule=Host(`${FRESHRSS_URL`)" #Domain anpassen
       - "traefik.http.routers.freshrss.tls=true"
       - "traefik.http.routers.freshrss.tls.certresolver=default"
       - "traefik.http.routers.freshrss.middlewares=secHeaders@file"
