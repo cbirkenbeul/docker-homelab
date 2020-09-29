@@ -17,8 +17,6 @@
     address = ":80"
   [entryPoints.web-secure]
     address = ":443"
-  [entryPoints.dashboard]
-    address = ":8080"
 
 [certificatesResolvers]
   [certificatesResolvers.default.acme]
