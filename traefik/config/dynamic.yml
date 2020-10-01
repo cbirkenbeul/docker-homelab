@@ -30,3 +30,19 @@ http:
         customRequestHeaders:
           X-Frame-Options: "SAMEORIGIN"
         customFrameOptionsValue: "SAMEORIGIN"
+
+# Beispiel für externe Dienste
+#  routers:
+#    router-1: # Tausche den Namen gegen etwas sprechendes aus
+#      entryPoints:
+#        - web-secure
+#      rule: "Host(`example.com`)"
+#      service: "router-1" # Den Namen am besten ähnlich zu dem oben setzen
+#      tls:
+#        certresolver: default
+
+#  services:
+#    service-1: # Ich verwende hier den gleiche Namen wie bei routers
+#      loadBalancer:
+#        servers:
+#          - url: "http://127.0.0.1" # Auf die richtige URL anpassen. Ggf. natürlich mir Port
