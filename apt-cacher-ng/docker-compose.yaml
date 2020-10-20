@@ -9,6 +9,6 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/docker/apt-cacher-ng/var/cache/apt-cacher-ng
+      - /var/docker/apt-cacher-ng:/var/cache/apt-cacher-ng
     ports:
       - 3142:3142
