@@ -24,8 +24,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /var/docker/gitea/data:/data
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
     environment:
       - USER_UID=1000
       - USER_GID=1000
@@ -38,10 +36,10 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.gitea-https.redirectscheme.scheme=https"
       - "traefik.http.routers.gitea-http.entrypoints=web"
-      - "traefik.http.routers.gitea-http.rule=Host(`${gitea.example.com}`)"
+      - "traefik.http.routers.gitea-http.rule=Host(`${GITEA_URL}`)"
       - "traefik.http.routers.gitea-http.middlewares=gitea-https@docker"
       - "traefik.http.routers.gitea.entrypoints=web-secure"
-      - "traefik.http.routers.gitea.rule=Host(`${gitea.example.com}`)"
+      - "traefik.http.routers.gitea.rule=Host(`${GITEA_URL}`)"
       - "traefik.http.routers.gitea.tls=true"
       - "traefik.http.routers.gitea.tls.certresolver=default"
       - "traefik.http.routers.gitea.middlewares=secHeaders@file"
