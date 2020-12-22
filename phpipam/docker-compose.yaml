@@ -2,8 +2,8 @@
 version: '3'
 
 services:
-  phpipam-mysql:
-    image: mysql:5.7
+  phpipam-db:
+    image: mariadb/mariadb:10.4
     container_name: phpipam-mysql
     restart: unless-stopped
     volumes:
@@ -11,7 +11,11 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/docker/data/phpipam/mysql:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD= # Starkes Passwort setzen!
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_INITDB_SKIP_TZINFO=1 # Behebt die bekannten Startprobleme der Datenbank
 
   phpipam-phpipam:
     image: pierrecdn/phpipam:latest
@@ -19,7 +23,7 @@ services:
     restart: unless-stopped
     environment:
       - MYSQL_ENV_MYSQL_USER=root
-      - MYSQL_ENV_MYSQL_ROOT_PASSWORD= # Starkes Passwort setzen!
+      - MYSQL_ENV_MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_ENV_MYSQL_HOST=phpipam-mysql
     depends_on:
       - phpipam-mysql
@@ -27,10 +31,10 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.phpipam-https.redirectscheme.scheme=https"
       - "traefik.http.routers.phpipam-http.entrypoints=web"
-      - "traefik.http.routers.phpipam-http.rule=Host(`phpipam.example.com`)" #Domain anpassen
+      - "traefik.http.routers.phpipam-http.rule=Host(`${PHPIPAM_URL}`)" #Domain anpassen
       - "traefik.http.routers.phpipam-http.middlewares=phpipam-https@docker"
       - "traefik.http.routers.phpipam.entrypoints=web-secure"
-      - "traefik.http.routers.phpipam.rule=Host(`phpipam.example.com`)" #Domain anpassen
+      - "traefik.http.routers.phpipam.rule=Host(`${PHPIPAM_URL}`)" #Domain anpassen
       - "traefik.http.routers.phpipam.tls=true"
       - "traefik.http.routers.phpipam.tls.certresolver=default"
       - "traefik.http.routers.phpipam.middlewares=secHeaders@file"
