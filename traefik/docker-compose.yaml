@@ -9,7 +9,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
-      - $PWD/config:/etc/traefik
+      - ./config:/etc/traefik
     #labels:
     #  - "traefik.enable=true"
     #  - "traefik.http.routers.traefik.rule=Host(`traefik.example.com) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
