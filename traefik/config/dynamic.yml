@@ -37,7 +37,7 @@ http:
 #      entryPoints:
 #        - web-secure
 #      rule: "Host(`example.com`)"
-#      service: "router-1" # Den Namen am besten ähnlich zu dem oben setzen
+#      service: "service-1" # Den Namen am besten ähnlich zu dem oben setzen
 #      tls:
 #        certresolver: default
 
