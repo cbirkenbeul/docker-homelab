@@ -35,17 +35,17 @@ services:
       - ILIAS_DB_NAME=${MYSQL_DATABASE}
       - ILIAS_DB_USER=${MYSQL_USER}
       - ILIAS_DB_PASSWORD=${MYSQL_PASSWORD}
-      - ILIAS_ROOT_PASSWORD= # Starkes Passwort setzen!
-      - ILIAS_SETUP_PASSWORD= # Starkes Passwort setzen!
+      - ILIAS_ROOT_PASSWORD=  #  Starkes Passwort setzen!
+      - ILIAS_SETUP_PASSWORD=  #  Starkes Passwort setzen!
       - ILIAS_CLIENT_NAME=default
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.ilias-https.redirectscheme.scheme=https"
       - "traefik.http.routers.ilias-http.entrypoints=web"
-      - "traefik.http.routers.ilias-http.rule=Host(`${ILIAS_URL}`)" #Domain anpassen
+      - "traefik.http.routers.ilias-http.rule=Host(`${ILIAS_URL}`)"  # Domain anpassen
       - "traefik.http.routers.ilias-http.middlewares=ilias-https@docker"
       - "traefik.http.routers.ilias.entrypoints=web-secure"
-      - "traefik.http.routers.ilias.rule=Host(`${ILIAS_URL}`)" #Domain anpassen
+      - "traefik.http.routers.ilias.rule=Host(`${ILIAS_URL}`)"  # Domain anpassen
       - "traefik.http.routers.ilias.tls=true"
       - "traefik.http.routers.ilias.tls.certresolver=default"
       - "traefik.http.routers.ilias.middlewares=secHeaders@file"
@@ -74,4 +74,4 @@ networks:
     external:
       name: traefik_proxy
   default:
-      driver: bridge
+    driver: bridge

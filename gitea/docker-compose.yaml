@@ -49,7 +49,7 @@ services:
     networks:
       - traefik_proxy
       - default
-    
+
 networks:
   traefik_proxy:
     external:

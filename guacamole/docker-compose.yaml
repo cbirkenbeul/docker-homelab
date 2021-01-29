@@ -1,12 +1,12 @@
 ---
 version: '3'
-  
+
 services:
   guacamole_guacd:
     image: guacamole/guacd:latest
     container_name: guacamole_guacd
     restart: unless-stopped
-  
+
   guacamole_mysql:
     image: mysql:latest
     container_name: guacamole_mysql
@@ -16,10 +16,10 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/docker/data/guacamole/mysql:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD= # Setze hier ein starkes Passwort
+      - MYSQL_ROOT_PASSWORD=  # Setze hier ein starkes Passwort
       - MYSQL_DATABASE=guacamole_db
       - MYSQL_USER=guacamole_sql
-      - MYSQL_PASSWORD= # Ein anderes Passwort
+      - MYSQL_PASSWORD=  # Ein anderes Passwort
 
   guacamole_guacamole:
     image: guacamole/guacamole:latest
@@ -42,10 +42,10 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.guacamole-https.redirectscheme.scheme=https"
       - "traefik.http.routers.guacamole-http.entrypoints=web"
-      - "traefik.http.routers.guacamole-http.rule=Host(`guacamole.example.com`)" #Domain anpassen
+      - "traefik.http.routers.guacamole-http.rule=Host(`guacamole.example.com`)"  # Domain anpassen
       - "traefik.http.routers.guacamole-http.middlewares=guacamole-https@docker"
       - "traefik.http.routers.guacamole.entrypoints=web-secure"
-      - "traefik.http.routers.guacamole.rule=Host(`guacamole.example.com`)" #Domain anpassen
+      - "traefik.http.routers.guacamole.rule=Host(`guacamole.example.com`)"  # Domain anpassen
       - "traefik.http.routers.guacamole.tls=true"
       - "traefik.http.routers.guacamole.tls.certresolver=default"
       - "traefik.http.routers.guacamole.middlewares=secHeaders@file"

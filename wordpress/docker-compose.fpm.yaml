@@ -15,7 +15,7 @@ services:
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_INITDB_SKIP_TZINFO=1 # Behebt die bekannten Startprobleme
+      - MYSQL_INITDB_SKIP_TZINFO=1  # Behebt die bekannten Startprobleme
 
   wordpress-app:
     image: wordpress:fpm-alpine

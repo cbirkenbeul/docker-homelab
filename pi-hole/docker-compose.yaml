@@ -1,3 +1,4 @@
+---
 version: "3"
 
 services:
@@ -5,8 +6,8 @@ services:
     container_name: pi-hole
     image: pihole/pihole:latest
     ports:
-      - "192.168.0.2:53:53/tcp" #IP anpassen
-      - "192.168.0.2:53:53/udp" #IP anpassen
+      - "192.168.0.2:53:53/tcp"  # IP anpassen
+      - "192.168.0.2:53:53/udp"  # IP anpassen
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -15,7 +16,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.pi-hole.entrypoints=web-secure"
-      - "traefik.http.routers.pi-hole.rule=Host(`host.example.com`) && PathPrefix(`/pi-hole`)" #Domain anpassen
+      - "traefik.http.routers.pi-hole.rule=Host(`host.example.com`) && PathPrefix(`/pi-hole`)"  # Domain anpassen
       - "traefik.http.routers.pi-hole.tls=true"
       - "traefik.http.routers.pi-hole.tls.certresolver=default"
       - "traefik.http.routers.pi-hole.middlewares=pi-hole-chain@docker"
@@ -25,18 +26,18 @@ services:
       - "traefik.http.services.pi-hole.loadbalancer.server.port=80"
     environment:
       TZ: 'Europe/Berlin'
-      DNS1: '192.168.0.1' #IP des bisherigen DNS Server eintragen (z.B. der Router). Dieser wird von dnsmasq genutzt um Anfragen weiterzuleiten
+      DNS1: '192.168.0.1'  # IP des bisherigen DNS Server eintragen (z.B. der Router). Dieser wird von dnsmasq genutzt um Anfragen weiterzuleiten
       DNS2: 'no'
-      ServerIP: '192.168.0.2' #IP anpassen
+      ServerIP: '192.168.0.2'  # IP anpassen
       IPv6: 'False'
     dns:
       - 127.0.0.1
-      - 192.168.0.1 #IP des bisherigen DNS Server eintragen (z.B. der Router). Dieser wird von pi-hole selbst genutzt um beispielsweise Regelwerke herunterzuladen
-    hostname: pi-hole #Hostname anpassen
-    domainname: example.com #Domain anpassen
+      - 192.168.0.1  # IP des bisherigen DNS Server eintragen (z.B. der Router). Dieser wird von pi-hole selbst genutzt um beispielsweise Regelwerke herunterzuladen
+    hostname: pi-hole  # Hostname anpassen
+    domainname: example.com  # Domain anpassen
     extra_hosts:
-      - "host.example.com:192.168.0.2" #Zusaetzliche lokale statische IPs ergaenzen (z.B. der Host des Pi-hole)
-      - "pi-hole.example.com:192.168.0.2" #Zusaetzliche lokale statische IPs ergaenzen (z.B. der Host des Pi-hole)
+      - "host.example.com:192.168.0.2"  # Zusaetzliche lokale statische IPs ergaenzen (z.B. der Host des Pi-hole)
+      - "pi-hole.example.com:192.168.0.2"  # Zusaetzliche lokale statische IPs ergaenzen (z.B. der Host des Pi-hole)
     restart: always
     networks:
       - traefik_proxy

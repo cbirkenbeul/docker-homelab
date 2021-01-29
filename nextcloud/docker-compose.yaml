@@ -1,7 +1,7 @@
 ---
 version: '3.3'
 
-services: 
+services:
   nextcloud-db:
     image: mariadb:10.4
     container_name: nextcloud-db
@@ -16,17 +16,17 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_INITDB_SKIP_TZINFO=1 # Behebt die bekannten Startprobleme der Datenbank
-      
+      - MYSQL_INITDB_SKIP_TZINFO=1  # Behebt die bekannten Startprobleme der Datenbank
+
   nextcloud-redis:
     image: redis:alpine
     container_name: nextcloud-redis
     hostname: nextcloud-redis
     networks:
-        - default
+      - default
     restart: always
     command: redis-server --requirepass ${REDIS_PASSWORD}
-    
+
   nextcloud-app:
     image: nextcloud
     container_name: nextcloud-app
@@ -35,11 +35,11 @@ services:
       - nextcloud-db
       - nextcloud-redis
     environment:
-        REDIS_HOST: nextcloud-redis
-        REDIS_HOST_PASSWORD: ${REDIS_PASSWORD}
-    volumes: 
+      - REDIS_HOST=nextcloud-redis
+      - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
+    volumes:
       - /var/docker/nextcloud/app:/var/www/html
-      # - EXTERNES DATENVERZEICHNIS:/var/www/html/data 
+      # - EXTERNES DATENVERZEICHNIS:/var/www/html/data
     links:
       - nextcloud-db
     labels:
@@ -59,7 +59,7 @@ services:
     networks:
       - traefik_proxy
       - default
-      
+
   nextcloud-cron:
     image: nextcloud
     restart: always
@@ -70,7 +70,7 @@ services:
     depends_on:
       - nextcloud-db
       - nextcloud-redis
-    
+
 networks:
   traefik_proxy:
     external:

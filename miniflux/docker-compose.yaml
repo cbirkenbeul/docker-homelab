@@ -1,3 +1,4 @@
+---
 version: '3'
 
 services:
@@ -27,7 +28,7 @@ services:
     networks:
       - traefik_proxy
       - default
-      
+
   miniflux-db:
     image: postgres:latest
     restart: unless-stopped

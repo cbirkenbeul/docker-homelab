@@ -11,20 +11,20 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - $PWD/data:/data
     environment:
-      - DRONE_GITEA_SERVER=https://drone.example.com # Bitte URL anpassen
-      - DRONE_GITEA_CLIENT_ID= # GITEA Client ID
-      - DRONE_GITEA_CLIENT_SECRET= # GITEA Client SECRET
-      - DRONE_RPC_SECRET= # PRC SECRET
-      - DRONE_SERVER_HOST=drone.example.com # Bitte URL anpassen
+      - DRONE_GITEA_SERVER=https://drone.example.com  # Bitte URL anpassen
+      - DRONE_GITEA_CLIENT_ID=  # GITEA Client ID
+      - DRONE_GITEA_CLIENT_SECRET=  # GITEA Client SECRET
+      - DRONE_RPC_SECRET=  # PRC SECRET
+      - DRONE_SERVER_HOST=drone.example.com  # Bitte URL anpassen
       - DRONE_SERVER_PROTO=https
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.drone-https.redirectscheme.scheme=https"
       - "traefik.http.routers.drone-http.entrypoints=web"
-      - "traefik.http.routers.drone-http.rule=Host(`drone.example.com`)" #Domain anpassen
+      - "traefik.http.routers.drone-http.rule=Host(`drone.example.com`)"  # Domain anpassen
       - "traefik.http.routers.drone-http.middlewares=drone-https@docker"
       - "traefik.http.routers.drone.entrypoints=web-secure"
-      - "traefik.http.routers.drone.rule=Host(`drone.example.com`)" #Domain anpassen
+      - "traefik.http.routers.drone.rule=Host(`drone.example.com`)"  # Domain anpassen
       - "traefik.http.routers.drone.tls=true"
       - "traefik.http.routers.drone.tls.certresolver=default"
       - "traefik.http.routers.drone.middlewares=secHeaders@file"
@@ -43,8 +43,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - DRONE_RPC_PROTO=https
-      - DRONE_RPC_HOST=drone.example.com # Bitte URL anpassen
-      - DRONE_RPC_SECRET= # RPC SECRET (siehe oben)
+      - DRONE_RPC_HOST=drone.example.com  # Bitte URL anpassen
+      - DRONE_RPC_SECRET=  # RPC SECRET (siehe oben)
       - DRONE_RUNNER_CAPACITY=2
       - DRONE_RUNNER_NAME=${HOSTNAME}
     ports:

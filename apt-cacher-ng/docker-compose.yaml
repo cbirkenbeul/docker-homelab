@@ -1,6 +1,6 @@
 ---
 version: '3'
-  
+
 services:
   apt-cacher-ng:
     image: sameersbn/apt-cacher-ng:latest

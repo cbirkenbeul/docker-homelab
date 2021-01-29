@@ -33,10 +33,10 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.freshrss-https.redirectscheme.scheme=https"
       - "traefik.http.routers.freshrss-http.entrypoints=web"
-      - "traefik.http.routers.freshrss-http.rule=Host(`${FRESHRSS_URL`)" #Domain anpassen
+      - "traefik.http.routers.freshrss-http.rule=Host(`${FRESHRSS_URL`)"  # Domain anpassen
       - "traefik.http.routers.freshrss-http.middlewares=freshrss-https@docker"
       - "traefik.http.routers.freshrss.entrypoints=web-secure"
-      - "traefik.http.routers.freshrss.rule=Host(`${FRESHRSS_URL`)" #Domain anpassen
+      - "traefik.http.routers.freshrss.rule=Host(`${FRESHRSS_URL`)"  # Domain anpassen
       - "traefik.http.routers.freshrss.tls=true"
       - "traefik.http.routers.freshrss.tls.certresolver=default"
       - "traefik.http.routers.freshrss.middlewares=secHeaders@file"

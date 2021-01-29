@@ -32,15 +32,15 @@ services:
       - DB_DATABASE=bookstack
       - DB_USERNAME=$(MYSQL_USER)
       - DB_PASSWORD=${MYSQL_PASSWORD}
-     # - APP_URL=https://${BOOKSTACK_URL} // Anpassen, wenn Traefik verwendet wird!
+      - APP_URL=https://${BOOKSTACK_URL}  # Zeile auskommentieren, wenn kein Traefik verwendet wird!
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.bookstack-https.redirectscheme.scheme=https"
       - "traefik.http.routers.bookstack-http.entrypoints=web"
-      - "traefik.http.routers.bookstack-http.rule=Host(`${BOOKSTACK_URL}`)" #Domain anpassen
+      - "traefik.http.routers.bookstack-http.rule=Host(`${BOOKSTACK_URL}`)"
       - "traefik.http.routers.bookstack-http.middlewares=bookstack-https@docker"
       - "traefik.http.routers.bookstack.entrypoints=web-secure"
-      - "traefik.http.routers.bookstack.rule=Host(`${BOOKSTACK_URL}`)" #Domain anpassen
+      - "traefik.http.routers.bookstack.rule=Host(`${BOOKSTACK_URL}`)"
       - "traefik.http.routers.bookstack.tls=true"
       - "traefik.http.routers.bookstack.tls.certresolver=default"
       - "traefik.http.routers.bookstack.middlewares=secHeaders@file"
@@ -48,7 +48,7 @@ services:
     networks:
       - traefik_proxy
       - default
-      
+
 networks:
   traefik_proxy:
     external:

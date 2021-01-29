@@ -15,7 +15,7 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE
       - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_INITDB_SKIP_TZINFO=1 # Behebt die bekannten Startprobleme der Datenbank
+      - MYSQL_INITDB_SKIP_TZINFO=1  # Behebt die bekannten Startprobleme der Datenbank
 
   phpipam-phpipam:
     image: pierrecdn/phpipam:latest
@@ -31,10 +31,10 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.phpipam-https.redirectscheme.scheme=https"
       - "traefik.http.routers.phpipam-http.entrypoints=web"
-      - "traefik.http.routers.phpipam-http.rule=Host(`${PHPIPAM_URL}`)" #Domain anpassen
+      - "traefik.http.routers.phpipam-http.rule=Host(`${PHPIPAM_URL}`)"
       - "traefik.http.routers.phpipam-http.middlewares=phpipam-https@docker"
       - "traefik.http.routers.phpipam.entrypoints=web-secure"
-      - "traefik.http.routers.phpipam.rule=Host(`${PHPIPAM_URL}`)" #Domain anpassen
+      - "traefik.http.routers.phpipam.rule=Host(`${PHPIPAM_URL}`)"
       - "traefik.http.routers.phpipam.tls=true"
       - "traefik.http.routers.phpipam.tls.certresolver=default"
       - "traefik.http.routers.phpipam.middlewares=secHeaders@file"
@@ -42,7 +42,7 @@ services:
     networks:
       - traefik_proxy
       - default
-    
+
 networks:
   traefik_proxy:
     external:
