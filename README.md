@@ -41,6 +41,7 @@ Alphabetisch sortiert
 
 ## I
 * ilias (https://www.ilias.de)
+* influxdb (https://www.influxdata.com/products/influxdb/)
 
 ## M
 * Matomo (https://matomo.org)
