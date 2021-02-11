@@ -1,0 +1,12 @@
+---
+version: '3'
+
+services:
+  ntp-server:
+    image: cturra/ntp
+    container_name: ntp-server
+    restart: unless-stopped
+    ports:
+      - 123/udp:123/udp
+    environment:
+      - NTP_SERVERS=${NTP_SERVERS}
