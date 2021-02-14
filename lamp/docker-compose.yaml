@@ -1,0 +1,54 @@
+---
+version: '3.3'
+
+services:
+  wordpress-db:
+    image: mariadb:10.4
+    container_name: wordpress-db
+    restart: unless_stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/wordpress/database:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_INITDB_SKIP_TZINFO=1  # Behebt die bekannten Startprobleme
+
+  wordpress-app:
+    image: wordpress:latest
+    container_name: wordpress-app
+    restart: unless_stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/wordpress/data:/var/www/html/wp-content
+    environment:
+      - WORDPRESS_DB_HOST=wordpress-db:3306
+      - WORDPRESS_DB_USER=${MYSQL_USER}
+      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
+      - WORDPRESS_DB_NAME=wordpress
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.wordpress-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.wordpress-http.entrypoints=web"
+      - "traefik.http.routers.wordpress-http.rule=Host(`wordpress.example.com`)"  # Domain anpassen Kine
+      - "traefik.http.routers.wordpress-http.middlewares=wordpress-https@docker"
+      - "traefik.http.routers.wordpress.entrypoints=web-secure"
+      - "traefik.http.routers.wordpress.rule=Host(`wordpress.example.com`)"  # Domain anpassen
+      - "traefik.http.routers.wordpress.tls=true"
+      - "traefik.http.routers.wordpress.tls.certresolver=default"
+      - "traefik.http.routers.wordpress.middlewares=secHeaders@file"
+      - "traefik.http.services.wordpress.loadbalancer.server.port=80"
+    networks:
+      - default
+      - traefik_proxy
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge

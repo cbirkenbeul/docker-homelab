@@ -1,0 +1,81 @@
+---
+version: '3.3'
+
+services:
+  wordpress-db:
+    image: mariadb:10.4
+    container_name: wordpress-db
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/wordpress/database:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_INITDB_SKIP_TZINFO=1  # Behebt die bekannten Startprobleme
+
+  wordpress-app:
+    image: wordpress:fpm-alpine
+    container_name: wordpress-app
+    restart: unless-stopped
+    depends_on:
+      - wordpress-db
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/wordpress/data:/var/www/html
+    environment:
+      - WORDPRESS_DB_HOST=wordpress-db:3306
+      - WORDPRESS_DB_USER=${MYSQL_USER}
+      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
+      - WORDPRESS_DB_NAME=wordpress
+    networks:
+      - default
+
+  wordpress-web:
+    image: nginx:alpine
+    container_name: wordpress-web
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/wordpress/data:/var/www/html
+      - ./config/default.conf:/etc/nginx/conf.d/default.conf:ro
+    links:
+      - wordpress-app
+    depends_on:
+      - wordpress-app
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.wordpress-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.wordpress-http.entrypoints=web"
+      - "traefik.http.routers.wordpress-http.rule=Host(`${WORDPRESS_URL}`)"
+      - "traefik.http.routers.wordpress-http.middlewares=wordpress-https@docker"
+      - "traefik.http.routers.wordpress.entrypoints=web-secure"
+      - "traefik.http.routers.wordpress.rule=Host(`${WORDPRESS_URL}`)"
+      - "traefik.http.routers.wordpress.tls=true"
+      - "traefik.http.routers.wordpress.tls.certresolver=default"
+      - "traefik.http.routers.wordpress.middlewares=secHeaders@file"
+      - "traefik.http.services.wordpress.loadbalancer.server.port=80"
+    networks:
+      - default
+      - traefik_proxy
+
+  wordpress-cache:
+    image: redis:latest
+    container_name: wordpress-cache
+    restart: unless-stopped
+    depends_on:
+      - wordpress-app
+    networks:
+      - default
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge
