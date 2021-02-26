@@ -50,7 +50,7 @@ services:
       - "traefik.http.routers.guacamole.tls.certresolver=default"
       - "traefik.http.routers.guacamole.middlewares=secHeaders@file"
       - "traefik.http.services.guacamole.loadbalancer.server.port=8080"
-    network:
+    networks:
       - traefik_proxy
       - default
 
