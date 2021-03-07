@@ -13,7 +13,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=bookstack
-      - MYSQL_USER=$(MYSQL_USER)
+      - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_INITDB_SKIP_TZINFO=1
 
@@ -30,7 +30,7 @@ services:
     environment:
       - DB_HOST=bookstack-db:3306
       - DB_DATABASE=bookstack
-      - DB_USERNAME=$(MYSQL_USER)
+      - DB_USERNAME=${MYSQL_USER}
       - DB_PASSWORD=${MYSQL_PASSWORD}
       - APP_URL=https://${BOOKSTACK_URL}  # Zeile auskommentieren, wenn kein Traefik verwendet wird!
     labels:
