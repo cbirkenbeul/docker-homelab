@@ -32,6 +32,7 @@ Alphabetisch sortiert
 
 ## F
 * FreshRSS (https://freshrss.org)
+* FreeScout (https://freescout.net/)
 
 ## G
 * Gitea (https://gitea.io)

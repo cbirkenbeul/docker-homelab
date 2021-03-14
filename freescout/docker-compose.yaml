@@ -1,0 +1,60 @@
+---
+version: '2'
+
+services:
+  freescout-app:
+    image: tiredofit/freescout
+    container_name: freescout-app
+    restart: unless-stopped
+    links:
+      - freescout-db
+    volumes:
+      - ./data:/data
+      - ./logs/:/www/logs
+    environment:
+      - ZABBIX_HOSTNAME=freescout-app
+      - DB_HOST=freescout-db
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASSWORD}
+      - SITE_URL=https://${FREESCOUT_URL}
+      - ADMIN_EMAIL=${ADMIN_NAME}
+      - ADMIN_PASS=${ADMIN_PASSWORD}
+      - ENABLE_SSL_PROXY=TRUE
+      - DISPLAY_ERRORS=FALSE
+      - TIMEZONE=Europe/Berlin
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.freescout-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.freescout-http.entrypoints=web"
+      - "traefik.http.routers.freescout-http.rule=Host(`${FREESCOUT_URL}`)"
+      - "traefik.http.routers.freescout-http.middlewares=freescout-https@docker"
+      - "traefik.http.routers.freescout.entrypoints=web-secure"
+      - "traefik.http.routers.freescout.rule=Host(`${FREESCOUT_URL}`)"
+      - "traefik.http.routers.freescout.tls=true"
+      - "traefik.http.routers.freescout.tls.certresolver=default"
+      - "traefik.http.routers.freescout.middlewares=secHeaders@file"
+      - "traefik.http.services.frescout.loadbalancer.server.port=80"
+    networks:
+      - traefik_proxy
+      - default
+
+  freescout-db:
+    image: tiredofit/mariadb
+    container_name: freescout-db
+    restart: unless-stopped
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      - ROOT_PASS=${DB_ROOT_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASSWORD}
+      - ZABBIX_HOSTNAME=freescout-db
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge
