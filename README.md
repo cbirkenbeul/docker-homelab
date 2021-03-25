@@ -4,6 +4,15 @@
 
 Dieses Repository ist eine Sammlung von Docker-Compose Dateien für Homelabs. Als Betreiber eines [YouTube Kanals](https://youtube.com/teqqyde) das sich rund um das Thema Homelab beschäftigt, habe ich mir die Arbeit gemacht, um dir einen kleinen Start in Sachen Docker zu geben. 
 
+## Installation
+`git clone https://github.com/cbirkenbeul/docker-homelab.git && cd docker-homelab`  
+
+Wenn du für dein docker-homelab die globalen Variablen (Host-Domain `example.com` und das Standardverzeichnis `/var/docker` ändern möchtest starte einmal folgendes Skript.
+
+Du kannst es auch mehrfach ausführen (zB. wenn du dein docker-homelab auf eine andere Festplatte umstellen willst, die geänderten Variablen werden auch gleich in dem Skript mit aktuallsiert.)
+
+Variablen anpassen: `bash install.sh`
+
 ## Aufbau
 Jedes Verzeichnis enthält nur eine Software. Es lassen sich natürlich auch mehrere Produkte miteinander kombinieren um so die Anzahl an docker-compose.yaml Dateien zu verringern. Sollte eine Software eine Datenbank oder ähnliches benötigten, ist diese natürlich in der entsprechenden compose Datei enthalten.
 
