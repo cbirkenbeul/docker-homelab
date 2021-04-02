@@ -1,7 +1,7 @@
 ---
 version: "3"
 services:
-  recipes_db:
+  recipes-db:
     image: postgres:11-alpine
     container_name: recipes-db
     restart: unless-stopped
@@ -17,8 +17,8 @@ services:
     container_name: recipes-app
     restart: unless-stopped
     volumes:
-      - staticfiles:/opt/recipes/staticfiles
-      - nginx_config:/opt/recipes/nginx/conf.d
+      - ./staticfiles:/opt/recipes/staticfiles
+      - ./nginx_config:/opt/recipes/nginx/conf.d
       - ./mediafiles:/opt/recipes/mediafiles
     depends_on:
       - recipes-db
@@ -37,10 +37,10 @@ services:
     container_name: recipes-web
     restart: unless-stopped
     depends_on:
-      - recpies-web
+      - recipes-web
     volumes:
-      - nginx_config:/etc/nginx/conf.d:ro
-      - staticfiles:/static
+      - ./nginx_config:/etc/nginx/conf.d:ro
+      - ./staticfiles:/static
       - ./mediafiles:/media
     labels:
       - "traefik.enable=true"
@@ -59,9 +59,9 @@ services:
       - default
 
 networks:
-traefik_proxy:
+  traefik_proxy:
     external:
-    name: traefik_proxy
-default:
+      name: traefik_proxy
+  default:
     driver: bridge
   

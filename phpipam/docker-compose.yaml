@@ -3,7 +3,7 @@ version: '3'
 
 services:
   phpipam-db:
-    image: mariadb/mariadb:10.4
+    image: mariadb:10.4
     container_name: phpipam-mysql
     restart: unless-stopped
     volumes:
@@ -24,7 +24,7 @@ services:
     environment:
       - MYSQL_ENV_MYSQL_USER=root
       - MYSQL_ENV_MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_ENV_MYSQL_HOST=phpipam-mysql
+      - MYSQL_ENV_MYSQL_HOST=phpipam-db
     depends_on:
       - phpipam-mysql
     labels:
