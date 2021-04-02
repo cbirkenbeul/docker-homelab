@@ -11,7 +11,7 @@ services:
       - POSTGRES_USER=recipes
       - POSTGRES_PASSWORD=${RECIPES_PSQL_PASSWORD}
       - POSTGRES_DB=recipes
-  
+
   recipes-app:
     image: vabene1111/recipes
     container_name: recipes-app
@@ -64,4 +64,3 @@ networks:
       name: traefik_proxy
   default:
     driver: bridge
-  
