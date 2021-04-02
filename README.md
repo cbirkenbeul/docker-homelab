@@ -70,6 +70,7 @@ Alphabetisch sortiert
 * Portainer (https://www.portainer.io)
 
 ## R
+* Recipes (https://github.com/vabene1111/recipes)
 * Redmine (https://www.redmine.org)
 
 ## S
