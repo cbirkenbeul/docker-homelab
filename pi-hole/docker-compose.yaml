@@ -25,7 +25,6 @@ services:
       - "traefik.http.middlewares.pi-hole-replacepathregex.replacepathregex.replacement=/admin/$$1"
       - "traefik.http.services.pi-hole.loadbalancer.server.port=80"
     environment:
-      TZ: 'Europe/Berlin'
       DNS1: '192.168.0.1'  # IP des bisherigen DNS Server eintragen (z.B. der Router). Dieser wird von dnsmasq genutzt um Anfragen weiterzuleiten
       DNS2: 'no'
       ServerIP: '192.168.0.2'  # IP anpassen

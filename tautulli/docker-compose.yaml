@@ -13,7 +13,6 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.tautulli.entrypoints=websecure"

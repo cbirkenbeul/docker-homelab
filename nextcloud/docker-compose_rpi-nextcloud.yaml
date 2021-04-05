@@ -12,7 +12,6 @@ services:
       - /var/docker/nextcloud/database_var:/var/lib/mysql
       - /var/docker/nextcloud/database_config:/config
     environment:
-      - TZ=Europe/Berlin
       - PUID=1000
       - PGID=1000
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
