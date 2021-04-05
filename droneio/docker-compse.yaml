@@ -9,7 +9,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - $PWD/data:/data
+      - /var/docker/droneio-data:/data
     environment:
       - DRONE_GITEA_SERVER=https://drone.example.com  # Bitte URL anpassen
       - DRONE_GITEA_CLIENT_ID=  # GITEA Client ID

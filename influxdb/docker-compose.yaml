@@ -7,6 +7,6 @@ services:
     container_name: influxdb
     restart: unless-stopped
     volumes:
-      - $PWD:/var/lib/influxdb
+      - /var/docker/influxdb:/var/lib/influxdb
     ports:
       - 8086:8086
