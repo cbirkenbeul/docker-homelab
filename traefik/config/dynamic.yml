@@ -35,7 +35,7 @@ http:
 #   routers:
 #     router-1: # Tausche den Namen gegen etwas sprechendes aus
 #       entryPoints:
-#         - web-secure
+#         - websecure
 #       rule: "Host(`example.com`)"
 #       service: "service-1" # Den Namen am besten ähnlich zu dem oben setzen
 #       tls:

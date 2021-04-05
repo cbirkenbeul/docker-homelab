@@ -32,11 +32,7 @@ services:
       - DB_NAME=wiki
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.wikijs-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.wikijs-http.entrypoints=web"
-      - "traefik.http.routers.wikijs-http.rule=Host(`${WIKIJS_URL}`)"
-      - "traefik.http.routers.wikijs-http.middlewares=wikijs-https@docker"
-      - "traefik.http.routers.wikijs.entrypoints=web-secure"
+      - "traefik.http.routers.wikijs.entrypoints=websecure"
       - "traefik.http.routers.wikijs.rule=Host(`${WIKIJS_URL}`)"
       - "traefik.http.routers.wikijs.tls=true"
       - "traefik.http.routers.wikijs.tls.certresolver=default"

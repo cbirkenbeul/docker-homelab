@@ -36,11 +36,7 @@ services:
       - traefik_proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.matomo-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.matomo-http.entrypoints=web"
-      - "traefik.http.routers.matomo-http.rule=Host(`${MATOMO_URL}`)"
-      - "traefik.http.routers.matomo-http.middlewares=matomo-https@docker"
-      - "traefik.http.routers.matomo.entrypoints=web-secure"
+      - "traefik.http.routers.matomo.entrypoints=websecure"
       - "traefik.http.routers.matomo.rule=Host(`${MATOMO_URL}`)"
       - "traefik.http.routers.matomo.tls=true"
       - "traefik.http.routers.matomo.tls.certresolver=default"

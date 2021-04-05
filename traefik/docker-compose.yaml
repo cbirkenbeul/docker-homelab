@@ -13,7 +13,7 @@ services:
     # labels:
     #  - "traefik.enable=true"
     #  - "traefik.http.routers.traefik.rule=Host(`traefik.example.com`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
-    #  - "traefik.http.routers.traefik.entrypoints=web-secure"
+    #  - "traefik.http.routers.traefik.entrypoints=websecure"
     #  - "traefik.http.routers.traefik.tls.certresolver=default"
     #  - "traefik.http.routers.traefik.service=api@internal"
     #  - "traefik.http.routers.traefik.middlewares=auth@docker"

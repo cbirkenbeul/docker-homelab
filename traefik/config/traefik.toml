@@ -12,11 +12,18 @@
 [api]
   dashboard = true
 
-[entryPoints]
-  [entryPoints.web]
-    address = ":80"
-  [entryPoints.web-secure]
-    address = ":443"
+# https://doc.traefik.io/traefik/routing/entrypoints/#redirection
+[entryPoints.web]
+  address = ":80"
+
+  [entryPoints.web.http]
+    [entryPoints.web.http.redirections]
+      [entryPoints.web.http.redirections.entryPoint]
+        to = "websecure"
+        scheme = "https"
+
+[entryPoints.websecure]
+  address = ":443"
 
 [certificatesResolvers]
   [certificatesResolvers.default.acme]

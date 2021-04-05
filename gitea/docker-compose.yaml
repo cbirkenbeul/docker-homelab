@@ -34,11 +34,7 @@ services:
       - DB_PASSWD=${MYSQL_PASSWORD}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.gitea-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.gitea-http.entrypoints=web"
-      - "traefik.http.routers.gitea-http.rule=Host(`${GITEA_URL}`)"
-      - "traefik.http.routers.gitea-http.middlewares=gitea-https@docker"
-      - "traefik.http.routers.gitea.entrypoints=web-secure"
+      - "traefik.http.routers.gitea.entrypoints=websecure"
       - "traefik.http.routers.gitea.rule=Host(`${GITEA_URL}`)"
       - "traefik.http.routers.gitea.tls=true"
       - "traefik.http.routers.gitea.tls.certresolver=default"

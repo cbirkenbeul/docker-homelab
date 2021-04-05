@@ -17,11 +17,7 @@ services:
       - PUID=1000
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.heimdall-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.heimdall-http.entrypoints=web"
-      - "traefik.http.routers.heimdall-http.rule=Host(`heimdall.example.com`)"  # Domain anpassen
-      - "traefik.http.routers.heimdall-http.middlewares=heimdall-https@docker"
-      - "traefik.http.routers.heimdall.entrypoints=web-secure"
+      - "traefik.http.routers.heimdall.entrypoints=websecure"
       - "traefik.http.routers.heimdall.rule=Host(`heimdall.example.com`)"  # Domain anpassen
       - "traefik.http.routers.heimdall.tls=true"
       - "traefik.http.routers.heimdall.tls.certresolver=default"

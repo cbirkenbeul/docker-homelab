@@ -15,11 +15,7 @@ services:
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.miniflux-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.miniflux-http.entrypoints=web"
-      - "traefik.http.routers.miniflux-http.rule=Host(`${EXTERNAL_URL}`)"
-      - "traefik.http.routers.miniflux-http.middlewares=miniflux-https@docker"
-      - "traefik.http.routers.miniflux.entrypoints=web-secure"
+      - "traefik.http.routers.miniflux.entrypoints=websecure"
       - "traefik.http.routers.miniflux.rule=Host(`${EXTERNAL_URL}`)"
       - "traefik.http.routers.miniflux.tls=true"
       - "traefik.http.routers.miniflux.tls.certresolver=default"

@@ -44,11 +44,7 @@ services:
       - ./mediafiles:/media
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.recipes-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.recipes-http.entrypoints=web"
-      - "traefik.http.routers.recipes-http.rule=Host(`${RECIPES_URL}`)"
-      - "traefik.http.routers.recipes-http.middlewares=recipes-https@docker"
-      - "traefik.http.routers.recipes.entrypoints=web-secure"
+      - "traefik.http.routers.recipes.entrypoints=websecure"
       - "traefik.http.routers.recipes.rule=Host(`${RECIPES_URL}`)"
       - "traefik.http.routers.recipes.tls=true"
       - "traefik.http.routers.recipes.tls.certresolver=default"
