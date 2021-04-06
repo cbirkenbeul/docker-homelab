@@ -26,6 +26,7 @@ Im Laufe der Zeit können sich Produkte ändern oder nicht mehr durch die Entwic
 # Software
 Alphabetisch sortiert
 ## A
+* Adguard Home (https://adguard.com/de/adguard-home/overview.html)
 * apt-cacher-ng (https://wiki.debian.org/AptCacherNg)
 
 ## B
