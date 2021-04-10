@@ -1,0 +1,94 @@
+version: "3"
+
+networks:
+  private_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.9.0.0/24
+
+services:
+  unbound:
+    image: "mvance/unbound:latest"
+    container_name: wirehole-unbound
+    restart: unless-stopped
+    hostname: "unbound"
+    volumes:
+      - "./unbound:/opt/unbound/etc/unbound/"
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    networks:
+      private_network:
+        ipv4_address: 10.9.0.200
+
+  wireguard:
+    depends_on: [unbound, pihole]
+    image: linuxserver/wireguard
+    container_name: wirehole-wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - SERVERPORT=51820
+      - SERVERURL=wg.${WIREHOLE_URL} # Wirehole DynDNS URL
+      - PEERS=3 # Wie viele Peers werden benötigt (Clients) [Name (getrennt mit Komma) oder Anzahl]
+      - PEERDNS=10.9.0.100 # Link to pihole
+      - INTERNAL_SUBNET=10.6.0.0
+      # - ALLOWEDIPS=0.0.0.0/0 # kompletter Netzverkehr über VPN
+      - ALLOWEDIPS=10.9.0.0/24 # nur DNS Anfragen über VPN  ## FASTER
+    #   - ALLOWEDIPS=10.9.0.0/24,192.168.178.0/32 # nur DNS Anfragen über VPN (inkl. Zugriff auf lokale Hosts)
+    volumes:
+      - /var/docker/wirehole/wireguard:/config
+      - /lib/modules:/lib/modules
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    ports:
+      - "51820:51820/udp"
+    dns:
+      - 10.9.0.100 # Points to pihole
+      - 10.9.0.200 # Points to unbound
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
+    networks:
+      traefik_proxy:
+      private_network:
+        ipv4_address: 10.9.0.3
+    # healthcheck:
+    #   test: ["CMD", "curl", "--interface", "wg0", "-o", "/dev/null", "-m", "3", "-s", "https://1.1.1.1/dns-query?ct=application/dns-json&name=www.google.com&type=AAAA"]
+    #   interval: 1m30s
+    #   timeout: 10s
+    #   retries: 3        
+
+  pihole:
+    depends_on: [unbound]
+    container_name: wirehole-pihole
+    image: pihole/pihole:latest
+    restart: unless-stopped
+    hostname: wirehole-pihole
+    dns:
+      - 127.0.0.1
+      - 10.9.0.200 # Points to unbound
+    environment:
+      WEBPASSWORD: "" # Blank password - Can be whatever you want.
+      ServerIP: 10.1.0.100 # Internal IP of pihole
+      DNS1: 10.9.0.200 # Unbound IP
+      DNS2: 10.9.0.200 # If we don't specify two, it will auto pick google.
+    volumes:
+      - "/var/docker/wirehole/etc-pihole/:/etc/pihole/"
+      - "/var/docker/wirehole/etc-dnsmasq.d/:/etc/dnsmasq.d/"
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/wirehole-pihole/docker-wirehole-pihole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN
+    ports: 
+      - 890:80/tcp # pihole Admin GUI 
+      # - 53:53/tcp # Port freigeben, wenn Pihole auch lokal DNS Anfragen verwendet werden soll
+      # - 53:53/udp # Port freigeben, wenn Pihole auch lokal DNS Anfragen verwendet werden soll
+    networks:
+      private_network:
+        ipv4_address: 10.9.0.100

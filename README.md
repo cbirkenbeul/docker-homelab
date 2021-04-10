@@ -84,4 +84,5 @@ Alphabetisch sortiert
 * Wallabag (https://www.wallabag.it/de/)
 * Watchtower (https://github.com/containrrr/watchtower)
 * Wiki.js (https://wiki.js.org)
+* WireHole (https://github.com/IAmStoxe/wirehole)
 * Wordpress (https://de.wordpress.org)
