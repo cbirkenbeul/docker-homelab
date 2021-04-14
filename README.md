@@ -23,67 +23,69 @@ Es werden keine Docker Volumes verwendet sondern bind mounts! Als Standardverzei
 # Wichtiges
 Im Laufe der Zeit können sich Produkte ändern oder nicht mehr durch die Entwickler gewartet werden. Bitte habt Verständnis dafür, dass dieses Repository nicht vollständig und zu jeder Zeit korrekt sein kann. Außerdem sind vor Benutzung immer die Dummy-Passwörter durch komplexe eigene Passwörter zu ersetzen!
 
-# Software
-Alphabetisch sortiert
-## A
-* Adguard Home (https://adguard.com/de/adguard-home/overview.html)
-* apt-cacher-ng (https://wiki.debian.org/AptCacherNg)
+# Inhaltsverzeichnis
 
-## B
-* Bitwarden_rs (https://github.com/dani-garcia/bitwarden_rs)
-* Bookstack (https://www.bookstackapp.com)
+## Analyse und Reporting
+* Matomo ([Link 🔗](https://matomo.org) | [Video 📹](https://www.youtube.com/watch?v=dXPO5iWUTSg))
 
-## C
-* Calibre (incl. Calibre-Web) (https://calibre-ebook.com)
+## Blogs und Webseiten
+* Wordpress ([Link 🔗](https://de.wordpress.org))
+
+## Collaboration
+* Nextcloud ([Link 🔗](https://nextcloud.com))
+
+## Dashboard
+* Heimdall ([Link 🔗](https://heimdall.site) | [Video 📹](https://www.youtube.com/watch?v=Dmw7nAEizWk))
+
+## Datenbanken
+* influxdb ([Link 🔗](https://www.influxdata.com/products/influxdb/))
+
+## Docker
+* Portainer ([Link 🔗](https://www.portainer.io))
+* Watchtower ([Link 🔗](https://github.com/containrrr/watchtower))
+
+## Medien und Medienmanagement
+* Calibre (incl. Calibre-Web) ([Link 🔗](https://calibre-ebook.com))
+* PLEX Medien Server ([Link 🔗](https://www.plex.tv))
+* Tautulli ([Link 🔗](https://tautulli.com))
+
+## Netzwerktools
+* Adguard Home ([Link 🔗](https://adguard.com/de/adguard-home/overview.html))
+* apt-cacher-ng ([Link 🔗](https://wiki.debian.org/AptCacherNg) | [Video 📹](https://www.youtube.com/watch?v=YwkfYaAeDh8))
 * Cloudflare-ddns
-
-## D
-* Drone.io (https://drone.io)
-
-## F
-* FreshRSS (https://freshrss.org)
-* FreeScout (https://freescout.net/)
-
-## G
-* Gitea (https://gitea.io)
-* Guacamole (http://guacamole.apache.org)
-
-## H
-* Heimdall (https://heimdall.site)
-
-## I
-* ilias (https://www.ilias.de)
-* influxdb (https://www.influxdata.com/products/influxdb/)
-
-## M
-* Matomo (https://matomo.org)
-* Miniflux (Miniflux is a minimalist and opinionated feed reader. https://miniflux.app)
-* Monitoring (Node Exporter, Prometheus, cAdvisor, Grafana)
-
-## N
-* Nextcloud (https://nextcloud.com)
 * NTP Server
+* phpIPAM ([Link 🔗](https://phpipam.net) | [Video 📹](https://www.youtube.com/watch?v=oUAkkJJS_AY))
+* Pi-hole ([Link 🔗](https://pi-hole.net))
+* WireHole ([Link 🔗](https://github.com/IAmStoxe/wirehole))
 
-## P
-* phpIPAM (https://phpipam.net)
-* Pi-hole (https://pi-hole.net)
-* PLEX Medien Server (https://www.plex.tv)
-* Portainer (https://www.portainer.io)
+## News und RSS
+* FreshRSS ([Link 🔗](https://freshrss.org) | [Video 📹](https://www.youtube.com/watch?v=0r7vf2MXQYU))
+* Miniflux ([Link 🔗](https://miniflux.app))
 
-## R
-* Recipes (https://github.com/vabene1111/recipes)
-* Redmine (https://www.redmine.org)
+## Passwort Manager
+* Bitwarden_rs ([Link 🔗](https://github.com/dani-garcia/bitwarden_rs))
 
-## S
-* Statping (https://demo.statping.com)
+## Programmierung und Code-Verwaltung
+* Drone.io ([Link 🔗](https://drone.io))
+* Gitea ([Link 🔗](https://gitea.io) | [Video 📹](https://www.youtube.com/watch?v=2h-gkICAcbk))
 
-## T
-* Tautulli (https://tautulli.com)
-* Traefik (https://traefik.io)
+## Remotemanagement
+* Guacamole ([Link 🔗](http://guacamole.apache.org) | [Video 📹](https://www.youtube.com/watch?v=vMhjvGLeHrY))
 
-## W
-* Wallabag (https://www.wallabag.it/de/)
-* Watchtower (https://github.com/containrrr/watchtower)
-* Wiki.js (https://wiki.js.org)
-* WireHole (https://github.com/IAmStoxe/wirehole)
-* Wordpress (https://de.wordpress.org)
+## Reverse Proxys und SSL
+* Traefik ([Link 🔗](https://traefik.io))
+
+## Sonstiges
+* ilias ([Link 🔗](https://www.ilias.de))
+* Monitoring (Node Exporter, Prometheus, cAdvisor, Grafana)
+* Recipes ([Link 🔗](https://github.com/vabene1111/recipes))
+* Statping ([Link 🔗](https://demo.statping.com))
+* Wallabag ([Link 🔗](https://www.wallabag.it/de/))
+
+## Ticketsysteme
+* FreeScout ([Link 🔗](https://freescout.net/) | [Video 📹](https://www.youtube.com/watch?v=OgKFAlunEL4))
+* Redmine ([Link 🔗](https://www.redmine.org))
+
+## Wikis
+* Bookstack ([Link 🔗](https://www.bookstackapp.com) | [Video 📹](https://www.youtube.com/watch?v=FarZzeePgds))
+* Wiki.js ([Link 🔗](https://wiki.js.org))
