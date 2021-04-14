@@ -14,5 +14,4 @@ services:
       - /var/docker/plex/transcode:/transcode  # Den Pfad kannst du natürlich auch anpassen
       - <path>:/data  # Den Pfad bitte so setzen, dass Plex an eure Medien ran kommt
     environment:
-      - TZ=EUROPE/BERLIN
       - PLEX_CLAIM=<token>  # Den Token hier einfügen (siehe README)

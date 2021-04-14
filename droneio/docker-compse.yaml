@@ -9,7 +9,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - $PWD/data:/data
+      - /var/docker/droneio-data:/data
     environment:
       - DRONE_GITEA_SERVER=https://drone.example.com  # Bitte URL anpassen
       - DRONE_GITEA_CLIENT_ID=  # GITEA Client ID
@@ -19,11 +19,7 @@ services:
       - DRONE_SERVER_PROTO=https
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.drone-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.drone-http.entrypoints=web"
-      - "traefik.http.routers.drone-http.rule=Host(`drone.example.com`)"  # Domain anpassen
-      - "traefik.http.routers.drone-http.middlewares=drone-https@docker"
-      - "traefik.http.routers.drone.entrypoints=web-secure"
+      - "traefik.http.routers.drone.entrypoints=websecure"
       - "traefik.http.routers.drone.rule=Host(`drone.example.com`)"  # Domain anpassen
       - "traefik.http.routers.drone.tls=true"
       - "traefik.http.routers.drone.tls.certresolver=default"

@@ -12,7 +12,6 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Berlin
 
   calibre-web:
     image: linuxserver/calibre-web
@@ -26,17 +25,12 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Berlin
       - DOCKER_MODS=linuxserver/calibre-web:calibre
     depends_on:
       - calibre
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.calibre-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.calibre-http.entrypoints=web"
-      - "traefik.http.routers.calibre-http.rule=Host(`${CALIBRE_URL}`)"
-      - "traefik.http.routers.calibre-http.middlewares=calibre-https@docker"
-      - "traefik.http.routers.calibre.entrypoints=web-secure"
+      - "traefik.http.routers.calibre.entrypoints=websecure"
       - "traefik.http.routers.calibre.rule=Host(`${CALIBRE_URL}`)"
       - "traefik.http.routers.calibre.tls=true"
       - "traefik.http.routers.calibre.tls.certresolver=default"

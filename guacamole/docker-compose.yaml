@@ -40,11 +40,7 @@ services:
       - guacamole_mysql
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.guacamole-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.guacamole-http.entrypoints=web"
-      - "traefik.http.routers.guacamole-http.rule=Host(`guacamole.example.com`)"  # Domain anpassen
-      - "traefik.http.routers.guacamole-http.middlewares=guacamole-https@docker"
-      - "traefik.http.routers.guacamole.entrypoints=web-secure"
+      - "traefik.http.routers.guacamole.entrypoints=websecure"
       - "traefik.http.routers.guacamole.rule=Host(`guacamole.example.com`)"  # Domain anpassen
       - "traefik.http.routers.guacamole.tls=true"
       - "traefik.http.routers.guacamole.tls.certresolver=default"

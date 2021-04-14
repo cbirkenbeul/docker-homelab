@@ -12,7 +12,6 @@ services:
       - /var/docker/nextcloud/database_var:/var/lib/mysql
       - /var/docker/nextcloud/database_config:/config
     environment:
-      - TZ=Europe/Berlin
       - PUID=1000
       - PGID=1000
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
@@ -30,11 +29,7 @@ services:
       - nextcloud-db
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.nextcloud-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.nextcloud-http.entrypoints=web"
-      - "traefik.http.routers.nextcloud-http.rule=Host(`${NEXTCLOUD_URL}`)"
-      - "traefik.http.routers.nextcloud-http.middlewares=nextcloud-https@docker"
-      - "traefik.http.routers.nextcloud.entrypoints=web-secure"
+      - "traefik.http.routers.nextcloud.entrypoints=websecure"
       - "traefik.http.routers.nextcloud.rule=Host(`${NEXTCLOUD_URL}`)"
       - "traefik.http.routers.nextcloud.tls=true"
       - "traefik.http.routers.nextcloud.tls.certresolver=default"

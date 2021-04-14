@@ -40,11 +40,7 @@ services:
       - ILIAS_CLIENT_NAME=default
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.ilias-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.ilias-http.entrypoints=web"
-      - "traefik.http.routers.ilias-http.rule=Host(`${ILIAS_URL}`)"  # Domain anpassen
-      - "traefik.http.routers.ilias-http.middlewares=ilias-https@docker"
-      - "traefik.http.routers.ilias.entrypoints=web-secure"
+      - "traefik.http.routers.ilias.entrypoints=websecure"
       - "traefik.http.routers.ilias.rule=Host(`${ILIAS_URL}`)"  # Domain anpassen
       - "traefik.http.routers.ilias.tls=true"
       - "traefik.http.routers.ilias.tls.certresolver=default"

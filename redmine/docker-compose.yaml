@@ -22,11 +22,7 @@ services:
       - /var/docker/redmine/app:/usr/src/redmine/files
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.redmine-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.redmine-http.entrypoints=web"
-      - "traefik.http.routers.redmine-http.rule=Host(`redmine.example.com`)"  # Domain anpassen
-      - "traefik.http.routers.redmine-http.middlewares=redmine-https@docker"
-      - "traefik.http.routers.redmine.entrypoints=web-secure"
+      - "traefik.http.routers.redmine.entrypoints=websecure"
       - "traefik.http.routers.redmine.rule=Host(`redmine.example.com`)"  # Domain anpassen
       - "traefik.http.routers.redmine.tls=true"
       - "traefik.http.routers.redmine.tls.certresolver=default"

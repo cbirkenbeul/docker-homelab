@@ -25,11 +25,7 @@ services:
       - SYMFONY__ENV__FOSUSER_CONFIRMATION=false
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.wallabag-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.wallabag-http.entrypoints=web"
-      - "traefik.http.routers.wallabag-http.rule=Host(`${WALLABAG_URL}`)"
-      - "traefik.http.routers.wallabag-http.middlewares=wallabag-https@docker"
-      - "traefik.http.routers.wallabag.entrypoints=web-secure"
+      - "traefik.http.routers.wallabag.entrypoints=websecure"
       - "traefik.http.routers.wallabag.rule=Host(`${WALLABAG_URL}`)"
       - "traefik.http.routers.wallabag.tls=true"
       - "traefik.http.routers.wallabag.tls.certresolver=default"

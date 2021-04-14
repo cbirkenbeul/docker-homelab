@@ -25,11 +25,7 @@ services:
       - TIMEZONE=Europe/Berlin
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.freescout-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.freescout-http.entrypoints=web"
-      - "traefik.http.routers.freescout-http.rule=Host(`${FREESCOUT_URL}`)"
-      - "traefik.http.routers.freescout-http.middlewares=freescout-https@docker"
-      - "traefik.http.routers.freescout.entrypoints=web-secure"
+      - "traefik.http.routers.freescout.entrypoints=websecure"
       - "traefik.http.routers.freescout.rule=Host(`${FREESCOUT_URL}`)"
       - "traefik.http.routers.freescout.tls=true"
       - "traefik.http.routers.freescout.tls.certresolver=default"

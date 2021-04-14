@@ -58,11 +58,7 @@ services:
       - mon_prometheus
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.grafana-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.grafana-http.entrypoints=web"
-      - "traefik.http.routers.grafana-http.rule=Host(`grafana.example.com`)"  # Domain anpassen
-      - "traefik.http.routers.grafana-http.middlewares=grafana-https@docker"
-      - "traefik.http.routers.grafana.entrypoints=web-secure"
+      - "traefik.http.routers.grafana.entrypoints=websecure"
       - "traefik.http.routers.grafana.rule=Host(`grafana.example.com`)"  # Domain anpassen
       - "traefik.http.routers.grafana.tls=true"
       - "traefik.http.routers.grafana.tls.certresolver=default"
