@@ -2,7 +2,7 @@
 
 Die Monitoring Container überwachen den Docker Host sowie alle Docker Container. Mittels Grafana gibt es dazu ein ansprechendes Dashboard um alle Container und Dienst im Auge zu behalten.
 
-![Grafana Dashboard](https://raw.githubusercontent.com/cbirkenbeul/docker-homelab/master/monitoring/grafana/grafana-dashboard.png)
+![Grafana Dashboard](https://raw.githubusercontent.com/cbirkenbeul/docker-homelab/master/sonstiges/monitoring/grafana/grafana-dashboard.png)
 
 # Installation
 
