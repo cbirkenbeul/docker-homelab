@@ -1,22 +1,24 @@
 ---
-version:
+version: '3'
 
-service:
+services:
   adguard-home:
     image: adguard/adguardhome
     container_name: adguard-home
     restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - /var/docker/adguard/workdir:/opt/adguardhome/work
       - /var/docker/adguard/confdir:/opt/adguardhome/conf
     ports:
-      - 53:53/tcp
-      - 53:53/udp
-      - 3000:3000/tcp
-     # - 67:67/udp  DHCP-Server
-     # - 68:68/tcp  DHCP-Server
-     # - 68:68/udp  DHCP-Server
-     # - 853:853/tcp  DNS-over-TLS
-     # - 784:784/udp  DNS-over-QUIC
-     # - 5443:5443/tcp  DNSCrypt Server
-     # - 5443:5443/udp  DNSCrypt Server
+      - 53:53/tcp  # DNS-Resolver
+      - 53:53/udp  # DNS-Resolver
+      - 3000:3000/tcp  # Web-GUI
+      # - 67:67/udp  # DHCP-Server
+      # - 68:68/tcp  # DHCP-Server
+      # - 68:68/udp  # DHCP-Server
+      # - 853:853/tcp  # DNS-over-TLS
+      # - 784:784/udp  # DNS-over-QUIC
+      # - 5443:5443/tcp  # DNSCrypt Server
+      # - 5443:5443/udp  # DNSCrypt Server
