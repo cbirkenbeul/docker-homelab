@@ -9,8 +9,10 @@ services:
     links:
       - freescout-db
     volumes:
-      - ./data:/data
-      - ./logs/:/www/logs
+      - /var/docker/freescout/data:/data
+      - /var/docker/freescout/logs/:/www/logs
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
     environment:
       - ZABBIX_HOSTNAME=freescout-app
       - DB_HOST=freescout-db
@@ -22,7 +24,7 @@ services:
       - ADMIN_PASS=${ADMIN_PASSWORD}
       - ENABLE_SSL_PROXY=TRUE
       - DISPLAY_ERRORS=FALSE
-      - TIMEZONE=Europe/Berlin
+#       - TIMEZONE=Europe/Berlin
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.freescout.entrypoints=websecure"
@@ -30,7 +32,7 @@ services:
       - "traefik.http.routers.freescout.tls=true"
       - "traefik.http.routers.freescout.tls.certresolver=default"
       - "traefik.http.routers.freescout.middlewares=secHeaders@file"
-      - "traefik.http.services.frescout.loadbalancer.server.port=80"
+      - "traefik.http.services.freescout.loadbalancer.server.port=80"
     networks:
       - traefik_proxy
       - default
@@ -40,7 +42,9 @@ services:
     container_name: freescout-db
     restart: unless-stopped
     volumes:
-      - ./db:/var/lib/mysql
+      - /var/docker/freescout/db:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
     environment:
       - ROOT_PASS=${DB_ROOT_PASSWORD}
       - DB_NAME=${DB_NAME}
