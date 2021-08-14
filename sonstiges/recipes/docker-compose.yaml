@@ -37,7 +37,7 @@ services:
     container_name: recipes-web
     restart: unless-stopped
     depends_on:
-      - recipes-web
+      - recipes-app
     volumes:
       - ./nginx_config:/etc/nginx/conf.d:ro
       - ./staticfiles:/static
