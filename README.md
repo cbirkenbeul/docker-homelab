@@ -77,6 +77,7 @@ Im Laufe der Zeit können sich Produkte ändern oder nicht mehr durch die Entwic
 
 ## Sonstiges
 * [ilias](https://github.com/cbirkenbeul/docker-homelab/tree/master/sonstiges/ilias) ([Webseite 🔗](https://www.ilias.de))
+* [File Browser](https://github.com/filebrowser/filebrowser) ([Webseite 🔗](https://filebrowser.org/))
 * [Monitoring (Node Exporter, Prometheus, cAdvisor, Grafana)](https://github.com/cbirkenbeul/docker-homelab/tree/master/sonstiges/monitoring)
 * [Recipes](https://github.com/cbirkenbeul/docker-homelab/tree/master/sonstiges/recipes) ([Webseite 🔗](https://github.com/vabene1111/recipes))
 * [Statping](https://github.com/cbirkenbeul/docker-homelab/tree/master/sonstiges/statping) ([Webseite 🔗](https://demo.statping.com))
