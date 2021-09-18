@@ -2,7 +2,7 @@
 version: "3"
 services:
   recipes-db:
-    image: postgres:11-alpine
+    image: postgres:13-alpine
     container_name: recipes-db
     restart: unless-stopped
     volumes:
