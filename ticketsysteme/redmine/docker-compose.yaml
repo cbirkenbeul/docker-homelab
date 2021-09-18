@@ -33,7 +33,7 @@ services:
       - default
 
   redmine-db:
-    image: mysql:5.7
+    image: mysql:8.0
     container_name: redmine-db
     restart: always
     volumes:
