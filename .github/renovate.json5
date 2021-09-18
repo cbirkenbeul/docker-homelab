@@ -7,88 +7,10 @@
   "rebaseWhen": "conflicted",
   "helm-values": {
     "fileMatch": [
-      "cluster/.+/helmrelease\\.yaml$"
+      "docker-compose\\.yaml$"
     ]
   },
-  "kubernetes": {
-    "fileMatch": [
-      "cluster/.+\\.yaml$"
-    ],
-    "ignorePaths": [
-      "cluster/base/"
-    ],
-  },
-  "regexManagers": [
-    // regexManager to read and process HelmRelease files
-    {
-      "fileMatch": [
-        "cluster/.+\\.yaml$"
-      ],
-      "matchStrings": [
-        // helm releases
-        "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
-      ],
-      "datasourceTemplate": "helm"
-    },
-    // regexManager to read and process cert-manager CRD's
-    {
-      "fileMatch": [
-        "cluster/crds/cert-manager/.+\\.yaml$"
-      ],
-      "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/"
-      ],
-      "datasourceTemplate": "helm"
-    },
-    // regexManager to read and process kube-prometheus-stack CRD's
-    {
-      "fileMatch": [
-        "cluster/crds/kube-prometheus-stack/.+\\.yaml$"
-      ],
-      "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n"
-      ],
-      "datasourceTemplate": "helm"
-    },
-    // regexManager to read and process Traefik CRD's
-    {
-      "fileMatch": [
-        "cluster/crds/traefik/.+\\.yaml$"
-      ],
-      "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n"
-      ],
-      "datasourceTemplate": "helm"
-    },
-    // regexManager to read and process Rook-Ceph CRD's
-    {
-      "fileMatch": [
-        "cluster/crds/rook-ceph/.+\\.yaml$"
-      ],
-      "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: (?<currentValue>.*)\n"
-      ],
-      "datasourceTemplate": "helm"
-    },
-    // regexManager to read and process External Snapshotter and External DNS CRD's
-    {
-      "fileMatch": [
-        "cluster/crds/external-snapshotter/.+\\.yaml$",
-        "cluster/crds/external-dns/.+\\.yaml$"
-      ],
-      "matchStrings": [
-        "datasource=(?<datasource>.*?)\n *url: https:\/\/github\\.com\/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n"
-      ],
-      "datasourceTemplate": "github-releases"
-    }
-  ],
   "packageRules": [
-    // setup datasources
-    {
-      "matchDatasources": ["helm"],
-      "separateMinorPatch": true,
-      "ignoreDeprecated": true
-    },
     // global docker datasource settings
     {
       "matchDatasources": ["docker"],
@@ -112,21 +34,6 @@
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["patch"],
       "labels": ["renovate/image", "dep/patch"]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["major"],
-      "labels": ["renovate/helm", "dep/major"]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["minor"],
-      "labels": ["renovate/helm", "dep/minor"]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["patch"],
-      "labels": ["renovate/helm", "dep/patch"]
     },
     // Enable auto-merge for docker images
     // version strategies
