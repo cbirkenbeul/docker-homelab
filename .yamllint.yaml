@@ -11,8 +11,7 @@ rules:
   commas: enable
   comments:
     level: warning
-  comments-indentation:
-    level: warning
+  comments-indentation: disable
   document-end: disable
   document-start:
     level: warning

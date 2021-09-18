@@ -24,7 +24,7 @@ services:
       - ADMIN_PASS=${ADMIN_PASSWORD}
       - ENABLE_SSL_PROXY=TRUE
       - DISPLAY_ERRORS=FALSE
-#       - TIMEZONE=Europe/Berlin
+      # - TIMEZONE=Europe/Berlin
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.freescout.entrypoints=websecure"

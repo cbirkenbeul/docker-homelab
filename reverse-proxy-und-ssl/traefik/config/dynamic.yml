@@ -3,7 +3,7 @@ tls:
   options:
     default:
       minVersion: VersionTLS12
-      sniStrict : true
+      sniStrict: true
       cipherSuites:
         - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
         - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
@@ -13,7 +13,7 @@ tls:
         - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
       curvePreferences:
         - CurveP521
-        - CurveP384        
+        - CurveP384
     mintls13:
       minVersion: VersionTLS13
 

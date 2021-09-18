@@ -1,5 +1,5 @@
 ---
-  version: "3"
+version: '3'
 
 networks:
   private_network:
@@ -39,7 +39,7 @@ services:
       - INTERNAL_SUBNET=10.6.0.0
       # - ALLOWEDIPS=0.0.0.0/0  # kompletter Netzverkehr über VPN
       - ALLOWEDIPS=10.9.0.0/24  # nur DNS Anfragen über VPN  ## FASTER
-    #   - ALLOWEDIPS=10.9.0.0/24,192.168.178.0/32  # nur DNS Anfragen über VPN (inkl. Zugriff auf lokale Hosts)
+      # - ALLOWEDIPS=10.9.0.0/24,192.168.178.0/32  # nur DNS Anfragen über VPN (inkl. Zugriff auf lokale Hosts)
     volumes:
       - /var/docker/wirehole/wireguard:/config
       - /lib/modules:/lib/modules
@@ -87,7 +87,7 @@ services:
     cap_add:
       - NET_ADMIN
     ports:
-      - 890:80/tcp  # pihole Admin GUI 
+      - 890:80/tcp  # pihole Admin GUI
       # - 53:53/tcp  # Port freigeben, wenn Pihole auch lokal DNS Anfragen verwendet werden soll
       # - 53:53/udp  # Port freigeben, wenn Pihole auch lokal DNS Anfragen verwendet werden soll
     networks:
