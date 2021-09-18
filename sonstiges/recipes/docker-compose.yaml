@@ -30,6 +30,7 @@ services:
       - POSTGRES_PASSWORD=${RECIPES_PSQL_PASSWORD}
       - POSTGRES_DB=djangodb
       - ALLOWED_HOSTS=*
+      - GUNICORN_MEDIA=0
       - DEBUG=0
 
   recipes-web:
