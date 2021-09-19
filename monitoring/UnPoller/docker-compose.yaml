@@ -1,0 +1,39 @@
+---
+version: "3"
+services:
+  influxdb:
+    container_name: up_influxdb
+    restart: unless-stopped
+    image: influxdb:1.8
+    ports:
+      - '8086:8086'
+    volumes:
+      - /var/docker/data/unpoller/influxdb:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=unifi
+      - INFLUXDB_ADMIN_USER=unifi
+      - INFLUXDB_ADMIN_PASSWORD=unifi
+
+  grafana:
+    container_name: up_grafana
+    image: grafana/grafana:8.1.4
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    volumes:
+      - /var/docker/data/unpoller/grafana:/var/lib/grafana
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,natel-discrete-panel,grafana-piechart-panel
+
+  unpoller:
+    container_name: up-poller
+    restart: unless-stopped
+    image: golift/unifi-poller:2.1.3
+    depends_on:
+      - influxdb
+      - grafana
+    volumes:
+      - /var/docker/data/unpoller/unpoller:/config
