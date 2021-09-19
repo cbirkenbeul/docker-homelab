@@ -24,7 +24,7 @@ services:
       - recipes-db
     environment:
       - SECRET_KEY=${RECIPES_SECRET}
-      - POSTGRES_HOST=db_recipes
+      - POSTGRES_HOST=recipes-db
       - POSTGRES_PORT=5432
       - POSTGRES_USER=recipes
       - POSTGRES_PASSWORD=${RECIPES_PSQL_PASSWORD}
