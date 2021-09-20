@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   portainer:
-    image: portainer/portainer-ce:latest
+    image: portainer/portainer-ce:2.6.3
     container_name: portainer
     volumes:
       - /etc/localtime:/etc/localtime:ro

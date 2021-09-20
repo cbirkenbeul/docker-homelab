@@ -4,8 +4,8 @@ version: '3.3'
 services:
   plex:
     image: plex  # Wenn du Plex Pass Kunde bist fügst du noch :plexpass hinzu
-    container_name: plex
-    restart: always
+    container_name: plexinc/pms-docker:1.24.3.5033-757abe6b4
+    restart: unless-stopped
     network: host
     volumes:
       - /etc/localtime:/etc/localtime:ro
