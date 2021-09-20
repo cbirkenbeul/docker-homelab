@@ -1,0 +1,17 @@
+---
+version: '3.3'
+
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:10.7.7
+    container_name: jellyfin
+    restart: unless-stopped
+    network: host
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/jellyfin/config:/config
+      - /var/docker/jellyfin/cache:/cache
+      - <path>:/data  # Den Pfad bitte so setzen, dass Jellyfin an eure Medien ran kommt
+    environment:
+      - JELLYFIN_PublishedServerUrl=${JELLYFIN_URL}
