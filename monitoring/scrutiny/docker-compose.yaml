@@ -1,0 +1,27 @@
+---
+version: '3'
+services:
+  scrutiny:
+    image: ghcr.io/linuxserver/scrutiny:6d419608-ls19
+    restart: unless-stopped
+    container_name: scrutiny
+    cap_add:
+      - SYS_RAWIO
+      - SYS_ADMIN #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - SCRUTINY_API_ENDPOINT=http://localhost:8080
+      - SCRUTINY_WEB=true
+      - SCRUTINY_COLLECTOR=true
+    volumes:
+      - /var/docker/scrutiny:/config
+      - /run/udev:/run/udev:ro
+    ports:
+      - 8080:8080
+    devices:
+      # - /dev:/dev  # Verwende diese Zeile, wenn du alle Festplatten überwachen möchtest
+      - /dev/sda:/dev/sda
+      # - /dev/sdb:/dev/sdb
+      # - /dev/nvme1n1:/dev/nvme1n1
