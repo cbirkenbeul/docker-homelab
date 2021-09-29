@@ -26,7 +26,7 @@ services:
       - MYSQL_ENV_MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_ENV_MYSQL_HOST=phpipam-db
     depends_on:
-      - phpipam-mysql
+      - phpipam-db
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.phpipam.entrypoints=websecure"
