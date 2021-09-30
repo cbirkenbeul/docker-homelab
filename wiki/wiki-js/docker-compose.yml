@@ -3,7 +3,7 @@ version: "3"
 services:
 
   wikijs-db:
-    image: postgres:13-alpine
+    image: postgres:14-alpine
     container_name: wikijs_db
     restart: unless-stopped
     volumes:
