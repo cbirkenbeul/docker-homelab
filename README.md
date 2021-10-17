@@ -53,6 +53,7 @@ Im Laufe der Zeit können sich Produkte ändern oder nicht mehr durch die Entwic
 * [Monitoring (Node Exporter, Prometheus, cAdvisor, Grafana)](https://github.com/cbirkenbeul/docker-homelab/tree/master/monitoring/mon-stack)
 * [Scrutiny](https://github.com/cbirkenbeul/docker-homelab/tree/master/monitoring/scrutiny) ([Webseite 🔗](https://github.com/AnalogJ/scrutiny) | [Video 📹](https://youtu.be/7xCZqIrL5es))
 * [UnPoller](https://github.com/cbirkenbeul/docker-homelab/tree/master/monitoring/unpoller) ([Webseite 🔗](https://unpoller.com/))
+* [Uptime Kuma](https://github.com/cbirkenbeul/docker-homelab/tree/master/monitoring/uptime-kuma) ([Webseite 🔗](https://github.com/louislam/uptime-kuma))
 ## Netzwerktools
 * [Adguard Home](https://github.com/cbirkenbeul/docker-homelab/tree/master/netzwerktools/adguard-home) ([Webseite 🔗](https://adguard.com/de/adguard-home/overview.html))
 * [apt-cacher-ng](https://github.com/cbirkenbeul/docker-homelab/tree/master/netzwerktools/apt-cacher-ng) ([Webseite 🔗](https://wiki.debian.org/AptCacherNg) | [Video 📹](https://www.youtube.com/watch?v=YwkfYaAeDh8))
