@@ -3,14 +3,14 @@ version: '3.3'
 
 services:
   uptime-kuma:
-    image: louislam/uptime-kuma:1.8.0
+    image: louislam/uptime-kuma:1.10.0
     container_name: uptime-kuma
     volumes:
       - /var/docker/uptime-kuma/config:/app/data
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.updatekuma.entrypoints=websecure"
-      - "traefik.http.routers.updatekuma.rule=Host(`${UPTIMEKUMA_URL`)"
+      - "traefik.http.routers.updatekuma.rule=Host(`${UPTIMEKUMA_URL}`)"
       - "traefik.http.routers.updatekuma.tls=true"
       - "traefik.http.routers.updatekuma.tls.certresolver=default"
       - "traefik.http.routers.updatekuma.middlewares=secHeaders@file"
