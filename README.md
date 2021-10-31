@@ -46,6 +46,7 @@ Im Laufe der Zeit können sich Produkte ändern oder nicht mehr durch die Entwic
 
 ## Medien und Medienmanagement
 * [Calibre (incl. Calibre-Web)](https://github.com/cbirkenbeul/docker-homelab/tree/master/medien-und-medienmanagement/calibre)) ([Webseite 🔗](https://calibre-ebook.com))
+* [Jellyfin]((https://github.com/cbirkenbeul/docker-homelab/tree/master/medien-und-medienmanagement/jellyfin)) ([Webseite 🔗](https://jellyfin.org/))
 * [PLEX Medien Server](https://github.com/cbirkenbeul/docker-homelab/tree/master/medien-und-medienmanagement/plex) ([Webseite 🔗](https://www.plex.tv))
 * [Tautulli](https://github.com/cbirkenbeul/docker-homelab/tree/master/medien-und-medienmanagement/tautulli) ([Webseite 🔗](https://tautulli.com))
 

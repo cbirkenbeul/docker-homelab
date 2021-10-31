@@ -6,7 +6,7 @@ services:
     image: jellyfin/jellyfin:10.7.7
     container_name: jellyfin
     restart: unless-stopped
-    network: host
+    network: host  # Nur für DLNA notwendig
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
