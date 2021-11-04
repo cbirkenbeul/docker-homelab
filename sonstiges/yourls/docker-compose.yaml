@@ -1,0 +1,54 @@
+---
+version: '3'
+
+services:
+  yourls-app:
+    image: yourls:1.8.2
+    restart: unless-stopped
+    depends_on:
+      - yourls-db
+    environment:
+      YOURLS_DB_PASS: ${MARIADB_ROOT_PASSWORD}
+      YOURLS_DB_HOST: yourls-db
+      YOURLS_SITE: https://${YOURLS_URL}
+      YOURLS_USER: ${YOURLS_ADMIN_USER} 
+      YOURLS_PASS: ${YOURLS_ADMIN_PASSWORD}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.yourls-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.yourls-http.entrypoints=web"
+      - "traefik.http.routers.yourls-http.rule=Host(`${YOURLS_URL}`)"
+      - "traefik.http.routers.yourls-http.middlewares=yourls-https@docker"
+      - "traefik.http.routers.yourls.entrypoints=websecure"
+      - "traefik.http.routers.yourls.rule=Host(`${YOURLS_URL}`)"
+      - "traefik.http.routers.yourls.tls=true"
+      - "traefik.http.routers.yourls.tls.certresolver=default"
+      - "traefik.http.routers.yourls.middlewares=secHeaders@file"
+      - "traefik.http.services.yourls.loadbalancer.server.port=80"
+    networks:
+      - yourls
+      - traefik_proxy
+
+  yourls-db:
+    image: mariadb:10.6
+    container_name: yourls-db
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/yourls/db:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=yourls
+      - MYSQL_USER=${MARIADB_USER}
+      - MYSQL_PASSWORD=${MARIADB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+    networks:
+      - yourls
+
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  yourls:
+    driver: bridge
