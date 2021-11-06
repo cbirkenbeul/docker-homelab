@@ -3,7 +3,7 @@ version: '3'
 
 services:
   watchtower:
-    image: containrrr/watchtower:latest
+    image: ghcr.io/containrrr/watchtower:1.3.0
     container_name: watchtower
     restart: unless-stopped
     volumes:
