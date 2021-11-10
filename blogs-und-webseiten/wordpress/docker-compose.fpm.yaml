@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   wordpress-db:
-    image: mariadb:10.6
+    image: mariadb:10.7
     container_name: wordpress-db
     restart: unless-stopped
     volumes:
