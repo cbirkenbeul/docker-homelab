@@ -3,7 +3,7 @@ version: '3'
 
 services:
   phpipam-db:
-    image: mariadb:10.6
+    image: mariadb:10.7
     container_name: phpipam-mysql
     restart: unless-stopped
     volumes:

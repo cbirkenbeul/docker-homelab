@@ -35,7 +35,7 @@ services:
       - default
 
   wallabag-db:
-    image: mariadb:10.6
+    image: mariadb:10.7
     container_name: wallabag-db
     restart: unless-stopped
     volumes:
