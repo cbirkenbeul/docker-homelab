@@ -5,7 +5,7 @@ services:
   wordpress-db:
     image: mariadb:10.7
     container_name: wordpress-db
-    restart: unless_stopped
+    restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -20,7 +20,7 @@ services:
   wordpress-app:
     image: wordpress:latest
     container_name: wordpress-app
-    restart: unless_stopped
+    restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
