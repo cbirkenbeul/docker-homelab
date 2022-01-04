@@ -3,7 +3,7 @@ version: '3'
 
 services:
   tautulli:
-    image: ghcr.io/tautulli/tautulli:v2.8.0
+    image: ghcr.io/tautulli/tautulli:v2.8.1
     container_name: tautulli
     restart: unless-stopped
     volumes:
