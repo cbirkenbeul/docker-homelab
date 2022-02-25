@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   gitea-db:
-    image: mariadb:10.7
+    image: mariadb:10.8
     container_name: gitea-db
     restart: unless-stopped
     volumes:
