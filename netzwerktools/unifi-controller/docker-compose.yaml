@@ -1,0 +1,16 @@
+---
+version: '3'
+
+services:
+  unifi:
+    image: jacobalberty/unifi:v7.0.23
+    container_name: unifi
+    restart: unless-stopped
+    volumes:
+      - /var/docker/data/unifi:/unifi
+    ports:
+      - 8080:8080
+      - 8443:8443
+      - 3478:3478/udp
+    environment:
+      - TZ="Europe/Berlin"
