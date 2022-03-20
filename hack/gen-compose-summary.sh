@@ -13,7 +13,7 @@ compose_folder="${repository}/compose-files"
 compose_summary_file="${compose_folder}"/README.md
 
 # Gather all compose using the common library, excluding common-test
-stable_compose=$(find "${compose_folder}" -name "compose-info.yaml" | sort)
+stable_compose=$(find "${compose_folder}/applications" -name "compose-info.yaml" | sort)
 
 echo "# Compose Files overview" > "${compose_summary_file}"
 
