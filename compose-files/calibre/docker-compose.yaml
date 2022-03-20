@@ -2,7 +2,7 @@
 version: "3"
 services:
   calibre:
-    image: ghcr.io/linuxserver/calibre
+    image: linuxserver/calibre:5.39.1
     container_name: calibre
     restart: unless-stopped
     volumes:
@@ -14,7 +14,7 @@ services:
       - PGID=1000
 
   calibre-web:
-    image: ghcr.io/linuxserver/calibre-web
+    image: linuxserver/calibre-web
     container_name: calibre-web
     restart: unless-stopped
     volumes:
@@ -25,7 +25,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - DOCKER_MODS=ghcr.io/linuxserver/calibre-web:calibre
+      - DOCKER_MODS=linuxserver/calibre-web:calibre
     depends_on:
       - calibre
     labels:

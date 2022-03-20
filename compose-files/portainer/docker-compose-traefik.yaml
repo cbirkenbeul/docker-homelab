@@ -5,6 +5,7 @@ services:
   portainer:
     image: portainer/portainer-ce:2.11.1
     container_name: portainer
+    restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -18,7 +19,6 @@ services:
       - "traefik.http.routers.portainer.tls.certresolver=default"
       - "traefik.http.routers.portainer.middlewares=secHeaders@file"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
-    restart: always
     networks:
       - traefik_proxy
       - default

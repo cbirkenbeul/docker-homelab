@@ -1,0 +1,17 @@
+---
+version: '3'
+
+services:
+  tautulli:
+    image: ghcr.io/tautulli/tautulli:v2.9.4
+    container_name: tautulli
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/tautulli:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - 8080:8080
