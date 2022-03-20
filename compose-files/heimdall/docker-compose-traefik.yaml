@@ -3,15 +3,13 @@ version: '3'
 
 services:
   heimdall:
-    image: ghcr.io/linuxserver/heimdall:2.4.5
+    image: linuxserver/heimdall:2.4.5
     container_name: heimdall
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /var/docker/heimdall/config:/config
-    ports:
-      - 8085:80
     environment:
       - PGID=1000
       - PUID=1000

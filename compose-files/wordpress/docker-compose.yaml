@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   wordpress-db:
-    image: mariadb:10.8
+    image: mariadb:10.7
     container_name: wordpress-db
     restart: unless-stopped
     volumes:
@@ -18,40 +18,22 @@ services:
       - MYSQL_INITDB_SKIP_TZINFO=1  # Behebt die bekannten Startprobleme
 
   wordpress-app:
-    image: wordpress:fpm-alpine
+    image: wordpress:5
     container_name: wordpress-app
     restart: unless-stopped
-    depends_on:
-      - wordpress-db
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/docker/wordpress/data:/var/www/html
+      - /var/docker/wordpress/data:/var/www/html/wp-content
     environment:
       - WORDPRESS_DB_HOST=wordpress-db:3306
       - WORDPRESS_DB_USER=${MYSQL_USER}
       - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
       - WORDPRESS_DB_NAME=wordpress
-    networks:
-      - default
-
-  wordpress-web:
-    image: nginx:alpine
-    container_name: wordpress-web
-    restart: unless-stopped
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - /var/docker/wordpress/data:/var/www/html
-      - ./config/default.conf:/etc/nginx/conf.d/default.conf:ro
-    links:
-      - wordpress-app
-    depends_on:
-      - wordpress-app
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.wordpress.entrypoints=websecure"
-      - "traefik.http.routers.wordpress.rule=Host(`${WORDPRESS_URL}`)"
+      - "traefik.http.routers.wordpress.rule=Host(`wordpress.example.com`)"  # Domain anpassen
       - "traefik.http.routers.wordpress.tls=true"
       - "traefik.http.routers.wordpress.tls.certresolver=default"
       - "traefik.http.routers.wordpress.middlewares=secHeaders@file"
@@ -59,15 +41,6 @@ services:
     networks:
       - default
       - traefik_proxy
-
-  wordpress-cache:
-    image: redis:latest
-    container_name: wordpress-cache
-    restart: unless-stopped
-    depends_on:
-      - wordpress-app
-    networks:
-      - default
 
 networks:
   traefik_proxy:

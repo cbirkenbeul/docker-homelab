@@ -1,0 +1,13 @@
+---
+version: '3'
+
+services:
+  ghost:
+    image: ghost:4-alpine
+    container_name: ghost
+    volumes:
+      - ./ghost:/var/lib/ghost/content
+    environment:
+      url: https://${GHOST_URL}
+    ports:
+      - 2368:2368

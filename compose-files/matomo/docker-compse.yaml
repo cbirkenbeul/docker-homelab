@@ -1,0 +1,39 @@
+---
+version: "2"
+
+services:
+  matomo-db:
+    image: mariadb:10.7
+    container_name: matomo-db
+    restart: unless-stopped
+    volumes:
+      - /var/docker/matomo/database:/var/lib/mysql
+    env_file:
+      - ./.env
+    networks:
+      - default
+
+  matomo-app:
+    image: matomo:fpm-alpine
+    container_name: matomo-app
+    restart: unless-stopped
+    volumes:
+      - /var/docker/matomo/app:/var/www/html
+    env_file:
+      - ./.env
+    networks:
+      - default
+
+  matomo-web:
+    image: nginx:alpine
+    container_name: matomo-web
+    restart: unless-stopped
+    volumes:
+      - /var/docker/matomo/app:/var/www/html:ro
+      - ./matomo.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - default
+      - traefik_proxy
+    depends_on:
+      - matomo-db
+      - matomo-app
