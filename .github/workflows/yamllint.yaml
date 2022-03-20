@@ -1,9 +1,13 @@
 ---
 name: Lint
 
-on:  # yamllint disable-line rule:truthy
+on:
   workflow_dispatch:
-  pull_request:
+  push:
+    branches:
+      - main
+    paths:
+      - "compose-files/**"
 
 jobs:
   yaml:
@@ -15,4 +19,4 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
-          yamllint_flags: '-c .github/yamllint.config.yaml .'
+          yamllint_flags: '-c .github/yamllint.config.yml .'
