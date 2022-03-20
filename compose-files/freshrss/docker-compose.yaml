@@ -1,0 +1,32 @@
+---
+version: "3"
+
+services:
+  freshrss-db:
+    image: postgres:12.10
+    container_name: fressrss-db
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/freshrss/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=freshrss
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=freshrss
+
+  freshrss-app:
+    image: freshrss/freshrss:1.19.2
+    container_name: freshrss-app
+    restart: unless-stopped
+    depends_on:
+      - freshrss-db
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/freshrss/data:/var/www/FreshRSS/data
+      - /var/docker/freshrss/extensions:/var/www/FreshRSS/extensions
+    environment:
+      - CRON_MIN=*/20
+    ports:
+      - 80:80
