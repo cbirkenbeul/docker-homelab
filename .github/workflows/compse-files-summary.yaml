@@ -1,6 +1,6 @@
-name: "Charts: Release"
+name: "Create compose files summary"
 
-concurrency: helm-release
+concurrency: compose-files
 
 on:
   workflow_dispatch:
