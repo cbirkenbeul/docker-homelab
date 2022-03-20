@@ -3,7 +3,7 @@ version: '2'
 
 services:
   freescout-app:
-    image: tiredofit/freescout
+    image: tiredofit/freescout:1.15.39
     container_name: freescout-app
     restart: unless-stopped
     links:
@@ -25,20 +25,9 @@ services:
       - ENABLE_SSL_PROXY=TRUE
       - DISPLAY_ERRORS=FALSE
       # - TIMEZONE=Europe/Berlin
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.freescout.entrypoints=websecure"
-      - "traefik.http.routers.freescout.rule=Host(`${FREESCOUT_URL}`)"
-      - "traefik.http.routers.freescout.tls=true"
-      - "traefik.http.routers.freescout.tls.certresolver=default"
-      - "traefik.http.routers.freescout.middlewares=secHeaders@file"
-      - "traefik.http.services.freescout.loadbalancer.server.port=80"
-    networks:
-      - traefik_proxy
-      - default
 
   freescout-db:
-    image: tiredofit/mariadb
+    image: tiredofit/mariadb:10.7
     container_name: freescout-db
     restart: unless-stopped
     volumes:
@@ -51,10 +40,3 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASSWORD}
       - ZABBIX_HOSTNAME=freescout-db
-
-networks:
-  traefik_proxy:
-    external:
-      name: traefik_proxy
-  default:
-    driver: bridge
