@@ -22,10 +22,10 @@ echo "| Chart | Description | Blog article | YouTube Video |" >> "${compose_summ
 echo "| ----- | ----------- | ------------ | ------------- |" >> "${compose_summary_file}"
 for i in ${stable_compose[@]}
 do
-    chart_data=($(yq eval '.name, .blog_url, .video_url, .description' "$i"))
+    IFS=$'\n' read -d '' -r -a chart_data <<< $(yq eval '.name, .description, .blog_url, .video_url' "$i")
     chart_name="${chart_data[0]}"
-    chart_blog_url="${chart_data[1]}"
-    chart_video_url="${chart_data[2]}"
     chart_description="${chart_data[@]:1}"
-    echo "| [${chart_name}](${chart_name}) | ${chart_blog_url} | ${chart_video_url} | ${chart_description} | ${chart_blog_url} | ${chart_video_url} |" >> "${compose_summary_file}"
+    chart_blog_url="${chart_data[2]}"
+    chart_video_url="${chart_data[3]}"
+    echo "| [${chart_name}](${chart_name}) | ${chart_description} | ${chart_blog_url} | ${chart_video_url} |" >> "${compose_summary_file}"
 done
