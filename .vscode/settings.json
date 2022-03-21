@@ -1,0 +1,12 @@
+{
+    "ansible.ansibleLint.arguments": "-c .github/lint/.ansible-lint",
+    "discord.enabled": true,
+    "material-icon-theme.folders.associations": {
+        ".taskfiles": "utils",
+        "hack": "scripts"
+    },
+    "prettier.configPath": ".github/lint/.prettierrc.yaml",
+    "prettier.ignorePath": ".github/lint/.prettierignore",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs":"active"
+}
