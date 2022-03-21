@@ -3,7 +3,7 @@
 | Chart | Description | Blog article | YouTube Video |
 | ----- | ----------- | ------------ | ------------- |
 | [unpoller](unpoller) | UnPoller pulls the metrics of you UniFi Environment and created nice grafana Dashboards | n/a | n/a |
-| [Adguard Home](Adguard Home) | A more polished version to Pi-Hole | https://www.teqqy.de/adguard-home-vs-pihole/ | null |
+| [AdguardHome](AdguardHome) | A more polished version to Pi-Hole | https://www.teqqy.de/adguard-home-vs-pihole/ | null |
 | [apt-cacher-ng](apt-cacher-ng) | Cache your apt packages localy in your network | n/a | https://youtube.com/test |
 | [blocky](blocky) | A config as code dns ad blocker | null | null |
 | [bookstack](bookstack) | Bookstack is a wiki system |  | https://www.youtube.com/watch?v=FarZzeePgds |
@@ -35,8 +35,8 @@
 | [Statping](Statping) | Monitor the reachability your applications | null | null |
 | [Tautuilli](Tautuilli) | If you like to have detailed statistics from your PLEX Server, than Tautuilli is the choise! | null | null |
 | [Traefik](Traefik) | Traefik is a reverse proxy for config as code deployment | null | null |
-| [UniFi Controller](UniFi Controller) | Manage your UniFi Devices | null | null |
-| [Uptime Kuma](Uptime Kuma) | Uptime Kuma let you monitor the reachability of your (web)applications. |  | https://www.youtube.com/watch?v=9x8svLK9gmo |
+| [UniFi-Controller](UniFi-Controller) | Manage your UniFi Devices | null | null |
+| [Uptime-Kuma](Uptime-Kuma) | Uptime Kuma let you monitor the reachability of your (web)applications. |  | https://www.youtube.com/watch?v=9x8svLK9gmo |
 | [Vaultwarden](Vaultwarden) | Vaultwarden (prev. bitwarden_rs) is a lightwight version of Bitwarden |  | https://www.youtube.com/watch?v=x9672BUn9UA |
 | [Wallabag](Wallabag) | Wallabag is a self hosted alternative to Pocket | null | null |
 | [Watchtower](Watchtower) | With Watchtower you can automatically update your docker images | null | null |
