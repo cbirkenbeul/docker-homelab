@@ -1,2 +1,5 @@
+---
 name: apt-cacher-ng
 description: Cache your apt packages localy in your network
+blog_url:
+video_url: https://youtube.com/test

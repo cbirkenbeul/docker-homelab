@@ -18,12 +18,14 @@ stable_compose=$(find "${compose_folder}/applications" -name "compose-info.yaml"
 echo "# Compose Files overview" > "${compose_summary_file}"
 
 echo "### Stable compose:" >> "${compose_summary_file}"
-echo "| Chart | Description |" >> "${compose_summary_file}"
-echo "| ----- | ----------- |" >> "${compose_summary_file}"
+echo "| Chart | Description | Blog article | YouTube Video |" >> "${compose_summary_file}"
+echo "| ----- | ----------- | ------------ | ------------- |" >> "${compose_summary_file}"
 for i in ${stable_compose[@]}
 do
-    chart_data=($(yq eval '.name, .description' "$i"))
+    chart_data=($(yq eval '.name, .description, .blog_url, .video_url' "$i"))
     chart_name="${chart_data[0]}"
     chart_description="${chart_data[@]:1}"
-    echo "| [${chart_name}](${chart_name}) | ${chart_description} |" >> "${compose_summary_file}"
+    chart_blog_url="${chart_data[@]:2}"
+    chart_video_url="${chart_data[@]:2}"
+    echo "| [${chart_name}](${chart_name}) | ${chart_description} | ${chart_blog_url} | ${chart_video_url} |" >> "${compose_summary_file}"
 done
