@@ -22,7 +22,7 @@ echo "| Chart | Description | Blog article | YouTube Video |" >> "${compose_summ
 echo "| ----- | ----------- | ------------ | ------------- |" >> "${compose_summary_file}"
 for i in ${stable_compose[@]}
 do
-    IFS=$'\n' read -d '' -r -a chart_data <<< $(yq eval '.name, .description, .blog_url, .video_url' "$i")
+    IFS=$'\n' readarray -t <<< $(yq eval '.name, .description, .blog_url, .video_url' "$i")
     chart_name="${chart_data[0]}"
     chart_description="${chart_data[1]}"
     chart_blog_url="${chart_data[2]}"
