@@ -2,7 +2,7 @@
 ### Stable compose:
 | Chart | Description | Blog article | YouTube Video |
 | ----- | ----------- | ------------ | ------------- |
-| [UnPoller](UnPoller) | UnPoller pulls the metrics of you UniFi Environment and created nice grafana Dashboards | n/a | n/a |
+| [unpoller](unpoller) | UnPoller pulls the metrics of you UniFi Environment and created nice grafana Dashboards | n/a | n/a |
 | [Adguard Home](Adguard Home) | A more polished version to Pi-Hole | test | test |
 | [apt-cacher-ng](apt-cacher-ng) | Cache your apt packages localy in your network | n/a | https://youtube.com/test |
 | [blocky](blocky) | A config as code dns ad blocker | null | null |
