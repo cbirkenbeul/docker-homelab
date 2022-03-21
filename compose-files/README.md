@@ -2,8 +2,8 @@
 ### Stable compose:
 | Chart | Description | Blog article | YouTube Video |
 | ----- | ----------- | ------------ | ------------- |
-| [UnPoller](UnPoller) | UnPoller pulls the metrics of you UniFi Environment and created nice grafana Dashboards null null | pulls | the |
-| [Adguard](Adguard) | Home A more polished version to Pi-Hole null null | A | more |
+| [UnPoller](UnPoller) | UnPoller pulls the metrics of you UniFi Environment and created nice grafana Dashboards n/a n/a | pulls | the |
+| [Adguard](Adguard) | Home A more polished version to Pi-Hole n/a n/a | A | more |
 | [apt-cacher-ng](apt-cacher-ng) | Cache your apt packages localy in your network n/a https://youtube.com/test | your | apt |
 | [blocky](blocky) | A config as code dns ad blocker null null | config | as |
 | [bookstack](bookstack) | Bookstack is a wiki system null null | is | a |
