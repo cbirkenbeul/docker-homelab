@@ -27,5 +27,5 @@ do
     chart_description="${chart_data[1]}"
     chart_blog_url="${chart_data[2]}"
     chart_video_url="${chart_data[3]}"
-    echo "| [${chart_name}](${chart_name}) | ${chart_description} | ${chart_blog_url} | ${chart_video_url} |" >> "${compose_summary_file}"
+    echo "| [${chart_name}](${chart_name}) | ${chart_description} | ${chart_blog_url} | [:tv:](${chart_video_url}) |" >> "${compose_summary_file}"
 done
