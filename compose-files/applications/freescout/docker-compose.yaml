@@ -25,6 +25,8 @@ services:
       - ENABLE_SSL_PROXY=TRUE
       - DISPLAY_ERRORS=FALSE
       # - TIMEZONE=Europe/Berlin
+    ports:
+      - 80:80
 
   freescout-db:
     image: tiredofit/mariadb:10.7
