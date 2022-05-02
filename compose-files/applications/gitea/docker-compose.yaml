@@ -17,7 +17,7 @@ services:
       - MYSQL_DATABASE=gitea
 
   gitea-app:
-    image: gitea/gitea:1.16.6
+    image: gitea/gitea:1.16.7
     container_name: gitea-app
     restart: unless-stopped
     volumes:
