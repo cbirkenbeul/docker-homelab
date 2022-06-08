@@ -2,7 +2,7 @@
 version: '3'
 services:
   scrutiny:
-    image: ghcr.io/linuxserver/scrutiny:489534cb-ls35
+    image: ghcr.io/linuxserver/scrutiny:7287775c-ls36
     restart: unless-stopped
     container_name: scrutiny
     cap_add:
