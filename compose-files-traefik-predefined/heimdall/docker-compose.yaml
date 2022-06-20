@@ -10,8 +10,24 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /var/docker/heimdall/config:/config
-    ports:
-      - 8085:80
     environment:
       - PGID=1000
       - PUID=1000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.heimdall.entrypoints=websecure"
+      - "traefik.http.routers.heimdall.rule=Host(`heimdall.example.com`)"  # Domain anpassen
+      - "traefik.http.routers.heimdall.tls=true"
+      - "traefik.http.routers.heimdall.tls.certresolver=default"
+      - "traefik.http.routers.heimdall.middlewares=secHeaders@file"
+      - "traefik.http.services.heimdall.loadbalancer.server.port=80"
+    networks:
+      - traefik_proxy
+      - default
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge

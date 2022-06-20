@@ -27,21 +27,5 @@ services:
       - MYSQL_ENV_MYSQL_HOST=phpipam-db
     depends_on:
       - phpipam-db
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.phpipam.entrypoints=websecure"
-      - "traefik.http.routers.phpipam.rule=Host(`${PHPIPAM_URL}`)"
-      - "traefik.http.routers.phpipam.tls=true"
-      - "traefik.http.routers.phpipam.tls.certresolver=default"
-      - "traefik.http.routers.phpipam.middlewares=secHeaders@file"
-      - "traefik.http.services.phpipam.loadbalancer.server.port=80"
-    networks:
-      - traefik_proxy
-      - default
-
-networks:
-  traefik_proxy:
-    external:
-      name: traefik_proxy
-  default:
-    driver: bridge
+    ports:
+      - "80:80"

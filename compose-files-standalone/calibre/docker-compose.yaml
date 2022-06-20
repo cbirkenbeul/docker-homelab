@@ -28,21 +28,5 @@ services:
       - DOCKER_MODS=linuxserver/calibre-web:calibre
     depends_on:
       - calibre
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.calibre.entrypoints=websecure"
-      - "traefik.http.routers.calibre.rule=Host(`${CALIBRE_URL}`)"
-      - "traefik.http.routers.calibre.tls=true"
-      - "traefik.http.routers.calibre.tls.certresolver=default"
-      - "traefik.http.routers.calibre.middlewares=secHeaders@file"
-      - "traefik.http.services.calibre.loadbalancer.server.port=8083"
-    networks:
-      - traefik_proxy
-      - default
-
-networks:
-  traefik_proxy:
-    external:
-      name: traefik_proxy
-  default:
-    driver: bridge
+    ports:
+      - 8083:8083
