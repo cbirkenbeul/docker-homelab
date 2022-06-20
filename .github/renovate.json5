@@ -18,7 +18,6 @@
       "commitMessageTopic": "container image {{depName}}",
       "commitMessageExtra": "to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
       "matchUpdateTypes": ["major", "minor", "patch"],
-      "allowVersions": "<666"
     },
     // add labels according to package and update types
     {
@@ -41,6 +40,7 @@
     {
       "matchDatasources": ["docker"],
       "versioning": "loose",
+      "allowVersions": "<666"
       "matchPackageNames": [
         "ghcr.io/linuxserver/freshrss",
         "ghcr.io/linuxserver/scrutiny",
