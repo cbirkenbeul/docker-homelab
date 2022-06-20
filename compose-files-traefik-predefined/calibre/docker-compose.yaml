@@ -2,7 +2,7 @@
 version: "3"
 services:
   calibre:
-    image: linuxserver/calibre:5.43.0
+    image: linuxserver/calibre:5.44.0
     container_name: calibre
     restart: unless-stopped
     volumes:
@@ -14,7 +14,7 @@ services:
       - PGID=1000
 
   calibre-web:
-    image: linuxserver/calibre-web:0.6.18
+    image: linuxserver/calibre-web:2021.12.16
     container_name: calibre-web
     restart: unless-stopped
     volumes:
