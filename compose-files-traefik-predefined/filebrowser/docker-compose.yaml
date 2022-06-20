@@ -14,16 +14,14 @@
         # environment:
         #   - PUID=1000
         #   - PGID=1000
-        ports: 
-          - 888:80
-        # labels:
-        #   - "traefik.enable=true"
-        #   - "traefik.http.routers.filebrowser.entrypoints=websecure"
-        #   - "traefik.http.routers.filebrowser.rule=Host(`${FILEBROWSER_URL}`)"
-        #   - "traefik.http.routers.filebrowser.tls=true"
-        #   - "traefik.http.routers.filebrowser.tls.certresolver=default"
-        #   - "traefik.http.routers.filebrowser.middlewares=secHeaders@file"
-        #   - "traefik.http.services.filebrowser.loadbalancer.server.port=80"
+        labels:
+          - "traefik.enable=true"
+          - "traefik.http.routers.filebrowser.entrypoints=websecure"
+          - "traefik.http.routers.filebrowser.rule=Host(`${FILEBROWSER_URL}`)"
+          - "traefik.http.routers.filebrowser.tls=true"
+          - "traefik.http.routers.filebrowser.tls.certresolver=default"
+          - "traefik.http.routers.filebrowser.middlewares=secHeaders@file"
+          - "traefik.http.services.filebrowser.loadbalancer.server.port=80"
         networks:
           - traefik_proxy
     

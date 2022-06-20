@@ -1,0 +1,40 @@
+---
+version: '3'
+
+services:
+  droneio:
+    image: drone/drone:1
+    container_name: droneio
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/droneio-data:/data
+    environment:
+      - DRONE_GITEA_SERVER=https://drone.example.com  # Bitte URL anpassen
+      - DRONE_GITEA_CLIENT_ID=  # GITEA Client ID
+      - DRONE_GITEA_CLIENT_SECRET=  # GITEA Client SECRET
+      - DRONE_RPC_SECRET=  # PRC SECRET
+      - DRONE_SERVER_HOST=drone.example.com  # Bitte URL anpassen
+      - DRONE_SERVER_PROTO=https
+    ports:
+      - 80:80
+
+  drone-runner:
+    image: drone/drone-runner-docker:1
+    container_name: drone-runner
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_RPC_PROTO=https
+      - DRONE_RPC_HOST=drone.example.com  # Bitte URL anpassen
+      - DRONE_RPC_SECRET=  # RPC SECRET (siehe oben)
+      - DRONE_RUNNER_CAPACITY=2
+      - DRONE_RUNNER_NAME=${HOSTNAME}
+    ports:
+      - 3000:3000
+    depends_on:
+      - droneio

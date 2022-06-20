@@ -3,7 +3,7 @@ version: "3"
 
 services:
   freshrss-db:
-    image: postgres:14.3
+    image: postgres
     container_name: fressrss-db
     restart: unless-stopped
     volumes:
@@ -16,7 +16,7 @@ services:
       - POSTGRES_DB=freshrss
 
   freshrss-app:
-    image: freshrss/freshrss:1.19.2
+    image: freshrss/freshrss
     container_name: freshrss-app
     restart: unless-stopped
     depends_on:
@@ -28,5 +28,21 @@ services:
       - /var/docker/freshrss/extensions:/var/www/FreshRSS/extensions
     environment:
       - CRON_MIN=*/20
-    ports:
-      - 80:80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.freshrss.entrypoints=websecure"
+      - "traefik.http.routers.freshrss.rule=Host(`${FRESHRSS_URL`)"  # Domain anpassen
+      - "traefik.http.routers.freshrss.tls=true"
+      - "traefik.http.routers.freshrss.tls.certresolver=default"
+      - "traefik.http.routers.freshrss.middlewares=secHeaders@file"
+      - "traefik.http.services.freshrss.loadbalancer.server.port=80"
+    networks:
+      - traefik_proxy
+      - default
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge
