@@ -40,7 +40,7 @@
     {
       "matchDatasources": ["docker"],
       "versioning": "loose",
-      "allowVersions": "<666"
+      "allowedVersions": "<666",
       "matchPackageNames": [
         "ghcr.io/linuxserver/freshrss",
         "ghcr.io/linuxserver/scrutiny",
