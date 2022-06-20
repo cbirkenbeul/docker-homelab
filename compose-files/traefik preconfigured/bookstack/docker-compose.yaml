@@ -18,7 +18,7 @@ services:
       - MYSQL_INITDB_SKIP_TZINFO=1
 
   bookstack-app:
-    image: ghcr.io/linuxserver/bookstack:latest
+    image: ghcr.io/linuxserver/bookstack:v22.04
     container_name: bookstack-app
     restart: unless-stopped
     volumes:
