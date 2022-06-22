@@ -1,0 +1,57 @@
+---
+version: '3.7'
+services:
+  ghostfolio-app:
+    image: ghostfolio/ghostfolio:0.162
+    container_name: ghostfolio-app
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@ghostfolio-db:5432/ghostfolio-db?sslmode=prefer
+      REDIS_HOST: 'ghostfolio-redis'
+      ACCESS_TOKEN_SALT: ${GHOSTFOLIO_ACCESS_TOKEN}
+      JWT_SECRET_KEY: ${GHOSTFOLIO_JWT_SECRET_KEY}
+      PORT: 3333
+      COMPOSE_PROJECT_NAME: ghostfolio
+      HOST: 0.0.0.0
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.ghostfolio-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.ghostfolio-http.entrypoints=web"
+      - "traefik.http.routers.ghostfolio-http.rule=Host(`${GHOSTFOLIO_URL}`)"
+      - "traefik.http.routers.ghostfolio-http.middlewares=ghostfolio-https@docker"
+      - "traefik.http.routers.ghostfolio.entrypoints=websecure"
+      - "traefik.http.routers.ghostfolio.rule=Host(`${GHOSTFOLIO_URL}`)"
+      - "traefik.http.routers.ghostfolio.tls=true"
+      - "traefik.http.routers.ghostfolio.tls.certresolver=default"
+      - "traefik.http.routers.ghostfolio.middlewares=secHeaders@file"
+      - "traefik.http.services.ghostfolio.loadbalancer.server.port=3333"
+    networks:
+      - ghostfolio
+      - traefik_proxy
+
+  ghostfolio-db:
+    image: postgres:14
+    container_name: ghostfolio-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ghostfolio-db
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    networks:
+      - ghostfolio
+
+  ghostfolio-redis:
+    image: redis:alpine
+    container_name: ghostfolio-redis
+    restart: unless-stopped
+    networks:
+      - ghostfolio
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  ghostfolio:
+    driver: bridge
