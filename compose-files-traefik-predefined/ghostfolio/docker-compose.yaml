@@ -2,12 +2,13 @@
 version: '3.7'
 services:
   ghostfolio-app:
-    image: ghostfolio/ghostfolio:1.164
+    image: ghostfolio/ghostfolio:1.164.0
     container_name: ghostfolio-app
     restart: unless-stopped
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@ghostfolio-db:5432/ghostfolio-db?sslmode=prefer
       REDIS_HOST: 'ghostfolio-redis'
+      REDIS_PORT: '6379'
       ACCESS_TOKEN_SALT: ${GHOSTFOLIO_ACCESS_TOKEN}
       JWT_SECRET_KEY: ${GHOSTFOLIO_JWT_SECRET_KEY}
       PORT: 3333
