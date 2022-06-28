@@ -16,7 +16,7 @@ services:
 
   grafana:
     container_name: up_grafana
-    image: grafana/grafana:9.0.1
+    image: grafana/grafana:9.0.2
     restart: unless-stopped
     ports:
       - '3000:3000'
