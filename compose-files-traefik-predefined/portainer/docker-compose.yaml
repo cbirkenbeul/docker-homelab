@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   portainer:
-    image: portainer/portainer-ce:2.14.0
+    image: portainer/portainer-ce:2.14.1
     container_name: portainer
     restart: unless-stopped
     volumes:
