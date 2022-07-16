@@ -2,7 +2,7 @@
 version: "3"
 services:
   calibre:
-    image: linuxserver/calibre:6.0.0
+    image: linuxserver/calibre:6.1.0
     container_name: calibre
     restart: unless-stopped
     volumes:
