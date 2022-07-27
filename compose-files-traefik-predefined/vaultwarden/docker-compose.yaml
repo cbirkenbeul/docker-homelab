@@ -3,7 +3,7 @@ version: '3'
 
 services:
   bitwarden:
-    image: vaultwarden/server:1.25.1
+    image: vaultwarden/server:1.25.2
     container_name: vaultwarden
     restart: unless-stopped
     volumes:
