@@ -3,7 +3,7 @@ version: '2'
 
 services:
   freescout-app:
-    image: tiredofit/freescout:1.15.53
+    image: tiredofit/freescout:1.15.54
     container_name: freescout-app
     restart: unless-stopped
     links:
