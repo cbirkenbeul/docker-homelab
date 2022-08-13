@@ -3,7 +3,7 @@ version: "3"
 
 services:
   freshrss-db:
-    image: postgres:14.4
+    image: postgres:14.5
     container_name: fressrss-db
     restart: unless-stopped
     volumes:
