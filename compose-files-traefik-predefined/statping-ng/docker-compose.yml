@@ -1,0 +1,29 @@
+---
+version: "2"
+
+services:
+  statping-ng:
+    container_name: statping-ng
+    image: adamboutcher/statping-ng:latest
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/docker/statping/data:/app
+    environment:
+      DB_CONN: sqlite
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.statping-ng.entrypoints=websecure"
+      - "traefik.http.routers.statping-ng.rule=Host(`${EXTERNAL_URL}`)"
+      - "traefik.http.routers.statping-ng.tls=true"
+      - "traefik.http.routers.statping-ng.tls.certresolver=default"
+      - "traefik.http.routers.statping-ng.middlewares=secHeaders@file"
+      - "traefik.http.services.statping-ng.loadbalancer.server.port=${PORT}"
+    networks:
+      - traefik_proxy
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
