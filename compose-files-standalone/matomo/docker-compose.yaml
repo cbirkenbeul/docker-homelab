@@ -3,7 +3,7 @@ version: "3"
 
 services:
   matomo-db:
-    image: mariadb:10.8
+    image: mariadb:10.9
     container_name: matomo-db
     restart: unless-stopped
     volumes:
