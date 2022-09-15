@@ -16,7 +16,7 @@ services:
       - POSTGRES_DB=freshrss
 
   freshrss-app:
-    image: freshrss/freshrss:1.19.2
+    image: freshrss/freshrss:1.20.0
     container_name: freshrss-app
     restart: unless-stopped
     depends_on:
