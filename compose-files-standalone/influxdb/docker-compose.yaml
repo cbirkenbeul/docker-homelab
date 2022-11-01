@@ -3,7 +3,7 @@ version: '3'
 
 services:
   influxdb:
-    image: influxdb:2.4
+    image: influxdb:2.5
     container_name: influxdb
     restart: unless-stopped
     volumes:
