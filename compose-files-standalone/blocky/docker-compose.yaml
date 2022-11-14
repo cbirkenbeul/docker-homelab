@@ -1,7 +1,7 @@
 version: "2.1"
 services:
   blocky:
-    image: ghcr.io/0xerr0r/blocky:v0.19
+    image: ghcr.io/0xerr0r/blocky:v0.20
     container_name: blocky
     restart: unless-stopped
     ports:
