@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   bookstack-db:
-    image: mariadb:10.9
+    image: mariadb:10.10
     container_name: bookstack-db
     restart: unless-stopped
     volumes:
