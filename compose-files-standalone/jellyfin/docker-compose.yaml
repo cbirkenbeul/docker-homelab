@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   jellyfin:
-    image: jellyfin/jellyfin:10.8.7
+    image: jellyfin/jellyfin:10.8.8
     container_name: jellyfin
     restart: unless-stopped
     network: host  # Nur für DLNA notwendig
