@@ -3,7 +3,7 @@ version: '3'
 
 services:
   heimdall:
-    image: linuxserver/heimdall:2.5.3
+    image: linuxserver/heimdall:2.5.4
     container_name: heimdall
     restart: unless-stopped
     volumes:
