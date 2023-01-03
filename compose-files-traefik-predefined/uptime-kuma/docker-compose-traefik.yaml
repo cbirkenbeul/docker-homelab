@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   uptime-kuma:
-    image: louislam/uptime-kuma:1.18.5
+    image: louislam/uptime-kuma:1.19.3
     container_name: uptime-kuma
     volumes:
       - /var/docker/uptime-kuma/config:/app/data
