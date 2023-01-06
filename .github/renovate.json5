@@ -42,9 +42,9 @@
       "versioning": "loose",
       "allowedVersions": "<666",
       "matchPackageNames": [
-        "ghcr.io/linuxserver/freshrss",
-        "ghcr.io/linuxserver/scrutiny",
-        "ghcr.io/linuxserver/wikijs"
+        "lscr.io/linuxserver/freshrss",
+        "lscr.io/linuxserver/scrutiny",
+        "lscr.io/linuxserver/wikijs"
       ]
     }
   ]
