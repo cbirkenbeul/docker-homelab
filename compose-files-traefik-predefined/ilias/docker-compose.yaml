@@ -2,7 +2,7 @@
 version: '3.2'
 services:
   ilias-db:
-    image: mysql:8.0
+    image: mariadb:10.10
     container_name: ilias-db
     restart: unless-stopped
     command:
@@ -19,7 +19,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   ilias-app:
-    image: sturai/ilias
+    image: sturai/ilias:latest
     container_name: ilias-app
     restart: unless-stopped
     depends_on:
@@ -51,7 +51,7 @@ services:
       - traefik_proxy
 
   ilias-server:
-    image: sturai/ilias-ilserver
+    image: sturai/ilias-ilserver:latest
     container_name: ilias-server
     restart: unless-stopped
     depends_on:

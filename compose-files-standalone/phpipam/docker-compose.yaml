@@ -18,7 +18,7 @@ services:
       - MYSQL_INITDB_SKIP_TZINFO=1  # Behebt die bekannten Startprobleme der Datenbank
 
   phpipam-phpipam:
-    image: pierrecdn/phpipam:1.16.003
+    image: pierrecdn/phpipam:latest
     container_name: phpipam-phpipam
     restart: unless-stopped
     environment:

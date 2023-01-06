@@ -3,7 +3,7 @@ version: '3'
 
 services:
   unifi:
-    image: jacobalberty/unifi:v7.3.76
+    image: jacobalberty/unifi:latest
     container_name: unifi
     restart: unless-stopped
     volumes:

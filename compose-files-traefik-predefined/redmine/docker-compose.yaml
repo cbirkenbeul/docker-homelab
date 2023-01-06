@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   redmine-app:
-    image: redmine
+    image: redmine:latest
     container_name: redmine-app
     restart: always
     depends_on:
@@ -33,7 +33,7 @@ services:
       - default
 
   redmine-db:
-    image: mysql:8.0
+    image: mariadb:10.10
     container_name: redmine-db
     restart: always
     volumes:

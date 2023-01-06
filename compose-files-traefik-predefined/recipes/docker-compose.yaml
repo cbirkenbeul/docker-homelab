@@ -2,7 +2,7 @@
 version: "3"
 services:
   recipes-db:
-    image: postgres:15-alpine
+    image: postgres:15
     container_name: recipes-db
     restart: unless-stopped
     volumes:
@@ -13,7 +13,7 @@ services:
       - POSTGRES_DB=recipes
 
   recipes-app:
-    image: vabene1111/recipes
+    image: vabene1111/recipes:latest
     container_name: recipes-app
     restart: unless-stopped
     volumes:

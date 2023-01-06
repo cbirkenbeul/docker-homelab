@@ -2,7 +2,7 @@
     version: "3"
     services:
       filebrowser:
-        image: filebrowser/filebrowser:v2.22
+        image: filebrowser/filebrowser:latest
         container_name: filebrowser
         restart: unless-stopped
         volumes:

@@ -3,7 +3,7 @@ version: '3'
 
 services:
   yourls-app:
-    image: yourls:1.9.1
+    image: yourls:latest
     restart: unless-stopped
     depends_on:
       - yourls-db

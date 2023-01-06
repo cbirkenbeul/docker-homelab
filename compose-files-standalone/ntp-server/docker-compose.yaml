@@ -3,7 +3,7 @@ version: '3'
 
 services:
   ntp-server:
-    image: cturra/ntp
+    image: cturra/ntp:latest
     container_name: ntp-server
     restart: unless-stopped
     ports:

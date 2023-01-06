@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   nextcloud-db:
-    image: ghcr.io/linuxserver/mariadb:10.4
+    image: ghcr.io/linuxserver/mariadb:10.10
     container_name: nextcloud-db
     restart: always
     volumes:

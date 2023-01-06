@@ -2,7 +2,7 @@
 version: '3.7'
 services:
   ghostfolio-app:
-    image: ghostfolio/ghostfolio:1.216.0
+    image: ghostfolio/ghostfolio:latest
     container_name: ghostfolio-app
     restart: unless-stopped
     environment:

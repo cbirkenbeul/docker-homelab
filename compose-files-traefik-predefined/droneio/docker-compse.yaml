@@ -3,7 +3,7 @@ version: '3'
 
 services:
   droneio:
-    image: drone/drone:1
+    image: drone/drone:latest
     container_name: droneio
     restart: unless-stopped
     volumes:
@@ -30,7 +30,7 @@ services:
       - default
 
   drone-runner:
-    image: drone/drone-runner-docker:1
+    image: drone/drone-runner-docker:latest
     container_name: drone-runner
     restart: unless-stopped
     volumes:

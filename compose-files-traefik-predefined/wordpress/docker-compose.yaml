@@ -18,7 +18,7 @@ services:
       - MYSQL_INITDB_SKIP_TZINFO=1  # Behebt die bekannten Startprobleme
 
   wordpress-app:
-    image: wordpress:6
+    image: wordpress:latest
     container_name: wordpress-app
     restart: unless-stopped
     volumes:

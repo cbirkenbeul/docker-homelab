@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   bookstack-db:
-    image: mariadb:10.10
+    image: mariadb:latest
     container_name: bookstack-db
     restart: unless-stopped
     volumes:
@@ -18,7 +18,7 @@ services:
       - MYSQL_INITDB_SKIP_TZINFO=1
 
   bookstack-app:
-    image: ghcr.io/linuxserver/bookstack:v22.04
+    image: ghcr.io/linuxserver/bookstack:latest
     container_name: bookstack-app
     restart: unless-stopped
     volumes:

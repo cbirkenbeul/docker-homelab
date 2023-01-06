@@ -28,7 +28,7 @@ services:
     command: redis-server --requirepass ${REDIS_PASSWORD}
 
   nextcloud-app:
-    image: nextcloud
+    image: nextcloud:latest
     container_name: nextcloud-app
     restart: always
     depends_on:
@@ -57,7 +57,7 @@ services:
       - default
 
   nextcloud-cron:
-    image: nextcloud
+    image: nextcloud:latest
     restart: always
     volumes:
       - /var/docker/nextcloud/app:/var/www/html
