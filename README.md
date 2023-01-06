@@ -12,16 +12,23 @@ In my docker environment Traefik is the goto reverse proxy. There are several ot
 
 # Full List of Software
 
-| **A**  | **B** | **C** | **D** | **E** | **F**  | **G** | **H** | **I** | **J** | **K**  | **L** | **M** |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| adguard home | blocky | calibre | droneio |   | Filebrowser | ghost | heimdall  | ilias  | jellyfin  |   |   | matomo |
-| apt-cacher-ng  | bookstack | cloudflare-ddns |  |  | freescout | ghostfolio  | influxdb |   |   |   |   |  miniflux |
-|   |  |  |  |  | freshrss | gitea |  |  |  |  |  |  |
-|   |  |  |  |  | |guacamole  |  |  |  |  |  |  |
+| **A**  | **B** | **C** | **D** | **E** | **F**  | **G** | **H** | 
+|---|---|---|---|---|---|---|---|
+| adguard home | blocky | calibre | droneio |   | Filebrowser | ghost | heimdall  |
+| apt-cacher-ng  | bookstack | cloudflare-ddns |  |  | freescout | ghostfolio  ||
+|   |  |  |  |  | freshrss | gitea |  |
+|   |  |  |  |  | |guacamole  |  |
 
-| **N** | **O** | **P**  | **Q** | **R** | **S** | **T** | **U**  | **V** | **W** | **X** | **Y** | **Z**  |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| nextcloud |  | phpipam |   | recipes | scrutiny | tautulli | unifi controller | vaultwarden  | wallabag |   | yourls |   |
-| ntp-server |  | pihole |   | redmine | statping-ng | traefik | unpoller |  | watchtower |   |  |   | 
-|  |  | plex |   |  |  |  |  |  | wikijs |  |  |  |
-|  |  | portainer |  |  |  |  |  |  | wordpress |  |  |  |
+| **I** | **J** | **K**  | **L** | **M** | **N** | **O** | **P** | **Q** |
+|---|---|---|---|---|---|---|---|---|
+| ilias  | jellyfin |   |   | matomo | nextcloud |  | phpipam |   |
+| influxdb  |   |   |   | miniflux | ntp-server |  | pihole |   |
+|   |   |  |  |  |  |  | plex |   |
+|   |   |  |  |  |  |  | portainer |   |
+
+| **R** | **S** | **T** | **U**  | **V** | **W** | **X** | **Y** | **Z**  |
+|---|---|---|---|---|---|---|---|---|
+| recipes | scrutiny | tautulli | unifi controller | vaultwarden  | wallabag |   | yourls |   |
+| redmine | statping-ng | traefik | unpoller |  | watchtower |   |  |   | 
+|  |  |  |  |  | wikijs |  |  |  |
+|  |  |  |  |  | wordpress |  |  |  |
