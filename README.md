@@ -7,8 +7,6 @@
 
 Dieses Repository ist eine Sammlung von Docker-Compose Dateien für Homelabs. Als Betreiber eines [YouTube Kanals](https://youtube.com/teqqyde) das sich rund um das Thema Homelab beschäftigt, habe ich mir die Arbeit gemacht, um dir einen kleinen Start in Sachen Docker zu geben.
 
-Eine vollständnige Liste welche Software mit dabei ist, findet ihr im [hier](https://github.com/cbirkenbeul/docker-homelab/tree/master/compose-files).
-
 ## Installation
 `git clone https://github.com/cbirkenbeul/docker-homelab.git && cd docker-homelab`
 
