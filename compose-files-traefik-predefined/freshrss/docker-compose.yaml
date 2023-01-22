@@ -31,7 +31,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.freshrss.entrypoints=websecure"
-      - "traefik.http.routers.freshrss.rule=Host(`${FRESHRSS_URL`)"  # Domain anpassen
+      - "traefik.http.routers.freshrss.rule=Host(`${FRESHRSS_URL}`)"  # Domain anpassen
       - "traefik.http.routers.freshrss.tls=true"
       - "traefik.http.routers.freshrss.tls.certresolver=default"
       - "traefik.http.routers.freshrss.middlewares=secHeaders@file"
