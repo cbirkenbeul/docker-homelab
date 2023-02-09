@@ -29,7 +29,7 @@ services:
       - 80:80
 
   freescout-db:
-    image: tiredofit/mariadb:10.10
+    image: tiredofit/mariadb:10.11
     container_name: freescout-db
     restart: unless-stopped
     volumes:
