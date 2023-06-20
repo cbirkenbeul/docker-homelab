@@ -33,7 +33,7 @@ services:
       - default
 
   redmine-db:
-    image: mariadb:10.11
+    image: mariadb:11.0
     container_name: redmine-db
     restart: always
     volumes:
