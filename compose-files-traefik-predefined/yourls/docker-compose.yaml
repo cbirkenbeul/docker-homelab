@@ -30,7 +30,7 @@ services:
       - traefik_proxy
 
   yourls-db:
-    image: mariadb:11.0
+    image: mariadb:11.1
     container_name: yourls-db
     restart: unless-stopped
     volumes:
