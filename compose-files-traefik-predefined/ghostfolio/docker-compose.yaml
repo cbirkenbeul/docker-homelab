@@ -31,7 +31,7 @@ services:
       - traefik_proxy
 
   ghostfolio-db:
-    image: postgres:15
+    image: postgres:16
     container_name: ghostfolio-db
     restart: unless-stopped
     environment:
