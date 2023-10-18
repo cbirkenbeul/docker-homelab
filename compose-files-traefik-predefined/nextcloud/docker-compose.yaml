@@ -37,6 +37,10 @@ services:
     environment:
       - REDIS_HOST=nextcloud-redis
       - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_HOST=nextcloud-db
     volumes:
       - /var/docker/nextcloud/app:/var/www/html
       # - EXTERNES DATENVERZEICHNIS:/var/www/html/data
