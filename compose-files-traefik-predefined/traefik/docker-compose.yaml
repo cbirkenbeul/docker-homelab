@@ -3,7 +3,7 @@ version: '3.7'
 
 services:
   traefik:
-    image: traefik:v2.10
+    image: traefik:3.0
     container_name: traefik
     volumes:
       - /etc/localtime:/etc/localtime:ro
