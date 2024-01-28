@@ -3,48 +3,33 @@ tls:
   options:
     default:
       minVersion: VersionTLS12
-      sniStrict: true
       cipherSuites:
         - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
         - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
-        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
-        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
-        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+        - TLS_AES_128_GCM_SHA256
+        - TLS_AES_256_GCM_SHA384
+        - TLS_CHACHA20_POLY1305_SHA256
       curvePreferences:
         - CurveP521
         - CurveP384
-    mintls13:
-      minVersion: VersionTLS13
-
+      sniStrict: true
 http:
   middlewares:
-    secHeaders:
+    default:
+      chain:
+        middlewares:
+          - default-security-headers
+          - gzip
+    default-security-headers:
       headers:
         browserXssFilter: true
         contentTypeNosniff: true
+        forceSTSHeader: true
         frameDeny: true
-        sslRedirect: true
-        #  HSTS Configuration
         stsIncludeSubdomains: true
         stsPreload: true
         stsSeconds: 31536000
-        customRequestHeaders:
-          X-Frame-Options: "SAMEORIGIN"
         customFrameOptionsValue: "SAMEORIGIN"
-
-#  Beispiel für externe Dienste
-#   routers:
-#     router-1: # Tausche den Namen gegen etwas sprechendes aus
-#       entryPoints:
-#         - websecure
-#       rule: "Host(`example.com`)"
-#       service: "service-1" # Den Namen am besten ähnlich zu dem oben setzen
-#       tls:
-#         certresolver: default
-
-#  services:
-#    service-1: # Ich verwende hier den gleiche Namen wie bei routers
-#      loadBalancer:
-#        servers:
-#          - url: "http://127.0.0.1" # Auf die richtige URL anpassen.
+    gzip:
+      compress: {}

@@ -1,0 +1,62 @@
+---
+log:
+  level: "INFO"
+  filePath: "/var/log/traefik/traefik.log"
+accessLog:
+  filePath: "/var/log/traefik/access.log"
+  bufferingSize: 100
+
+experimental:
+  http3: true
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+    network: "traefik_proxy"
+  file:
+    filename: "/etc/traefik/dynamic.yml"
+    watch: true
+  providersThrottleDuration: 10s
+
+api:
+  dashboard: true
+
+entryPoints:
+  ping:
+    address: ':88'
+  web:
+    address: ':80'
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+  websecure:
+    address: ':443'
+    http:
+    http3:
+      advertisedPort: '443'
+    proxyProtocol:
+      trustedIPs:
+        - 10.0.0.0/8
+        - 172.16.0.0/12
+        - 192.168.0.0/16
+    forwardedHeaders:
+      trustedIPs:
+        - 10.0.0.0/8
+        - 172.16.0.0/12
+        - 192.168.0.0/16
+
+certificatesResolvers:
+  default:
+    acme:
+      email: "mail@example.com" #Email Adresse hier anpassen
+      storage: "/etc/traefik/ACME/acme.json"
+      httpChallenge:
+        entryPoint: web
+  tls_resolver:
+    acme:
+      email: "mail@example.com" #Email Adresse hier anpassen
+      storage: "/etc/traefik/ACME/acme.json"
+      tlsChallenge: {}
