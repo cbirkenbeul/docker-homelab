@@ -17,7 +17,7 @@ services:
       - "traefik.http.routers.portainer.rule=Host(`${PORTAINER_URL}`)"
       - "traefik.http.routers.portainer.tls=true"
       - "traefik.http.routers.portainer.tls.certresolver=default"
-      - "traefik.http.routers.portainer.middlewares=secHeaders@file"
+      - "traefik.http.routers.portainer.middlewares=default@file"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
     networks:
       - traefik_proxy

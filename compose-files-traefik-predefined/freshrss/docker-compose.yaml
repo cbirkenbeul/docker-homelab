@@ -34,7 +34,7 @@ services:
       - "traefik.http.routers.freshrss.rule=Host(`${FRESHRSS_URL}`)"  # Domain anpassen
       - "traefik.http.routers.freshrss.tls=true"
       - "traefik.http.routers.freshrss.tls.certresolver=default"
-      - "traefik.http.routers.freshrss.middlewares=secHeaders@file"
+      - "traefik.http.routers.freshrss.middlewares=default@file"
       - "traefik.http.services.freshrss.loadbalancer.server.port=80"
     networks:
       - traefik_proxy

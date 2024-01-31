@@ -21,7 +21,7 @@ services:
       - "traefik.http.routers.ghost.rule=Host(`${GHOST_URL}`)"
       - "traefik.http.routers.ghost.tls=true"
       - "traefik.http.routers.ghost.tls.certresolver=default"
-      - "traefik.http.routers.ghost.middlewares=secHeaders@file"
+      - "traefik.http.routers.ghost.middlewares=default@file"
       - "traefik.http.services.ghost.loadbalancer.server.port=2368"
     networks:
       - ghost

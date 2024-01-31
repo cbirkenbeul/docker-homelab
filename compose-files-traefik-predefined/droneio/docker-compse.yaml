@@ -23,7 +23,7 @@ services:
       - "traefik.http.routers.drone.rule=Host(`drone.example.com`)"  # Domain anpassen
       - "traefik.http.routers.drone.tls=true"
       - "traefik.http.routers.drone.tls.certresolver=default"
-      - "traefik.http.routers.drone.middlewares=secHeaders@file"
+      - "traefik.http.routers.drone.middlewares=default@file"
       - "traefik.http.services.drone.loadbalancer.server.port=80"
     networks:
       - traefik_proxy

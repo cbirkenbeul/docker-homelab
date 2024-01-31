@@ -16,7 +16,7 @@ services:
       - "traefik.http.routers.vaultwarden.rule=Host(`${VAULTWARDEN_URL}`)"
       - "traefik.http.routers.vaultwarden.tls=true"
       - "traefik.http.routers.vaultwarden.tls.certresolver=default"
-      - "traefik.http.routers.vaultwarden.middlewares=secHeaders@file"
+      - "traefik.http.routers.vaultwarden.middlewares=default@file"
       - "traefik.http.services.vaultwarden.loadbalancer.server.port=80"
     networks:
       - traefik_proxy

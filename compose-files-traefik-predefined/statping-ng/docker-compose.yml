@@ -18,7 +18,7 @@ services:
       - "traefik.http.routers.statping-ng.rule=Host(`${EXTERNAL_URL}`)"
       - "traefik.http.routers.statping-ng.tls=true"
       - "traefik.http.routers.statping-ng.tls.certresolver=default"
-      - "traefik.http.routers.statping-ng.middlewares=secHeaders@file"
+      - "traefik.http.routers.statping-ng.middlewares=default@file"
       - "traefik.http.services.statping-ng.loadbalancer.server.port=${PORT}"
     networks:
       - traefik_proxy

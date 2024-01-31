@@ -54,7 +54,7 @@ services:
       - "traefik.http.routers.wordpress.rule=Host(`${WORDPRESS_URL}`)"
       - "traefik.http.routers.wordpress.tls=true"
       - "traefik.http.routers.wordpress.tls.certresolver=default"
-      - "traefik.http.routers.wordpress.middlewares=secHeaders@file"
+      - "traefik.http.routers.wordpress.middlewares=default@file"
       - "traefik.http.services.wordpress.loadbalancer.server.port=80"
     networks:
       - default

@@ -19,7 +19,7 @@ services:
       - "traefik.http.routers.heimdall.rule=Host(`heimdall.example.com`)"  # Domain anpassen
       - "traefik.http.routers.heimdall.tls=true"
       - "traefik.http.routers.heimdall.tls.certresolver=default"
-      - "traefik.http.routers.heimdall.middlewares=secHeaders@file"
+      - "traefik.http.routers.heimdall.middlewares=default@file"
       - "traefik.http.services.heimdall.loadbalancer.server.port=80"
     networks:
       - traefik_proxy

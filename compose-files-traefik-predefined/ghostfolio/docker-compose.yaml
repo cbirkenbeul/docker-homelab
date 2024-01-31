@@ -24,7 +24,7 @@ services:
       - "traefik.http.routers.ghostfolio.rule=Host(`${GHOSTFOLIO_URL}`)"
       - "traefik.http.routers.ghostfolio.tls=true"
       - "traefik.http.routers.ghostfolio.tls.certresolver=default"
-      - "traefik.http.routers.ghostfolio.middlewares=secHeaders@file"
+      - "traefik.http.routers.ghostfolio.middlewares=default@file"
       - "traefik.http.services.ghostfolio.loadbalancer.server.port=3333"
     networks:
       - ghostfolio

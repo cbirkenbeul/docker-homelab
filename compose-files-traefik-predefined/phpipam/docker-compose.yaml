@@ -33,7 +33,7 @@ services:
       - "traefik.http.routers.phpipam.rule=Host(`${PHPIPAM_URL}`)"
       - "traefik.http.routers.phpipam.tls=true"
       - "traefik.http.routers.phpipam.tls.certresolver=default"
-      - "traefik.http.routers.phpipam.middlewares=secHeaders@file"
+      - "traefik.http.routers.phpipam.middlewares=default@file"
       - "traefik.http.services.phpipam.loadbalancer.server.port=80"
     networks:
       - traefik_proxy

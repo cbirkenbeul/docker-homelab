@@ -19,7 +19,7 @@ services:
       - "traefik.http.routers.miniflux.rule=Host(`${EXTERNAL_URL}`)"
       - "traefik.http.routers.miniflux.tls=true"
       - "traefik.http.routers.miniflux.tls.certresolver=default"
-      - "traefik.http.routers.miniflux.middlewares=secHeaders@file"
+      - "traefik.http.routers.miniflux.middlewares=default@file"
       - "traefik.http.services.miniflux.loadbalancer.server.port=${PORT}"
     networks:
       - traefik_proxy

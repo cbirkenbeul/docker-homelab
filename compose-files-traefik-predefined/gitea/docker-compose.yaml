@@ -38,7 +38,7 @@ services:
       - "traefik.http.routers.gitea.rule=Host(`${GITEA_URL}`)"
       - "traefik.http.routers.gitea.tls=true"
       - "traefik.http.routers.gitea.tls.certresolver=default"
-      - "traefik.http.routers.gitea.middlewares=secHeaders@file"
+      - "traefik.http.routers.gitea.middlewares=default@file"
       - "traefik.http.services.gitea.loadbalancer.server.port=3000"
     depends_on:
       - gitea-db

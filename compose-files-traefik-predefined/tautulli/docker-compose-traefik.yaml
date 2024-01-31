@@ -19,7 +19,7 @@ services:
       - "traefik.http.routers.tautulli.rule=Host(`${TAUTULLI_URL}`)"
       - "traefik.http.routers.tautulli.tls=true"
       - "traefik.http.routers.tautulli.tls.certresolver=default"
-      - "traefik.http.routers.tautulli.middlewares=secHeaders@file"
+      - "traefik.http.routers.tautulli.middlewares=default@file"
       - "traefik.http.services.tautulli.loadbalancer.server.port=8080"
     networks:
       - traefik_proxy

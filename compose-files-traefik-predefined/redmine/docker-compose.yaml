@@ -26,7 +26,7 @@ services:
       - "traefik.http.routers.redmine.rule=Host(`redmine.example.com`)"  # Domain anpassen
       - "traefik.http.routers.redmine.tls=true"
       - "traefik.http.routers.redmine.tls.certresolver=default"
-      - "traefik.http.routers.redmine.middlewares=secHeaders@file"
+      - "traefik.http.routers.redmine.middlewares=default@file"
       - "traefik.http.services.redmine.loadbalancer.server.port=3000"
     networks:
       - traefik_proxy

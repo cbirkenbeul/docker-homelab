@@ -49,7 +49,7 @@ services:
       - "traefik.http.routers.recipes.rule=Host(`${RECIPES_URL}`)"
       - "traefik.http.routers.recipes.tls=true"
       - "traefik.http.routers.recipes.tls.certresolver=default"
-      - "traefik.http.routers.recipes.middlewares=secHeaders@file"
+      - "traefik.http.routers.recipes.middlewares=default@file"
       - "traefik.http.services.recipes.loadbalancer.server.port=80"
     networks:
       - traefik_proxy

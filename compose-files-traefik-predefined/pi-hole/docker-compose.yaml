@@ -20,7 +20,7 @@ services:
       - "traefik.http.routers.pi-hole.tls=true"
       - "traefik.http.routers.pi-hole.tls.certresolver=default"
       - "traefik.http.routers.pi-hole.middlewares=pi-hole-chain@docker"
-      - "traefik.http.middlewares.pi-hole-chain.chain.middlewares=pi-hole-replacepathregex@docker,secHeaders@file"
+      - "traefik.http.middlewares.pi-hole-chain.chain.middlewares=pi-hole-replacepathregex@docker,default@file"
       - "traefik.http.middlewares.pi-hole-replacepathregex.replacepathregex.regex=^/pi-hole/(.*)"
       - "traefik.http.middlewares.pi-hole-replacepathregex.replacepathregex.replacement=/admin/$$1"
       - "traefik.http.services.pi-hole.loadbalancer.server.port=80"

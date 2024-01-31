@@ -44,7 +44,7 @@ services:
       - "traefik.http.routers.guacamole.rule=Host(`guacamole.example.com`)"  # Domain anpassen
       - "traefik.http.routers.guacamole.tls=true"
       - "traefik.http.routers.guacamole.tls.certresolver=default"
-      - "traefik.http.routers.guacamole.middlewares=secHeaders@file"
+      - "traefik.http.routers.guacamole.middlewares=default@file"
       - "traefik.http.services.guacamole.loadbalancer.server.port=8080"
     networks:
       - traefik_proxy

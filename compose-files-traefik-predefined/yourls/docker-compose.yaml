@@ -23,7 +23,7 @@ services:
       - "traefik.http.routers.yourls.rule=Host(`${YOURLS_URL}`)"
       - "traefik.http.routers.yourls.tls=true"
       - "traefik.http.routers.yourls.tls.certresolver=default"
-      - "traefik.http.routers.yourls.middlewares=secHeaders@file"
+      - "traefik.http.routers.yourls.middlewares=default@file"
       - "traefik.http.services.yourls.loadbalancer.server.port=80"
     networks:
       - yourls

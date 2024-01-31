@@ -40,7 +40,7 @@ services:
       - "traefik.http.routers.matomo.rule=Host(`${MATOMO_URL}`)"
       - "traefik.http.routers.matomo.tls=true"
       - "traefik.http.routers.matomo.tls.certresolver=default"
-      - "traefik.http.routers.matomo.middlewares=secHeaders@file"
+      - "traefik.http.routers.matomo.middlewares=default@file"
       - "traefik.http.services.matomo.loadbalancer.server.port=80"
     depends_on:
       - matomo-db

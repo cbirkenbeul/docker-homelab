@@ -39,7 +39,7 @@ services:
       - "traefik.http.routers.bookstack.rule=Host(`${BOOKSTACK_URL}`)"
       - "traefik.http.routers.bookstack.tls=true"
       - "traefik.http.routers.bookstack.tls.certresolver=default"
-      - "traefik.http.routers.bookstack.middlewares=secHeaders@file"
+      - "traefik.http.routers.bookstack.middlewares=default@file"
       - "traefik.http.services.bookstack.loadbalancer.server.port=80"
     networks:
       - traefik_proxy
