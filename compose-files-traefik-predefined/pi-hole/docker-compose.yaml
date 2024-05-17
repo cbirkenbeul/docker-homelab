@@ -1,6 +1,4 @@
 ---
-version: "3"
-
 services:
   pi-hole:
     container_name: pi-hole

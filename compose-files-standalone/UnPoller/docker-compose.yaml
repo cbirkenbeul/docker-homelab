@@ -1,5 +1,4 @@
 ---
-version: "3"
 services:
   influxdb:
     container_name: up_influxdb

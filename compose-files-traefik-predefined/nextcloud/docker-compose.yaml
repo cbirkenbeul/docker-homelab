@@ -1,6 +1,4 @@
 ---
-version: '3.3'
-
 services:
   nextcloud-db:
     image: mariadb:11.3

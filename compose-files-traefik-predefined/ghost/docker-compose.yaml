@@ -1,6 +1,4 @@
 ---
-version: '3'
-
 services:
   ghost:
     image: ghost:5-alpine
@@ -9,5 +7,27 @@ services:
       - ./ghost:/var/lib/ghost/content
     environment:
       url: https://${GHOST_URL}
-    ports:
-      - 2368:2368
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.ghost-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.ghost-compress.compress=true"
+      - "traefik.http.routers.traefik.middlewares=ghost-compress"
+      - "traefik.http.routers.ghost-http.entrypoints=web"
+      - "traefik.http.routers.ghost-http.rule=Host(`${GHOST_URL}`)"
+      - "traefik.http.routers.ghost-http.middlewares=ghost-https@docker"
+      - "traefik.http.routers.ghost.entrypoints=websecure"
+      - "traefik.http.routers.ghost.rule=Host(`${GHOST_URL}`)"
+      - "traefik.http.routers.ghost.tls=true"
+      - "traefik.http.routers.ghost.tls.certresolver=default"
+      - "traefik.http.routers.ghost.middlewares=default@file"
+      - "traefik.http.services.ghost.loadbalancer.server.port=2368"
+    networks:
+      - ghost
+      - traefik_proxy
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  ghost:
+    driver: bridge

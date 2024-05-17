@@ -1,6 +1,4 @@
 ---
-version: "3"
-
 services:
   freshrss-db:
     image: postgres:16

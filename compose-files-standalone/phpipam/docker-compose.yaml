@@ -1,6 +1,4 @@
 ---
-version: '3'
-
 services:
   phpipam-db:
     image: mariadb:11.3

@@ -1,6 +1,4 @@
 ---
-version: "3"
-
 services:
   matomo-db:
     image: mariadb:11.3

@@ -1,6 +1,4 @@
 ---
-version: '3'
-
 services:
   droneio:
     image: drone/drone:latest

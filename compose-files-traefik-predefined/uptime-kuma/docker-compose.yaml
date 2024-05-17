@@ -1,11 +1,25 @@
 ---
-version: '3.3'
-
 services:
   uptime-kuma:
     image: louislam/uptime-kuma:latest
     container_name: uptime-kuma
     volumes:
       - /var/docker/uptime-kuma/config:/app/data
-    ports:
-      - 3001:3001
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.updatekuma.entrypoints=websecure"
+      - "traefik.http.routers.updatekuma.rule=Host(`${UPTIMEKUMA_URL}`)"
+      - "traefik.http.routers.updatekuma.tls=true"
+      - "traefik.http.routers.updatekuma.tls.certresolver=default"
+      - "traefik.http.routers.updatekuma.middlewares=default@file"
+      - "traefik.http.services.updatekuma.loadbalancer.server.port=3001"
+    networks:
+      - traefik_proxy
+      - uptime-kuma
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  uptime-kuma:
+    driver: bridge

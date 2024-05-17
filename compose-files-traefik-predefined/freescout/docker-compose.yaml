@@ -1,6 +1,4 @@
 ---
-version: '2'
-
 services:
   freescout-app:
     image: tiredofit/freescout:latest

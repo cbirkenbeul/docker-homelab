@@ -1,5 +1,4 @@
 ---
-version: "3"
 services:
   recipes-db:
     image: postgres:16

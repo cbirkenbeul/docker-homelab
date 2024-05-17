@@ -1,6 +1,4 @@
 ---
-version: "2"
-
 services:
   statping-ng:
     container_name: statping-ng

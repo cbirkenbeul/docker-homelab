@@ -1,6 +1,4 @@
 ---
-version: '3'
-
 services:
   guacamole_guacd:
     image: guacamole/guacd:latest

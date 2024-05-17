@@ -1,18 +1,17 @@
 ---
-    version: "3"
-    services:
-      filebrowser:
-        image: filebrowser/filebrowser:latest
-        container_name: filebrowser
-        restart: unless-stopped
-        volumes:
-          - /etc/localtime:/etc/localtime:ro
-          - /etc/timezone:/etc/timezone:ro
-          - ${FILEBROWSER_FILE_PATH}:/srv    # Filebrowser Daten Root Pfad 
-          - ./filebrowser.db:/database.db   # Einstellungen + Benutzer
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ${FILEBROWSER_FILE_PATH}:/srv    # Filebrowser Daten Root Pfad 
+      - ./filebrowser.db:/database.db   # Einstellungen + Benutzer
 #          - ./filebrowser.json:/.filebrowser.json      # Server Einstellungen 
-        # environment:
-        #   - PUID=1000
-        #   - PGID=1000
-        ports: 
-          - 8888:80
+    # environment:
+    #   - PUID=1000
+    #   - PGID=1000
+    ports: 
+      - 8888:80

@@ -1,5 +1,4 @@
 ---
-version: "3"
 services:
   calibre:
     image: lscr.io/linuxserver/calibre:latest

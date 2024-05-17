@@ -1,31 +1,30 @@
 ---
-    version: "3"
-    services:
-      filebrowser:
-        image: filebrowser/filebrowser:latest
-        container_name: filebrowser
-        restart: unless-stopped
-        volumes:
-          - /etc/localtime:/etc/localtime:ro
-          - /etc/timezone:/etc/timezone:ro
-          - ${FILEBROWSER_FILE_PATH}:/srv    # Filebrowser Daten Root Pfad 
-          - ./filebrowser.db:/database.db   # Einstellungen + Benutzer
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ${FILEBROWSER_FILE_PATH}:/srv    # Filebrowser Daten Root Pfad 
+      - ./filebrowser.db:/database.db   # Einstellungen + Benutzer
 #          - ./filebrowser.json:/.filebrowser.json      # Server Einstellungen 
-        # environment:
-        #   - PUID=1000
-        #   - PGID=1000
-        labels:
-          - "traefik.enable=true"
-          - "traefik.http.routers.filebrowser.entrypoints=websecure"
-          - "traefik.http.routers.filebrowser.rule=Host(`${FILEBROWSER_URL}`)"
-          - "traefik.http.routers.filebrowser.tls=true"
-          - "traefik.http.routers.filebrowser.tls.certresolver=default"
-          - "traefik.http.routers.filebrowser.middlewares=default@file"
-          - "traefik.http.services.filebrowser.loadbalancer.server.port=80"
-        networks:
-          - traefik_proxy
-    
+    # environment:
+    #   - PUID=1000
+    #   - PGID=1000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.filebrowser.entrypoints=websecure"
+      - "traefik.http.routers.filebrowser.rule=Host(`${FILEBROWSER_URL}`)"
+      - "traefik.http.routers.filebrowser.tls=true"
+      - "traefik.http.routers.filebrowser.tls.certresolver=default"
+      - "traefik.http.routers.filebrowser.middlewares=default@file"
+      - "traefik.http.services.filebrowser.loadbalancer.server.port=80"
     networks:
-      traefik_proxy:
-        external:
-          name: traefik_proxy
+      - traefik_proxy
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy

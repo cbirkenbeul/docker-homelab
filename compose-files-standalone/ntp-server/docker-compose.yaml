@@ -1,6 +1,4 @@
 ---
-version: '3'
-
 services:
   ntp-server:
     image: cturra/ntp:latest

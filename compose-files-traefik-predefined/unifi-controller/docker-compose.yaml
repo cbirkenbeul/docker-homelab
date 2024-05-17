@@ -1,6 +1,4 @@
 ---
-version: '3'
-
 services:
   unifi:
     image: jacobalberty/unifi:latest

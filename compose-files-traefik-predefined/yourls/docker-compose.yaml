@@ -1,6 +1,4 @@
 ---
-version: '3'
-
 services:
   yourls-app:
     image: yourls:latest

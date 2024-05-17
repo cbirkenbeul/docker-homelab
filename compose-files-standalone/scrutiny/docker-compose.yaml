@@ -1,5 +1,5 @@
 ---
-version: '3'
+
 services:
   scrutiny:
     image: lscr.io/linuxserver/scrutiny:latest
