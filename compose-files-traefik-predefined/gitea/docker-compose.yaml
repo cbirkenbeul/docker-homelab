@@ -1,7 +1,7 @@
 ---
 services:
   gitea-db:
-    image: mariadb:11.3
+    image: mariadb:11.4
     container_name: gitea-db
     restart: unless-stopped
     volumes:
