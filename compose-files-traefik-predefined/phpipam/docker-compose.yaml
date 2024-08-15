@@ -1,7 +1,7 @@
 ---
 services:
   phpipam-db:
-    image: mariadb:11.3
+    image: mariadb:11.5
     container_name: phpipam-mysql
     restart: unless-stopped
     volumes:
