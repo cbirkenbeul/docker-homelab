@@ -1,7 +1,7 @@
 ---
 services:
   matomo-db:
-    image: mariadb:11.3
+    image: mariadb:11.5
     container_name: matomo-db
     restart: unless-stopped
     volumes:
