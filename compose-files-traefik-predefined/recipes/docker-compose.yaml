@@ -1,7 +1,7 @@
 ---
 services:
   recipes-db:
-    image: postgres:16
+    image: postgres:17
     container_name: recipes-db
     restart: unless-stopped
     volumes:

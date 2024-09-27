@@ -17,7 +17,7 @@ services:
       - 3333:3333
 
   ghostfolio-db:
-    image: postgres:16
+    image: postgres:17
     container_name: ghostfolio-db
     restart: unless-stopped
     environment:
