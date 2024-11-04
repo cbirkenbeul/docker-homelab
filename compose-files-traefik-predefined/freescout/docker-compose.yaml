@@ -36,7 +36,7 @@ services:
       - default
 
   freescout-db:
-    image: tiredofit/mariadb:10.11
+    image: tiredofit/mariadb:11.4
     container_name: freescout-db
     restart: unless-stopped
     volumes:
