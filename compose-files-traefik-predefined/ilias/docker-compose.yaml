@@ -1,7 +1,7 @@
 ---
 services:
   ilias-db:
-    image: mariadb:11.6
+    image: mariadb:11.7
     container_name: ilias-db
     restart: unless-stopped
     command:
